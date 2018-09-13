@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour {
 
+    
 	// Use this for initialization
 	void Start () {
 		
@@ -13,4 +14,9 @@ public class InputManager : MonoBehaviour {
 	void Update () {
 		
 	}
+    public class InputPkg
+    {
+        public Vector3 mousePosOnClick;
+        public Vector3 currentMousePos;
+    }
 }
