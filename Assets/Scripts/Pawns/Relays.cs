@@ -7,7 +7,7 @@ public class Relays : BasePawnsClass
 
     public Relays(Vector3 _pos)
     {
-        PawnTypes pawnType = PawnTypes.Relay;
+        pawnType = PawnTypes.Relay;
         quickPawnDefinition = "Upgraded form of the Bit.Can be upgraded into a Kernel if enough territories are possessed."+
                               "This unit can move 1 tile per turn and have a range of 2";
 
