@@ -30,14 +30,14 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public Vector3 getOnClickMousePosWithRayCast()
-    {
-        Vector3 mouse = Input.mousePosition;
-        Ray castPoint = Camera.main.ScreenPointToRay(mouse);
-        RaycastHit hit;
-        if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
-        {
-            gameObject.transform.position = hit.point;
-        }
-    }
+ //   public Vector3 getOnClickMousePosWithRayCast() // function to get mouse click position (need raycast to get the Z)
+ //   {
+ //       Vector3 mouse = Input.mousePosition;
+ //       Ray castPoint = Camera.main.ScreenPointToRay(mouse);
+ //       RaycastHit hit;
+ //       if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
+ //       {
+ //           gameObject.transform.position = hit.point;
+ //       }
+ //   }
 }
