@@ -7,7 +7,7 @@ public class Kernels : BasePawnsClass
 
     public Kernels(Vector3 _pos)
     {
-        PawnTypes pawnType = PawnTypes.Kernel;
+        pawnType = PawnTypes.Kernel;
         quickPawnDefinition = "Produce Bits(1 per Kernel)/Upgrade an existing pawn and allow the player to get another movement(+1 movement per Kernel)";
 
         movementValue = 0;
