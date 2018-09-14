@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class MainEntry : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+ 
+    //Initialize flowManager
+    public void Initialize()
+    {
+        GameObject.DontDestroyOnLoad(gameObject);
+        FlowManager.Instance.Initialize((FlowManager.SceneNames)System.Enum.Parse(typeof(FlowManager.SceneNames), UnityEngine.SceneManagement.SceneManager.GetActiveScene().name));
+    }
+
+    //Update FlowManager
+    public void Update()
+    {
+        FlowManager.Instance.Update(Time.deltaTime);
+    }
+
+    //FixedUpdate FlowManager
+    public void FixedUpdate()
+    {
+        FlowManager.Instance.FixedUpdate(Time.fixedDeltaTime);
+    }
+
 }

@@ -1,16 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class GameFlow : MonoBehaviour {
+public class GameFlow : Flow {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    override
+    public void InitializeFlow()
+    {
+
+        //GridManager.Instance.initialization();
+        PlayerManager.Instance.initialization();
+
+        //UIManager.Instance.initialization();
+        //TerritoryGridManager.Instance.initialization();
+        //UnitFactory.Instance.initialization();
+        //UnitGridManager.Instance.initialization();
+    }
+
+    override
+    public void UpdateFlow(float dt)
+    {
+        PlayerManager.Instance.Update();
+    }
+
+    override
+    public void FixedUpdateFlow(float dt)
+    {
+
+    }
+
+    override
+    public void CloseFlow()
+    {
+        PlayerManager.ClosePlayerManager();
+    }
 }
