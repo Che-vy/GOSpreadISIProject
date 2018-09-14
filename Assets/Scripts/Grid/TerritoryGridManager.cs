@@ -2,15 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TerritoryGridManager : MonoBehaviour {
+public sealed class TerritoryGridManager
+{
+    private static TerritoryGridManager instance = null;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private TerritoryGridManager()
+    {
+    }
+
+    public static TerritoryGridManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new TerritoryGridManager();
+            }
+            return instance;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
