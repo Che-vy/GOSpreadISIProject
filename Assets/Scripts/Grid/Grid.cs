@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum GridComponentType { Zone = 1, Segment, Intersection }
+
 public class Grid
 {
     public GridComponentType[,] gridLayout;
 
     public void Initialize(int width)
     {
-        gridLayout = new GridComponentType[(width * 2) - 1, (width * 2) - 1];
+        int actualWidth = (width * 2) - 1;
 
-        for (int i = 0; i < width * 2 - 1; i++)
+        gridLayout = new GridComponentType[actualWidth, actualWidth]; //width * 2 - 1 because initially, width equals number of intersections, there we add (width - 1) for the number of walls/cubes in between each intersection
+
+        for (int i = 0; i < actualWidth; i++)
         {
-            for (int j = 0; j < width * 2 - 1; j++)
+            for (int j = 0; j < actualWidth; j++)
             {
                 if (i % 2 == 0) //if its column index is even, it's either an intersection or a segment
                 {

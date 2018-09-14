@@ -8,12 +8,10 @@ public class GridFactory {
     private GameObject zone;
     private GameObject segment;
     private GameObject intersection;
-    Dictionary<string, GameObject> prefabList;
 
     public float zoneWidth;
     public float segmentWidth, segmentHeight;
     public float intersectionWidth;
-    public Vector3 zoneS, interS, segS;
 
     #region Singleton
     private static GridFactory instance = null;
@@ -45,26 +43,28 @@ public class GridFactory {
         segmentWidth = segment.transform.localScale.x;
         segmentHeight = segment.transform.localScale.z;
         intersectionWidth = intersection.transform.localScale.x;
-
-        zoneS = zone.transform.localScale;
-        interS = intersection.transform.localScale;
-        segS = segment.transform.localScale;
-
     }
 
-
-    public GameObject[,] CreatedGrid(GridComponentType[,] masterGrid)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="masterGrid"></param>
+    /// <param name="parentName">The name given to the full grid parent game object</param>
+    /// <returns></returns>
+    public GameObject[,] CreatedGrid(GridComponentType[,] masterGrid, string parentName)
     {
-        int width = masterGrid.GetUpperBound(0);
-        GameObject[,] result = new GameObject[width + 1, width + 1];
+        int width = masterGrid.GetUpperBound(0) + 1;
+        GameObject[,] result = new GameObject[width, width];
+        GameObject parent = new GameObject();
+        parent.name = parentName;
 
-        for (int i = 0; i <= masterGrid.GetUpperBound(0); i++)
+        for (int i = 0; i < width; i++)
         {
-            for (int j = 0; j <= masterGrid.GetUpperBound(0); j++)
+            for (int j = 0; j < width; j++)
             {
                 switch (masterGrid[i, j]) {
                     case GridComponentType.Zone:
-                        result[i, j] = GameObject.Instantiate<GameObject>(zone);
+                        result[i, j] = GameObject.Instantiate<GameObject>(zone);                     
                         break;
                     case GridComponentType.Segment:
                         result[i, j] = GameObject.Instantiate<GameObject>(segment);
@@ -75,6 +75,8 @@ public class GridFactory {
                     default:
                         break;
                         }
+                result[i, j].transform.parent = parent.transform;
+
             }
         }
         return result;
