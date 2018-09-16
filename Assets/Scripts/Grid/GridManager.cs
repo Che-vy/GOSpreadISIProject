@@ -37,7 +37,9 @@ public class GridManager
     public void Initialize(int size)
     {
         grid_blueprint = new Grid();
+      
         grid_blueprint.Initialize(size);
+        InstantiateGridObjects();
     }
 
     public void InstantiateGridObjects()

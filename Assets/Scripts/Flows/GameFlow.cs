@@ -5,17 +5,18 @@ using UnityEngine.Networking;
 
 public class GameFlow : Flow {
 
+    readonly int mapSize = 10;
 
     override
     public void InitializeFlow()
     {
 
-        //GridManager.Instance.initialization();
+        GridManager.Instance.Initialize(mapSize);
         PlayerManager.Instance.initialization();
 
         //UIManager.Instance.initialization();
         //TerritoryGridManager.Instance.initialization();
-        //UnitFactory.Instance.initialization();
+        UnitFactory.Instance.Initialize();
         //UnitGridManager.Instance.initialization();
     }
 
