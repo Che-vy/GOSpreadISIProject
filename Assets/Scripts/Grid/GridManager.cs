@@ -1,11 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GridManager
 {
-    Grid grid_blueprint;
-    GameObject[,] grid_objects = null;
+   public Grid grid_blueprint;
+   public GameObject[,] grid_objects = null;
     float hOffset;
     float vOffset;
 
