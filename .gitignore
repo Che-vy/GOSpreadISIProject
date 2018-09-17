@@ -34,3 +34,20 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/Resources/Prefabs/Demo.meta
+Assets/Resources/Prefabs/Demo/Grid Parent.prefab
+Assets/Resources/Prefabs/Demo/Grid Parent.prefab.meta
+Assets/Scenes/Demo.meta
+Assets/Scenes/Demo/Demo Scene1.unity
+Assets/Scenes/Demo/Demo Scene1.unity.meta
+Assets/Scenes/Demo/Demo Scene2.unity
+Assets/Scenes/Demo/Demo Scene2.unity.meta
+Assets/Scenes/Demo/Demo Scene3.unity
+Assets/Scenes/Demo/Demo Scene3.unity.meta
+Assets/Scripts/UI/Demo.meta
+Assets/Scripts/UI/Demo/QuitDemo.cs
+Assets/Scripts/UI/Demo/QuitDemo.cs.meta
+Assets/Scripts/UI/Demo/SwitchDemo2.cs
+Assets/Scripts/UI/Demo/SwitchDemo2.cs.meta
+Assets/Scripts/UI/Demo/SwitchDemo3.cs
+Assets/Scripts/UI/Demo/SwitchDemo3.cs.meta
