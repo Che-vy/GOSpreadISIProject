@@ -76,7 +76,6 @@ public class GridFactory {
                         break;
                         }
                 result[i, j].transform.parent = parent.transform;
-
             }
         }
         return result;

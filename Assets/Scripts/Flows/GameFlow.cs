@@ -10,14 +10,14 @@ public class GameFlow : Flow {
     override
     public void InitializeFlow()
     {
-
         GridManager.Instance.Initialize(mapSize);
         PlayerManager.Instance.initialization();
-
         //UIManager.Instance.initialization();
         //TerritoryGridManager.Instance.initialization();
         UnitFactory.Instance.Initialize();
         //UnitGridManager.Instance.initialization();
+        UnitGridManager.Instance.Initialize();
+        UnitGridManager.Instance.AddUnit(10,10,1, UnitType.Bit);
     }
 
     override

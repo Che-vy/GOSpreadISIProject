@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GridManager
 {
-
     Grid grid_blueprint;
     GameObject[,] grid_objects = null;
     float hOffset;
@@ -31,13 +30,12 @@ public class GridManager
     #endregion
 
     /// <summary>
-    /// 
+    /// Given the number of intersections wanted for a map, initializes a full grid of 2*number - 1 gameObjects
     /// </summary>
-    /// <param name="size"></param>
+    /// <param name="size">The number of intersections on a side</param>
     public void Initialize(int size)
     {
-        grid_blueprint = new Grid();
-      
+        grid_blueprint = new Grid();     
         grid_blueprint.Initialize(size);
         InstantiateGridObjects();
     }
@@ -88,7 +86,13 @@ public class GridManager
                 _grid_objects[i, j].transform.position = new Vector3(hOffset, 0, vOffset); //set GameObject position
             }
         }
+    }
 
+    public Transform GetGridComponentPosition(int indexA, int indexB) {
+        return grid_objects[indexA, indexB].transform;
+    }
 
+    public int GetGridSize() {
+        return grid_blueprint.GetGridSize();
     }
 }

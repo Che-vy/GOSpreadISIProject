@@ -33,7 +33,6 @@ public class UnitFactory
 
         foreach (GameObject gameObject in temp)
         {
-
             units.Add(gameObject.name, gameObject);
         }
     }
@@ -43,11 +42,8 @@ public class UnitFactory
     /// </summary>
     /// <param name="unit"></param>
     /// <returns></returns>
-
     public GameObject SpawnUnit(UnitType unit)
-    {
-
-        
+    {       
         return GameObject.Instantiate( units[unit.ToString()]);
     }
 }

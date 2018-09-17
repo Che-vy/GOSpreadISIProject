@@ -45,4 +45,7 @@ public class Grid
 
     }
 
+    public int GetGridSize() {
+        return gridLayout.GetUpperBound(0);
+    }
 }
