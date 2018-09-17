@@ -51,6 +51,8 @@ public sealed class TerritoryGridManager
     }
 
     public Vector2 CalculateZoneControl() // call at each player turn. not each update
+
+        // need to change switch case to array 
     {
         int p1Territory = 0;
         int p2Territory = 0;
@@ -72,6 +74,7 @@ public sealed class TerritoryGridManager
                             p2Territory++;
                             break;
                         default:
+                            Debug.Log("Out of the enums. Some problem happened");
                             break;
                     }
                 }
