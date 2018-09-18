@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitGrid : MonoBehaviour
+public class UnitGrid
 {
     private readonly Vector3 VERTICAL_OFFSET = new Vector3(0, 0.75f, 0);
+
     public GameObject[,] unitGridGO;
     public BasePawnsClass[,] unitGrid;
+
 
     #region Singleton
     private static UnitGrid instance = null;
@@ -34,12 +36,17 @@ public class UnitGrid : MonoBehaviour
     {
         int gridSize = GridManager.Instance.GetGridSize();
         unitGridGO = new GameObject[gridSize, gridSize];
+        unitGrid = new BasePawnsClass[gridSize, gridSize];
     }
 
     public void AddUnit(Vector2Int unitIndex, int player, UnitType unitType)
     {
         unitGridGO[unitIndex.x, unitIndex.y] = UnitFactory.Instance.SpawnUnit(unitType);
         unitGridGO[unitIndex.x, unitIndex.y].transform.position = GridManager.Instance.GetGridComponentPosition(unitIndex.x, unitIndex.y).position + VERTICAL_OFFSET;
+        if (player == 2)
+        {
+            unitGridGO[unitIndex.x, unitIndex.y].transform.rotation = new Quaternion(0, 90, 0, 0);
+        }
     }
 
     /// <summary>

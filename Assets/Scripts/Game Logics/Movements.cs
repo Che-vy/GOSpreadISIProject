@@ -11,7 +11,7 @@ public class Movements : MonoBehaviour
         bool unitHaveMovementPointAvailable = false;// check if the unit can move (so we dont move the same unit more then once)
         bool intersectionExist = false; // check if there is an intesection so we can place the pawn
         bool landingPlaceIsFree = false;// check if there is a pawn occupying the place
-        bool secondLandindPlaceIsFree = false;
+        bool secondLandindPlaceIsFree = false; // for the zip movement
         
 
         // check for movement available (bits and relay have 1, zips have 2)

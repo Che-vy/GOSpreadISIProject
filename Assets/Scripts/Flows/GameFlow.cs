@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class GameFlow : Flow {
+public class GameFlow : Flow
+{
 
     readonly int mapSize = 10;
 
     override
     public void InitializeFlow()
     {
-        GameObject network =  GameObject.Instantiate(Resources.Load("Prefabs/Network/GetNbConnection")as GameObject);
-        GetNbPlayer networkGetPlayer = network.GetComponent<GetNbPlayer>();
-        networkGetPlayer.Initialize();
+        GetNbPlayer nbPlayer = GameObject.FindGameObjectWithTag("SetPlayers").GetComponent<GetNbPlayer>();
+        nbPlayer.Initialize();
+
 
         GridManager.Instance.Initialize(mapSize);
         PlayerManager.Instance.initialization();
-
         //UIManager.Instance.initialization();
         //TerritoryGridManager.Instance.initialization();
         UnitFactory.Instance.Initialize();
         //UnitGridManager.Instance.initialization();
+        UnitGrid.Instance.Initialize();
+        Demo.Instance.StartDemo(); //FOR DEMONSTRATION PURPOSES ONLY
     }
 
     override
