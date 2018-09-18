@@ -9,7 +9,6 @@ public sealed class TerritoryGridManager
     private static TerritoryGridManager instance = null;
     public int zoneGridSize;
     public Zone[,] zoneGrid; // exact same grid as the game grid but only takes account of the zone possessions
-    public Vector2 playerPoints;
 
 
     #region Singleton
@@ -50,12 +49,11 @@ public sealed class TerritoryGridManager
         }
     }
 
-    public Vector2 CalculateZoneControl() // call at each player turn. not each update
+    public Zone[] CalculateZoneControl() // call at each player turn. not each update
 
         // need to change switch case to array 
     {
-        int p1Territory = 0;
-        int p2Territory = 0;
+        Zone[] territory = new Zone[] { 0,0,0}; // index 0 = neutral, index 1 = player1, index2 = player 2. Keep track of the players score
 
         for (int i = 0; i < zoneGrid.GetUpperBound(0); i++)
         {
@@ -63,7 +61,23 @@ public sealed class TerritoryGridManager
             {
                 if (i % 2 != 0 && j % 2 != 0)
                 {
-                    switch (zoneGrid[i, j])
+                    territory[(int)zoneGrid[i, j]]++;
+                }
+
+            }
+        }
+
+        return territory;
+    }
+
+    public void ChangeZone(int i, int j, Zone newZoneType)
+    {
+        zoneGrid[i, j] = newZoneType;
+    }
+}
+
+/*
+  switch (zoneGrid[i, j])
                     {
                         case Zone.Neutral:
                             break;
@@ -77,18 +91,6 @@ public sealed class TerritoryGridManager
                             Debug.Log("Out of the enums. Some problem happened");
                             break;
                     }
-                }
-
-            }
-        }
-        playerPoints = new Vector2(p1Territory, p2Territory);
-
-        return playerPoints;
-    }
-
-    public void ChangeZone(int i, int j, Zone newZoneType)
-    {
-        zoneGrid[i, j] = newZoneType;
-    }
-}
-
+     
+     
+     */
