@@ -75,22 +75,3 @@ public sealed class TerritoryGridManager
         zoneGrid[i, j] = newZoneType;
     }
 }
-
-/*
-  switch (zoneGrid[i, j])
-                    {
-                        case Zone.Neutral:
-                            break;
-                        case Zone.Player1:
-                            p1Territory++;
-                            break;
-                        case Zone.Player2:
-                            p2Territory++;
-                            break;
-                        default:
-                            Debug.Log("Out of the enums. Some problem happened");
-                            break;
-                    }
-     
-     
-     */
