@@ -10,7 +10,7 @@ public class GameFlow : Flow {
     override
     public void InitializeFlow()
     {
-      GameObject network =  GameObject.Instantiate(Resources.Load("Prefabs/Network/GetNbConnection")as GameObject);
+        GameObject network =  GameObject.Instantiate(Resources.Load("Prefabs/Network/GetNbConnection")as GameObject);
         GetNbPlayer networkGetPlayer = network.GetComponent<GetNbPlayer>();
         networkGetPlayer.Initialize();
 
