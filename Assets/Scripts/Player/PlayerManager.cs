@@ -24,7 +24,7 @@ public class PlayerManager  {
 
 
     GameObject[] playersObject;
-    List<Player> players;
+    public List<Player> players;
     public int playerTurn = 1;
 
     public void initialization()
@@ -44,6 +44,7 @@ public class PlayerManager  {
         {
             p.initialization();
         }
+        UIManager.Instance.Initialization();
     }
 
 

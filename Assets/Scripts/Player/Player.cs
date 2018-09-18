@@ -14,7 +14,7 @@ public class Player : NetworkBehaviour
     InputManager inputMan;
     public int zone = 0;
 
-       public string name;
+    public string name;
     public int phase = 1;
     bool initialize = false;
 
