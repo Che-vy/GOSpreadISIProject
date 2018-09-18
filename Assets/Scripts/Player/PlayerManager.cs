@@ -34,23 +34,24 @@ public class PlayerManager  {
 
     public void setPlayer(GameObject[] pO, List<Player> ps)
     {
-        playersObject = pO;
         players = ps;
-
+        playersObject = pO;
+      
+    }
+    public void initializePlayers()
+    {
         foreach (Player p in players)
         {
             p.initialization();
         }
-
     }
 
 
     public void Update()
     {
-        foreach (Player player in players)
-        {
-            player.UpdatePlayer();
-        }
+        Debug.Log("TOUR: "+playerTurn);
+        if(players != null && players.Count > 0)
+        players[playerTurn - 1].UpdatePlayer();
     }
 
 
@@ -59,8 +60,18 @@ public class PlayerManager  {
     {
         instance = null;
     }
+
+    public void changeTurn()
+    {
+        playerTurn++;
+        if(playerTurn >players.Count)
+        {
+            playerTurn = 1;
+        }
+    }
     public Player getPlayer(int id)
     {
+        Debug.Log(players.Count);
         return players[id - 1];
     }
 }

@@ -15,6 +15,7 @@ public class Player : NetworkBehaviour
 
        public string name;
     public int phase = 1;
+    bool initialize = false;
 
     public void initialization()
     {
@@ -27,43 +28,50 @@ public class Player : NetworkBehaviour
 
         co = GetComponent<ConnectionManager>();
         name = Prototype.NetworkLobby.LobbyPlayerList._instance._players[id - 1].playerName;
-        co.CmdDebug(id, name);
-        co.CmdChangeNom(id,name);
+        
         inputMan = new InputManager();
+
+        co.CmdDebug(id, name);
+        co.CmdChangeNom(id, name);
+        initialize = true;
     }
 
     public void UpdatePlayer()
     {
 
-        if (!isLocalPlayer)
+        if (initialize == true)
         {
-            return;
-        }
+            if (!isLocalPlayer)
+            {
+                return;
+            }
 
-        InputManager.InputPkg pkg = inputMan.GetInputs();
+            InputManager.InputPkg pkg = inputMan.GetInputs();
 
-        if(pkg.objectSelected != null)
-        {
-            co.CmdDebug(id,name);
-        }
+            if (pkg.objectSelected != null)
+            {
+                co.CmdDebug(id, name);
+            //    co.CmdNextTurn();
+            }
 
-        if(phase == KERNELPHASE)
-        {
+            if (phase == KERNELPHASE)
+            {
 
+            }
         }
 
     }
 
 
-    public void UpdatePhase1()
+    void UpdatePhase1()
     {
 
     }
-    public void UpdatePhase2()
+    void UpdatePhase2()
     {
 
     }
-    public void UpdatePhase3()
+    void UpdatePhase3()
     {
 
     }
