@@ -10,14 +10,17 @@ public class GameFlow : Flow {
     override
     public void InitializeFlow()
     {
+        GameObject network =  GameObject.Instantiate(Resources.Load("Prefabs/Network/GetNbConnection")as GameObject);
+        GetNbPlayer networkGetPlayer = network.GetComponent<GetNbPlayer>();
+        networkGetPlayer.Initialize();
+
         GridManager.Instance.Initialize(mapSize);
         PlayerManager.Instance.initialization();
+
         //UIManager.Instance.initialization();
         //TerritoryGridManager.Instance.initialization();
         UnitFactory.Instance.Initialize();
         //UnitGridManager.Instance.initialization();
-        UnitGridManager.Instance.Initialize();
-        UnitGridManager.Instance.AddUnit(10,10,1, UnitType.Bit);
     }
 
     override
