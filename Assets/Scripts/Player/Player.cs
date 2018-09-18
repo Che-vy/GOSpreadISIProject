@@ -1,16 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Player : MonoBehaviour {
+public class Player : NetworkBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public int id;
+    ConnectionManager co;
+    InputManager inputMan;
+
+    public void initialization()
+    {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+       
+        co = GetComponent<ConnectionManager>();
+
+        inputMan = new InputManager();
+    }
+
+    public void UpdatePlayer()
+    {
+
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
+        InputManager.InputPkg pkg = inputMan.GetInputs();
+
+        if(pkg.objectSelected != null)
+        {
+            co.CmdDebug(id);
+        }
+
+    }
+
+
+
 }
