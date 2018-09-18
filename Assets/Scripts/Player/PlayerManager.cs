@@ -59,4 +59,8 @@ public class PlayerManager  {
     {
         instance = null;
     }
+    public Player getPlayer(int id)
+    {
+        return players[id - 1];
+    }
 }
