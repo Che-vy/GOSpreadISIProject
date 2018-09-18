@@ -19,7 +19,7 @@ public class ConnectionManager : NetworkBehaviour {
 
         Debug.Log("Player " + pid+ ": tour fini");
     }
-
+    
 
     //Set name of player
     [Command]
@@ -33,6 +33,7 @@ public class ConnectionManager : NetworkBehaviour {
     {
 
         PlayerManager.Instance.getPlayer(id).changeName(name);
+        UIManager.Instance.Initialization();
     }
 
     //Change turn
@@ -48,4 +49,16 @@ public class ConnectionManager : NetworkBehaviour {
         PlayerManager.Instance.changeTurn();
     }
 
+    [Command]
+    public void CmdspawnUnit(UnitType unit)
+    {
+        RpcspawnUnit(unit);
+    }
+    [ClientRpc]
+    void RpcspawnUnit(UnitType unit)
+    {
+
+        GameObject gO = UnitFactory.Instance.SpawnUnit(unit);
+        gO.transform.position = new Vector3(1, 1, 1);
+    }
 }

@@ -14,6 +14,9 @@ public class Player : NetworkBehaviour
     InputManager inputMan;
     public int zone = 0;
 
+    public bool isConnected = false;
+
+    [SyncVar]
     public string name;
     public int phase = 1;
     bool initialize = false;
@@ -25,13 +28,13 @@ public class Player : NetworkBehaviour
             return;
         }
       
-
+        
 
         co = GetComponent<ConnectionManager>();
         name = Prototype.NetworkLobby.LobbyPlayerList._instance._players[id - 1].playerName;
         
         inputMan = new InputManager();
-
+        isConnected = true;
         co.CmdDebug(id, name);
         co.CmdChangeNom(id, name);
         initialize = true;
@@ -51,6 +54,7 @@ public class Player : NetworkBehaviour
 
             if (pkg.objectSelected != null)
             {
+                co.CmdspawnUnit(UnitType.Bit);
                 co.CmdDebug(id, name);
                 co.CmdNextTurn();
             }

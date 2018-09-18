@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class PlayerManager  {
 
@@ -43,7 +44,11 @@ public class PlayerManager  {
         foreach (Player p in players)
         {
             p.initialization();
+
+
         }
+        
+       
         UIManager.Instance.Initialization();
     }
 
@@ -51,8 +56,11 @@ public class PlayerManager  {
     public void Update()
     {
         Debug.Log("TOUR: "+playerTurn);
-        if(players != null && players.Count > 0)
-        players[playerTurn - 1].UpdatePlayer();
+        if (players != null && players.Count > 0)
+        {
+            players[playerTurn - 1].UpdatePlayer();
+            UIManager.Instance.Update();
+        }
     }
 
 
@@ -75,4 +83,6 @@ public class PlayerManager  {
         Debug.Log(players.Count);
         return players[id - 1];
     }
+
+  
 }

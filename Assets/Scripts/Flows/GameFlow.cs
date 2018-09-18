@@ -32,7 +32,6 @@ public class GameFlow : Flow
     public void UpdateFlow(float dt)
     {
         PlayerManager.Instance.Update();
-        UIManager.Instance.Update();
     }
 
     override

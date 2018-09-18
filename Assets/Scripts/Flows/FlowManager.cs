@@ -27,6 +27,7 @@ public class FlowManager
     #endregion
     public SceneNames currentScene;
     Flow currentFlow;
+    List<int> yolo;
     bool flowInitialized = false;
 
     //Initialize FlowManager
@@ -44,7 +45,7 @@ public class FlowManager
     //Update FlowManager
     public void Update(float dt)
     {
-
+       
         //Update the flow
         if (currentFlow != null && flowInitialized)
             currentFlow.UpdateFlow(dt);

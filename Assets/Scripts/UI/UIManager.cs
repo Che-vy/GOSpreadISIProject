@@ -9,7 +9,7 @@ public class UIManager {
 
     private UIManager()
     {
-        
+        gui = GameFlow.uiLinks.gui;
     }
 
     public static UIManager Instance
@@ -26,7 +26,7 @@ public class UIManager {
 
     public void Initialization()
     {
-        gui = GameFlow.uiLinks.gui;
+      
         gui.Initialize();
     }
 
