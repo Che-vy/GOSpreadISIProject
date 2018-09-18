@@ -24,7 +24,6 @@ public class GameFlow : Flow
         UnitFactory.Instance.Initialize();
         //UnitGridManager.Instance.initialization();
         UnitGrid.Instance.Initialize();
-        
         Demo.Instance.StartDemo(); //FOR DEMONSTRATION PURPOSES ONLY
     }
 
@@ -32,7 +31,6 @@ public class GameFlow : Flow
     public void UpdateFlow(float dt)
     {
         PlayerManager.Instance.Update();
-        UIManager.Instance.Update();
     }
 
     override

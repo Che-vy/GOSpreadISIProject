@@ -10,4 +10,6 @@ public class UILinks : MonoBehaviour {
     public Text player2Name, player1NbTerritory, player2NbTerritory;
     public GameUI gui;
 
+    [Header("KernelUI Setting")]
+    public GameObject kui;
 }
