@@ -18,6 +18,7 @@ public class Relays : BasePawnsClass
         gameObject.transform.position = _pos;
         prefabsModel = "Relay";
         hasBeenEaten = false;
+        movementAvailable = 1;
     }
     
 }

@@ -7,18 +7,45 @@ public class ConnectionManager : NetworkBehaviour {
 
 
     [Command]
-    public void CmdDebug(int pId)
+    public void CmdDebug(int pId,string name)
     {
-        RpcDebug(pId);
-
+        RpcDebug(pId, name);
 
     }
 
     [ClientRpc]
-    void RpcDebug( int pid)
+    void RpcDebug( int pid, string name)
     {
 
-        Debug.Log("Player " + pid);
+        Debug.Log("Player " + pid+ ": tour fini");
+    }
+
+
+    //Set name of player
+    [Command]
+    public void CmdChangeNom(int id,string name)
+    {
+        RpcChangeName(id, name);
+    }
+
+    [ClientRpc]
+    void RpcChangeName(int id, string name)
+    {
+
+        PlayerManager.Instance.getPlayer(id).changeName(name);
+    }
+
+    //Change turn
+    [Command]
+    public void CmdNextTurn()
+    {
+        RpcNextTurn();
+    }
+    [ClientRpc]
+    void RpcNextTurn()
+    {
+
+        PlayerManager.Instance.changeTurn();
     }
 
 }

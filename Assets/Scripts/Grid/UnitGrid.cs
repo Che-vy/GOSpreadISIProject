@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +6,10 @@ using UnityEngine;
 public class UnitGrid
 {
     private readonly Vector3 VERTICAL_OFFSET = new Vector3(0, 0.75f, 0);
+	
     public GameObject[,] unitGridGO;
     public BasePawnsClass[,] unitGrid;
+
 
     #region Singleton
     private static UnitGrid instance = null;

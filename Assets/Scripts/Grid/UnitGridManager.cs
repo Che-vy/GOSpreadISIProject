@@ -2,26 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitGridManager {
+public class UnitGridManager
+{
 
-    UnitGrid unitGrid;
+    private static UnitGridManager instance = null;
+    public UnitGrid unitGrid;
 
-   
-    public void Initialize() {
-       // unitGrid = new UnitGrid();
-       // unitGrid.Initialize();
+    #region Singleton
+    private UnitGridManager()
+    {
     }
 
-    public void UpdateUnitGrid() {
-       // unitGrid.UpdateUnitPosition();
+    public static UnitGridManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new UnitGridManager();
+            }
+            return instance;
+        }
+    }
+    #endregion
+
+    public void Initialize()
+    {
+        // unitGrid = new UnitGrid();
+        // unitGrid.Initialize();
     }
 
-    public void AddUnit(int indexA, int indexB, int player, UnitType unitType) {
-      //  unitGrid.AddUnit(indexA, indexB, player, unitType);
+    public void UpdateUnitGrid()
+    {
+        // unitGrid.UpdateUnitPosition();
     }
 
-    public void ClearUnitGrid() {
-     //   unitGrid.ClearGrid();
+    public void AddUnit(int indexA, int indexB, int player, UnitType unitType)
+    {
+        //  unitGrid.AddUnit(indexA, indexB, player, unitType);
+    }
+
+    public void ClearUnitGrid()
+    {
+        //   unitGrid.ClearGrid();
     }
 
 }

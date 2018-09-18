@@ -6,7 +6,7 @@ public enum GridComponentType { Zone = 1, Segment, Intersection }
 
 public class Grid
 {
-    public GridComponentType[,] gridLayout;
+    public GridComponentType[,] gridLayout = null;
 
     public void Initialize(int width)
     {

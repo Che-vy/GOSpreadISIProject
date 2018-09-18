@@ -31,6 +31,8 @@ public class GetNbPlayer : MonoBehaviour {
         }
 
         PlayerManager.Instance.setPlayer(playersObject, players);
+        yield return new WaitForSeconds(0.5f);
+        PlayerManager.Instance.initializePlayers();
         Destroy(gameObject);
     }
 }

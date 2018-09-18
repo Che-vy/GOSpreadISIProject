@@ -19,6 +19,7 @@ public class Zips : BasePawnsClass
         gameObject.transform.position = _pos;
         prefabsModel = "Zip";
         hasBeenEaten = false;
+        movementAvailable = 2;
     }
 
 
