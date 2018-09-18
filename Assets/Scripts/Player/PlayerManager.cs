@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager  {
+public class PlayerManager
+{
 
     private static PlayerManager instance = null;
 
@@ -36,7 +37,7 @@ public class PlayerManager  {
     {
         players = ps;
         playersObject = pO;
-      
+
     }
     public void initializePlayers()
     {
@@ -50,9 +51,12 @@ public class PlayerManager  {
 
     public void Update()
     {
-        Debug.Log("TOUR: "+playerTurn);
-        if(players != null && players.Count > 0)
-        players[playerTurn - 1].UpdatePlayer();
+        Debug.Log("TOUR: " + playerTurn);
+        if (players != null && players.Count > 0)
+        {
+            players[playerTurn - 1].UpdatePlayer();
+            UIManager.Instance.Update();
+        }
     }
 
 
@@ -65,7 +69,7 @@ public class PlayerManager  {
     public void changeTurn()
     {
         playerTurn++;
-        if(playerTurn >players.Count)
+        if (playerTurn > players.Count)
         {
             playerTurn = 1;
         }
