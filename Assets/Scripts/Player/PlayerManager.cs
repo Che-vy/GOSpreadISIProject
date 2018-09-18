@@ -22,14 +22,35 @@ public class PlayerManager  {
         }
     }
 
+
+    GameObject[] playersObject;
+    List<Player> players;
+    public int playerTurn = 1;
+
     public void initialization()
     {
+        players = new List<Player>();
+    }
+
+    public void setPlayer(GameObject[] pO, List<Player> ps)
+    {
+        playersObject = pO;
+        players = ps;
+
+        foreach (Player p in players)
+        {
+            p.initialization();
+        }
 
     }
 
+
     public void Update()
     {
-        Debug.Log("Update in PlayerManager");
+        foreach (Player player in players)
+        {
+            player.UpdatePlayer();
+        }
     }
 
 
