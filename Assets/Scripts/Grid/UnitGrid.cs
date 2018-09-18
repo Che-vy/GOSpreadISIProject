@@ -6,8 +6,8 @@ using UnityEngine;
 public class UnitGrid
 {
     private readonly Vector3 VERTICAL_OFFSET = new Vector3(0, 0.75f, 0);
-    GameObject[,] unitGridGO;
-    BasePawnsClass[,] unitGrid;
+    public GameObject[,] unitGridGO;
+    public BasePawnsClass[,] unitGrid;
 
     #region Singleton
     private static UnitGrid instance = null;
@@ -45,6 +45,26 @@ public class UnitGrid
         {
             unitGridGO[unitIndex.x, unitIndex.y].transform.rotation = new Quaternion(0, 90, 0, 0);
         }
+
+        switch (unitType) {
+            case UnitType.Bit:
+                unitGrid[unitIndex.x, unitIndex.y] = new Bits(new Vector3());
+                break;
+            case UnitType.Kernel:
+                unitGrid[unitIndex.x, unitIndex.y] = new Kernels(new Vector3());
+                break;
+            case UnitType.Relay:
+                unitGrid[unitIndex.x, unitIndex.y] = new Relays(new Vector3());
+                break;
+            case UnitType.Zit:
+                unitGrid[unitIndex.x, unitIndex.y] = new Zips(new Vector3());
+                break;
+            default:
+                break;
+        }
+
+        unitGrid[unitIndex.x, unitIndex.y].x = unitIndex.x;
+        unitGrid[unitIndex.x, unitIndex.y].y = unitIndex.y;
     }
 
     /// <summary>

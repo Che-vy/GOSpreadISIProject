@@ -13,7 +13,7 @@ public class Bits : BasePawnsClass
         rangeValue = 1;
         playerNum = 0;
         level = 1;
-        gameObject.transform.position = _pos;
+        //gameObject.transform.position = _pos;
         prefabsModel = "Bit";
         hasBeenEaten = false;
     }

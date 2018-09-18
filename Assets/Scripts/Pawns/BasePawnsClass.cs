@@ -18,6 +18,7 @@ public class BasePawnsClass : MonoBehaviour {
     public Vector3 pos; // current position of the pawn => need to create a tool to change pawns positions.
     public string prefabsModel; // name of the prefab (need to be the actual name of the prefab related to the pawn) for easier instanciation
     public bool hasBeenEaten; // if the pawn is alive or not
+    public int x, y;
 
 
     public void Move(Vector3 newPosition) // virtual fonction to move the pawns
