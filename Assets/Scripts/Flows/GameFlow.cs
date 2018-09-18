@@ -23,7 +23,6 @@ public class GameFlow : Flow
         //UnitGridManager.Instance.initialization();
         UnitGrid.Instance.Initialize();
         Demo.Instance.StartDemo(); //FOR DEMONSTRATION PURPOSES ONLY
-
     }
 
     override
