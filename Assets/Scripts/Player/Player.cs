@@ -12,6 +12,7 @@ public class Player : NetworkBehaviour
     public int id;
     ConnectionManager co;
     InputManager inputMan;
+    public int zone = 0;
 
        public string name;
     public int phase = 1;
@@ -51,7 +52,7 @@ public class Player : NetworkBehaviour
             if (pkg.objectSelected != null)
             {
                 co.CmdDebug(id, name);
-            //    co.CmdNextTurn();
+                co.CmdNextTurn();
             }
 
             if (phase == KERNELPHASE)

@@ -39,7 +39,7 @@ public class ConnectionManager : NetworkBehaviour {
     [Command]
     public void CmdNextTurn()
     {
-
+        RpcNextTurn();
     }
     [ClientRpc]
     void RpcNextTurn()
