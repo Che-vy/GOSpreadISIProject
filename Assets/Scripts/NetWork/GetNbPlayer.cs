@@ -10,6 +10,9 @@ public class GetNbPlayer : MonoBehaviour {
 
     public void Initialize()
     {
+        
+
+
         Debug.Log("Number of player");
         StartCoroutine(getPlayers());
     }
@@ -18,9 +21,7 @@ public class GetNbPlayer : MonoBehaviour {
     {
         while (players == null || players.Count < NetworkLobbyManager.singleton.numPlayers)
         {
-
             yield return new WaitForSeconds(0.25f);
-
 
             playersObject = GameObject.FindGameObjectsWithTag("Player");
             players = new List<Player>();
@@ -31,8 +32,12 @@ public class GetNbPlayer : MonoBehaviour {
                 po.id = players.Count;
             }
         }
+       
+
 
         PlayerManager.Instance.setPlayer(playersObject, players);
+        yield return new WaitForSeconds(0.5f);
+        PlayerManager.Instance.initializePlayers();
         Destroy(gameObject);
     }
 }

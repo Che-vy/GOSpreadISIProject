@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerManager  {
+public class PlayerManager
+{
 
     private static PlayerManager instance = null;
 
@@ -24,7 +26,7 @@ public class PlayerManager  {
 
 
     GameObject[] playersObject;
-    List<Player> players;
+    public List<Player> players;
     public int playerTurn = 1;
 
     public void initialization()
@@ -34,22 +36,32 @@ public class PlayerManager  {
 
     public void setPlayer(GameObject[] pO, List<Player> ps)
     {
-        playersObject = pO;
         players = ps;
+        playersObject = pO;
 
+    }
+    public void initializePlayers()
+    {
         foreach (Player p in players)
         {
             p.initialization();
-        }
 
+
+        }
+        
+       
+        UIManager.Instance.Initialization();
     }
 
 
     public void Update()
     {
-        foreach (Player player in players)
+        Debug.Log("TOUR: "+playerTurn);
+
+        if (players != null && players.Count > 0)
         {
-            player.UpdatePlayer();
+            players[playerTurn - 1].UpdatePlayer();
+            UIManager.Instance.Update();
         }
     }
 
@@ -59,8 +71,20 @@ public class PlayerManager  {
     {
         instance = null;
     }
+
+    public void changeTurn()
+    {
+        playerTurn++;
+        if (playerTurn > players.Count)
+        {
+            playerTurn = 1;
+        }
+    }
     public Player getPlayer(int id)
     {
+        Debug.Log(players.Count);
         return players[id - 1];
     }
+
+  
 }

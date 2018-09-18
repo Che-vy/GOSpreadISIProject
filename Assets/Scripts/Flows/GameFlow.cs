@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -7,12 +7,20 @@ public class GameFlow : Flow
 {
 
     readonly int mapSize = 10;
+    public static UILinks uiLinks;
 
     override
     public void InitializeFlow()
     {
+
+        GameObject network = GameObject.Instantiate(Resources.Load("Prefabs/Network/GetNbConnection") as GameObject);
+        GetNbPlayer networkGetPlayer = network.GetComponent<GetNbPlayer>();
+        networkGetPlayer.Initialize();
+
         GetNbPlayer nbPlayer = GameObject.FindGameObjectWithTag("SetPlayers").GetComponent<GetNbPlayer>();
+        uiLinks = GameObject.FindObjectOfType<UILinks>();
         nbPlayer.Initialize();
+
 
 
         GridManager.Instance.Initialize(mapSize);

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +19,9 @@ public class BasePawnsClass : MonoBehaviour {
     public string prefabsModel; // name of the prefab (need to be the actual name of the prefab related to the pawn) for easier instanciation
     public bool hasBeenEaten; // if the pawn is alive or not
     public Vector2Int positionInGridArray = new Vector2Int(0, 0); // position of the pawn related to the gamegrid (to keep track of where it is on the board)
+    public int x, y;
     public int movementAvailable;// bool that will turn on once it moved, as long as it true the unit cant move again even if the player have more movement available
+
 
 
     public void Move(Vector3 newPosition) // fonction to move the pawns

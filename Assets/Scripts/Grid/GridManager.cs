@@ -95,4 +95,16 @@ public class GridManager
     public int GetGridSize() {
         return grid_blueprint.GetGridSize();
     }
+
+    public void ActivateParticles(Vector2Int index, int player) {
+        if (player == 1)
+        {
+            grid_objects[index.x, index.y].transform.Find("BlueGlowing").gameObject.SetActive(true);
+            grid_objects[index.x, index.y].transform.Find("RedGlowing").gameObject.SetActive(false);
+        }
+        else {
+            grid_objects[index.x, index.y].transform.Find("RedGlowing").gameObject.SetActive(true);
+            grid_objects[index.x, index.y].transform.Find("BlueGlowing").gameObject.SetActive(false);
+        }
+    }
 }
