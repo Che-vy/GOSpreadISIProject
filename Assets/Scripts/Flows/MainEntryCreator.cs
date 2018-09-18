@@ -11,6 +11,7 @@ public class MainEntryCreator : MonoBehaviour {
         if (!GameObject.FindObjectOfType<MainEntry>())
         {
             GameObject mainFlowObj = new GameObject();
+            mainFlowObj.name = "MainEntry";
             mainFlowObj.AddComponent<MainEntry>().Initialize();
         }
         //destroy itself

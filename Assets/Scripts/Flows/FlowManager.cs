@@ -25,9 +25,6 @@ public class FlowManager
         }
     }
     #endregion
-
-    int cpt = 0;
-
     public SceneNames currentScene;
     Flow currentFlow;
     bool flowInitialized = false;
@@ -84,7 +81,7 @@ public class FlowManager
         {
            
             case SceneNames.Lobby:
-                toRet = new GameFlow();
+                toRet = new Flow();
                 break;
             case SceneNames.Game:
                 toRet = new GameFlow();

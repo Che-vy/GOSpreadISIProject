@@ -24,6 +24,7 @@ public class UnitFactory
         }
     }
     #endregion
+
     Dictionary<string, GameObject> units;
 
     public void Initialize()
@@ -46,8 +47,6 @@ public class UnitFactory
 
     public GameObject SpawnUnit(UnitType unit)
     {
-
-        
         return GameObject.Instantiate( units[unit.ToString()]);
     }
 }
