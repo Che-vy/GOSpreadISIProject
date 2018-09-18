@@ -18,9 +18,11 @@ public class BasePawnsClass : MonoBehaviour {
     public Vector3 pos; // current position of the pawn => need to create a tool to change pawns positions.
     public string prefabsModel; // name of the prefab (need to be the actual name of the prefab related to the pawn) for easier instanciation
     public bool hasBeenEaten; // if the pawn is alive or not
+    public Vector2 positionInGridArray = new Vector2(0, 0); // position of the pawn related to the gamegrid (to keep track of where it is on the board)
+    public int movementAvailable;// bool that will turn on once it moved, as long as it true the unit cant move again even if the player have more movement available
 
 
-    public void Move(Vector3 newPosition) // virtual fonction to move the pawns
+    public void Move(Vector3 newPosition) // fonction to move the pawns
     {
         if(pawnType != PawnTypes.Kernel)
         {

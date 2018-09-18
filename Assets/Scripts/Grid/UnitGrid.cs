@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class UnitGrid : MonoBehaviour
 {
-    private readonly Vector3 VERTICAL_OFFSET = new Vector3(0,0.75f,0);
-    GameObject[,] unitGridGO;
-    BasePawnsClass[,] unitGrid;
+    private readonly Vector3 VERTICAL_OFFSET = new Vector3(0, 0.75f, 0);
+    public GameObject[,] unitGridGO;
+    public BasePawnsClass[,] unitGrid;
 
     #region Singleton
     private static UnitGrid instance = null;
@@ -36,7 +36,8 @@ public class UnitGrid : MonoBehaviour
         unitGridGO = new GameObject[gridSize, gridSize];
     }
 
-    public void AddUnit(Vector2Int unitIndex, int player, UnitType unitType) {
+    public void AddUnit(Vector2Int unitIndex, int player, UnitType unitType)
+    {
         unitGridGO[unitIndex.x, unitIndex.y] = UnitFactory.Instance.SpawnUnit(unitType);
         unitGridGO[unitIndex.x, unitIndex.y].transform.position = GridManager.Instance.GetGridComponentPosition(unitIndex.x, unitIndex.y).position + VERTICAL_OFFSET;
     }
@@ -48,14 +49,16 @@ public class UnitGrid : MonoBehaviour
     /// <param name="unitInitialPosIndexB">Index B of unit at initial position</param>
     /// <param name="unitFinalPosIndexA">Index A of unit at final position</param>
     /// <param name="unitFinalPosIndexB">Index B of unit at final position</param>
-    public void UpdateUnitPosition(Vector2Int initialPosIndex, Vector2Int finalPosIndex) {
+    public void UpdateUnitPosition(Vector2Int initialPosIndex, Vector2Int finalPosIndex)
+    {
         unitGridGO[finalPosIndex.x, finalPosIndex.y] = unitGridGO[initialPosIndex.x, initialPosIndex.y];
-        unitGridGO[initialPosIndex.x, initialPosIndex.y] = null;  
+        unitGridGO[initialPosIndex.x, initialPosIndex.y] = null;
         unitGrid[finalPosIndex.x, finalPosIndex.y] = unitGrid[initialPosIndex.x, initialPosIndex.y];
         unitGrid[initialPosIndex.x, initialPosIndex.y] = null;
     }
 
-    public GameObject GetUnitGO(Vector2Int unitIndex) {
+    public GameObject GetUnitGO(Vector2Int unitIndex)
+    {
         return unitGridGO[unitIndex.x, unitIndex.y];
     }
 
@@ -64,7 +67,8 @@ public class UnitGrid : MonoBehaviour
         return unitGrid[unitIndex.x, unitIndex.y];
     }
 
-    public void MoveUnitGameObject() {
+    public void MoveUnitGameObject()
+    {
         Debug.Log("MoveUnitGameObject method not implemented");
     }
 

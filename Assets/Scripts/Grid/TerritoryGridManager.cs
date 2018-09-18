@@ -33,7 +33,7 @@ public sealed class TerritoryGridManager
     {
         if (GridManager.Instance.grid_objects != null)
         {
-            zoneGridSize = GridManager.Instance.grid_objects.Length;
+            zoneGridSize = GridManager.Instance.grid_objects.GetUpperBound(0)+1;
         }
         zoneGrid = new Zone[zoneGridSize, zoneGridSize];
         for (int i = 0; i <= zoneGrid.GetUpperBound(0); i++)
@@ -63,7 +63,6 @@ public sealed class TerritoryGridManager
                 {
                     territory[(int)zoneGrid[i, j]]++;
                 }
-
             }
         }
 
