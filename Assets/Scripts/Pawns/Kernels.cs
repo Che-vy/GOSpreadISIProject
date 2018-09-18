@@ -14,7 +14,7 @@ public class Kernels : BasePawnsClass
         rangeValue = 1;
         playerNum = 0;
         level = 3;
-        gameObject.transform.position = _pos;
+        //gameObject.transform.position = _pos;
         prefabsModel = "Kernel";
         hasBeenEaten = false;
     }

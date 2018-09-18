@@ -21,9 +21,7 @@ public class GetNbPlayer : MonoBehaviour {
     {
         while (players == null || players.Count < NetworkLobbyManager.singleton.numPlayers)
         {
-
             yield return new WaitForSeconds(0.25f);
-
 
             playersObject = GameObject.FindGameObjectsWithTag("Player");
             players = new List<Player>();

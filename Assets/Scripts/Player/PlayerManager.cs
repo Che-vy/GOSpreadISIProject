@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class PlayerManager  {
+public class PlayerManager
+{
 
     private static PlayerManager instance = null;
 
@@ -37,7 +38,7 @@ public class PlayerManager  {
     {
         players = ps;
         playersObject = pO;
-      
+
     }
     public void initializePlayers()
     {
@@ -56,6 +57,7 @@ public class PlayerManager  {
     public void Update()
     {
         Debug.Log("TOUR: "+playerTurn);
+
         if (players != null && players.Count > 0)
         {
             players[playerTurn - 1].UpdatePlayer();
@@ -73,7 +75,7 @@ public class PlayerManager  {
     public void changeTurn()
     {
         playerTurn++;
-        if(playerTurn >players.Count)
+        if (playerTurn > players.Count)
         {
             playerTurn = 1;
         }

@@ -27,12 +27,11 @@ public class Player : NetworkBehaviour
         {
             return;
         }
-      
-        
+
 
         co = GetComponent<ConnectionManager>();
         name = Prototype.NetworkLobby.LobbyPlayerList._instance._players[id - 1].playerName;
-        
+
         inputMan = new InputManager();
         isConnected = true;
         co.CmdDebug(id, name);
@@ -57,6 +56,11 @@ public class Player : NetworkBehaviour
                 co.CmdspawnUnit(UnitType.Bit);
                 co.CmdDebug(id, name);
                 co.CmdNextTurn();
+                string targetName = pkg.objectSelected.name;
+                if (targetName.Contains("Kernel"))
+                    UIManager.Instance.ShowUnitsUI(PawnTypes.Kernel);
+                else
+                    UIManager.Instance.HideUnitsUI(PawnTypes.Kernel);
             }
 
             if (phase == KERNELPHASE)
@@ -66,7 +70,6 @@ public class Player : NetworkBehaviour
         }
 
     }
-
 
     void UpdatePhase1()
     {

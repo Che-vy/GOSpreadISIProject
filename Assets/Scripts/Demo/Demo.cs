@@ -31,5 +31,11 @@ public class Demo {
     {
         UnitGrid.Instance.AddUnit(kernelP1, 1, UnitType.Kernel);
         UnitGrid.Instance.AddUnit(kernelP2, 2, UnitType.Kernel);
+
+        UnitGrid.Instance.AddUnit(new Vector2Int(6, 2), 1, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(6, 4), 1, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(8, 4), 1, UnitType.Bit);
+
+       // Rule3A.Instance.
     }
 }
