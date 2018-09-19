@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33844471834090804}
   - component: {fileID: 23079448306210826}
   - component: {fileID: 64914105304786178}
+  - component: {fileID: 114060209831066358}
   m_Layer: 0
   m_Name: Zip
   m_TagString: Units
@@ -129,6 +130,30 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 05f7ab4b58f5b39439fb3c403dea756c, type: 3}
+--- !u!114 &114060209831066358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1720765259331054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee402db5776ae2842826f40270f4abd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pawnType: 0
+  quickPawnDefinition: 
+  movementValue: 1
+  rangeValue: 0
+  playerNum: 0
+  level: 0
+  pos: {x: 0, y: 0, z: 0}
+  prefabsModel: 
+  hasBeenEaten: 0
+  positionInGridArray: {x: 0, y: 0}
+  x: 0
+  y: 0
+  movementAvailable: 1
 --- !u!198 &198010841219617820
 ParticleSystem:
   m_ObjectHideFlags: 1

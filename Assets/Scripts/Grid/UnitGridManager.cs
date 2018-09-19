@@ -28,8 +28,8 @@ public class UnitGridManager
 
     public void Initialize()
     {
-        // unitGrid = new UnitGrid();
-        // unitGrid.Initialize();
+       // unitGrid = new UnitGrid();
+       // unitGrid.Initialize();
     }
 
     public void UpdateUnitGrid()

@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 
 public class ConnectionManager : NetworkBehaviour {
 
+    Movements move = new Movements();
 
     [Command]
     public void CmdDebug(int pId,string name)
@@ -60,5 +61,6 @@ public class ConnectionManager : NetworkBehaviour {
 
         GameObject gO = UnitFactory.Instance.SpawnUnit(unit);
         gO.transform.position = new Vector3(1, 1, 1);
+
     }
 }

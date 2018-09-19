@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 33880122579268056}
   - component: {fileID: 23241171366128890}
   - component: {fileID: 64670601348327086}
+  - component: {fileID: 114049259347043186}
   m_Layer: 0
   m_Name: Kernel
   m_TagString: Kernel
@@ -129,6 +130,30 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 3780882bcad6e0d479d50ceb64e22818, type: 3}
+--- !u!114 &114049259347043186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1326639031991476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee402db5776ae2842826f40270f4abd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pawnType: 0
+  quickPawnDefinition: 
+  movementValue: 0
+  rangeValue: 0
+  playerNum: 0
+  level: 0
+  pos: {x: 0, y: 0, z: 0}
+  prefabsModel: 
+  hasBeenEaten: 0
+  positionInGridArray: {x: 0, y: 0}
+  x: 0
+  y: 0
+  movementAvailable: 0
 --- !u!198 &198938339156557988
 ParticleSystem:
   m_ObjectHideFlags: 1
