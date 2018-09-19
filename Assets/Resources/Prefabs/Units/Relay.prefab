@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4990606995739674}
   - component: {fileID: 33148583734354980}
   - component: {fileID: 23338153593075538}
+  - component: {fileID: 64243996891489196}
   m_Layer: 0
   m_Name: Relay
-  m_TagString: Untagged
+  m_TagString: Units
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,6 +115,20 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1554397174245894}
+  m_Mesh: {fileID: 4300002, guid: 78b2209c16819614caba5e3ebaa0df1e, type: 3}
+--- !u!64 &64243996891489196
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1554397174245894}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 78b2209c16819614caba5e3ebaa0df1e, type: 3}
 --- !u!198 &198972410046047074
 ParticleSystem:

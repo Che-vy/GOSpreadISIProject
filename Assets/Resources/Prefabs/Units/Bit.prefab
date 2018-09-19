@@ -38,9 +38,10 @@ GameObject:
   - component: {fileID: 4402647585642718}
   - component: {fileID: 33085426698497316}
   - component: {fileID: 23581041707736682}
+  - component: {fileID: 64407351944809550}
   m_Layer: 0
   m_Name: Bit
-  m_TagString: Untagged
+  m_TagString: Units
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,6 +114,20 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1339397178133830}
+  m_Mesh: {fileID: 4300004, guid: 5a9b7d3ae9f5c06458b7a05bbd6adfd3, type: 3}
+--- !u!64 &64407351944809550
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1339397178133830}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300004, guid: 5a9b7d3ae9f5c06458b7a05bbd6adfd3, type: 3}
 --- !u!198 &198762340189003488
 ParticleSystem:

@@ -44,16 +44,25 @@ public class UIManager
             case PawnTypes.Zip:
                 goto case PawnTypes.Relay;
             case PawnTypes.Relay:
+                if (!GameFlow.uiLinks.unitUi.activeSelf)
+                    gui.ShowUnitUI();
+                if (GameFlow.uiLinks.kernelUi.activeSelf)
+                    gui.HideKernelUI();
                 break;
             case PawnTypes.Kernel:
-                if (!GameFlow.uiLinks.kui.activeSelf)
+                if (!GameFlow.uiLinks.kernelUi.activeSelf)
                     gui.ShowKernelUI();
+                if (GameFlow.uiLinks.unitUi.activeSelf)
+                    gui.HideUnitUI();
+                if (GameFlow.uiLinks.upgradeUi.activeSelf)
+                    gui.HideUpgradeUI();
                 break;
             default:
                 Debug.Log("Unit Type unhandeled : " + unitType);
                 break;
         }
     }
+
     public void HideUnitsUI(PawnTypes unitType)
     {
         switch (unitType)
@@ -63,9 +72,11 @@ public class UIManager
             case PawnTypes.Zip:
                 goto case PawnTypes.Relay;
             case PawnTypes.Relay:
+                if (GameFlow.uiLinks.unitUi.activeSelf)
+                    gui.HideUnitUI();
                 break;
             case PawnTypes.Kernel:
-                if (GameFlow.uiLinks.kui.activeSelf)
+                if (GameFlow.uiLinks.kernelUi.activeSelf)
                     gui.HideKernelUI();
                 break;
             default:
@@ -73,4 +84,6 @@ public class UIManager
                 break;
         }
     }
+
+
 }

@@ -11,5 +11,11 @@ public class UILinks : MonoBehaviour {
     public GameUI gui;
 
     [Header("KernelUI Setting")]
-    public GameObject kui;
+    public GameObject kernelUi;
+
+    [Header("UnitUI Setting")]
+    public GameObject unitUi;
+
+    [Header("UpgradeUI Setting")]
+    public GameObject upgradeUi;
 }

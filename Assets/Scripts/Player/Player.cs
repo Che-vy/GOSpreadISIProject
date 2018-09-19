@@ -56,11 +56,12 @@ public class Player : NetworkBehaviour
                 co.CmdspawnUnit(UnitType.Bit);
                 co.CmdDebug(id, name);
                 co.CmdNextTurn();
-                string targetName = pkg.objectSelected.name;
-                if (targetName.Contains("Kernel"))
+                string targetTag = pkg.objectSelected.tag;
+                if (targetTag.Contains("Kernel"))
                     UIManager.Instance.ShowUnitsUI(PawnTypes.Kernel);
-                else
-                    UIManager.Instance.HideUnitsUI(PawnTypes.Kernel);
+
+                if(targetTag.Contains("Units"))
+                    UIManager.Instance.ShowUnitsUI(PawnTypes.Bit);
             }
 
             if (phase == KERNELPHASE)
@@ -75,10 +76,12 @@ public class Player : NetworkBehaviour
     {
 
     }
+
     void UpdatePhase2()
     {
 
     }
+
     void UpdatePhase3()
     {
 

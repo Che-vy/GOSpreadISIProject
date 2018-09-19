@@ -30,11 +30,31 @@ public class GameUI : MonoBehaviour
 
     public void ShowKernelUI()
     {
-        GameFlow.uiLinks.kui.SetActive(true);
+        GameFlow.uiLinks.kernelUi.SetActive(true);
     }
 
     public void HideKernelUI()
     {
-        GameFlow.uiLinks.kui.SetActive(false);
+        GameFlow.uiLinks.kernelUi.SetActive(false);
+    }
+
+    public void ShowUnitUI()
+    {
+        GameFlow.uiLinks.unitUi.SetActive(true);
+    }
+
+    public void HideUnitUI()
+    {
+        GameFlow.uiLinks.unitUi.SetActive(false);
+    }
+
+    public void ShowUpgradeUI()
+    {
+        GameFlow.uiLinks.upgradeUi.SetActive(true);
+    }
+
+    public void HideUpgradeUI()
+    {
+        GameFlow.uiLinks.upgradeUi.SetActive(false);
     }
 }
