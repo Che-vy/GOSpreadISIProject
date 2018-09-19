@@ -37,6 +37,13 @@ public class UnitGrid
         int gridSize = GridManager.Instance.GetGridSize();
         unitGridGO = new GameObject[gridSize, gridSize];
         unitGrid = new BasePawnsClass[gridSize, gridSize];
+
+        for (int i = 0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
+                unitGrid[i, j] = new BasePawnsClass();
+            }
+        }
+
     }
 
     public void AddUnit(Vector2Int unitIndex, int player, UnitType unitType)
@@ -50,7 +57,7 @@ public class UnitGrid
 
         switch (unitType) {
             case UnitType.Bit:
-                unitGrid[unitIndex.x, unitIndex.y] = new Bits(new Vector3());
+                unitGrid[unitIndex.x, unitIndex.y] = new Bits(new Vector3());             
                 break;
             case UnitType.Kernel:
                 unitGrid[unitIndex.x, unitIndex.y] = new Kernels(new Vector3());
@@ -64,7 +71,7 @@ public class UnitGrid
             default:
                 break;
         }
-
+        unitGrid[unitIndex.x, unitIndex.y].playerNum = player;
         unitGrid[unitIndex.x, unitIndex.y].x = unitIndex.x;
         unitGrid[unitIndex.x, unitIndex.y].y = unitIndex.y;
     }

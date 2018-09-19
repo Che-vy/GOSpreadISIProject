@@ -23,6 +23,9 @@ public class BasePawnsClass : MonoBehaviour {
     public int movementAvailable;// bool that will turn on once it moved, as long as it true the unit cant move again even if the player have more movement available
 
 
+    public BasePawnsClass() {
+
+    }
 
     public void Move(Vector3 newPosition) // fonction to move the pawns
     {

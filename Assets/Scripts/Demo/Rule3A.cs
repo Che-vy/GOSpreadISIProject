@@ -154,55 +154,76 @@ public class Rule3A
 
     //}
 
-    public bool IsNeighborFound(Vector2Int arrayPos, int range, int player, int step)
+    public void RunTerritoryCheck(int range, int player)
     {
         bool result = false;
         int gridLimit = UnitGrid.Instance.unitGrid.GetUpperBound(0);
-
         int x = 0;
-        int y = 0;
-
         while (x + 2 <= gridLimit)
         {
+            int y = 0;
             while (y + 2 <= gridLimit)
             {
-                if (UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y].playerNum == player)
+                if (UnitGrid.Instance.unitGrid[x, y].playerNum == player)
                 {
-
-                    int multiplier = y;
-                    while (multiplier <= gridLimit)
+                    int multiplier = 2;
+                    while (x + multiplier <= gridLimit && y + multiplier <= gridLimit)
                     {
-                        if (x + multiplier <= gridLimit && y + multiplier <= gridLimit && UnitGrid.Instance.GetUnit(new Vector2Int(arrayPos.x + multiplier, arrayPos.y + multiplier)).playerNum == player)
+                        Debug.Log("multiplier" + (y + multiplier));
+                        if (UnitGrid.Instance.GetUnit(new Vector2Int(x + multiplier, y + multiplier)).playerNum == player)
                         {
+                      
                             int rangeYMinus = 2;
-                            while (rangeYMinus <= range && UnitGrid.Instance.GetUnit(new Vector2Int(arrayPos.x + multiplier, arrayPos.y + multiplier - rangeYMinus)).playerNum == player) {
-                                int rangeXMinus = 2;
-                                while (rangeXMinus <= range && x + multiplier - range >= x && UnitGrid.Instance.GetUnit(new Vector2Int(arrayPos.x + multiplier - range, arrayPos.y))) {
-
-
-                                    rangeXMinus += 2;
-                                }
-
-                            }
+                            while (rangeYMinus <= range)
                             {
-
-
-
+                                if (y + multiplier - rangeYMinus == y && UnitGrid.Instance.GetUnit(new Vector2Int(x + multiplier, y + multiplier - rangeYMinus)).playerNum == player)
+                                {
+                                
+                                    int rangeXMinus = 2;
+                                    while (rangeXMinus <= range)
+                                    {
+                                        if (x + multiplier - rangeXMinus == x && UnitGrid.Instance.GetUnit(new Vector2Int(x + multiplier - rangeXMinus, y + multiplier - rangeYMinus)).playerNum == player)
+                                        {
+                                            int rangeYPlus = 2;
+                                            while (rangeYPlus <= range)
+                                            {
+                                                if (UnitGrid.Instance.GetUnit(new Vector2Int(x, y + rangeYPlus)).playerNum == player)
+                                                {
+                                                    int rangeXPlus = 2;
+                                                    while (rangeXPlus <= range)
+                                                    {
+                                                        if (UnitGrid.Instance.GetUnit(new Vector2Int(x + rangeXPlus, y + rangeYPlus)).playerNum == player)
+                                                        {
+                                                            
+                                                            for (int i = x; i <= x + multiplier; i++)
+                                                            {
+                                                                for (int j = y; j <= y + multiplier; j++)
+                                                                {
+                                                                    GridManager.Instance.ActivateParticles(new Vector2Int(i, j), player);
+                                                                }
+                                                            }
+                                                        }
+                                                        rangeXPlus += 2;
+                                                    }
+                                                }
+                                                rangeYPlus += 2;
+                                            }
+                                        }
+                                        rangeXMinus += 2;
+                                    }
+                                }
                                 rangeYMinus += 2;
                             }
-
-
-
-                            result = true;
+                           
                         }
                         multiplier += 2;
                     }
-                    y += 2;
+                   
                 }
-                x += 2;
+                y += 2;
             }
+            x += 2;
         }
-        return result;
     }
 
     #region Cases animation activation

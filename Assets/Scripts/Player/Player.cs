@@ -66,7 +66,7 @@ public class Player : NetworkBehaviour
 
             if (phase == KERNELPHASE)
             {
-
+                UpdatePhase1();
             }
         }
 
@@ -74,6 +74,8 @@ public class Player : NetworkBehaviour
 
     void UpdatePhase1()
     {
+        Debug.Log("Dans phase 1");
+        Rule3A.Instance.RunTerritoryCheck(2, id);
 
     }
 
@@ -84,7 +86,7 @@ public class Player : NetworkBehaviour
 
     void UpdatePhase3()
     {
-
+      
     }
 
     public void changeName(string name_)
