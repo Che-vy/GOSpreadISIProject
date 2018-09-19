@@ -29,17 +29,22 @@ public class PlayerManager
     public List<Player> players;
     public int playerTurn = 1;
 
+
+    //Initialize the List of player
     public void initialization()
     {
         players = new List<Player>();
     }
 
+    //Set the players in the list and Array
     public void setPlayer(GameObject[] pO, List<Player> ps)
     {
         players = ps;
         playersObject = pO;
 
     }
+
+    //Initialize the players
     public void initializePlayers()
     {
         foreach (Player p in players)
@@ -53,10 +58,9 @@ public class PlayerManager
         UIManager.Instance.Initialization();
     }
 
-
+    //Update the right player
     public void Update()
     {
-        Debug.Log("TOUR: "+playerTurn);
 
         if (players != null && players.Count > 0)
         {
@@ -66,23 +70,27 @@ public class PlayerManager
     }
 
 
-
+    //Close the Player Manager
     public static void ClosePlayerManager()
     {
         instance = null;
     }
 
+    //Change turn
     public void changeTurn()
     {
         playerTurn++;
+        //If playerturn is bigger than the number of player playerTurn = 1
         if (playerTurn > players.Count)
         {
             playerTurn = 1;
         }
+        players[playerTurn-1].initializeTurn();
     }
+
+    //Get one player
     public Player getPlayer(int id)
     {
-        Debug.Log(players.Count);
         return players[id - 1];
     }
 
