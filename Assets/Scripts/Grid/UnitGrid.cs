@@ -83,7 +83,7 @@ public class UnitGrid
         unitGrid[finalPosIndex.x, finalPosIndex.y] = unitGrid[initialPosIndex.x, initialPosIndex.y];
         unitGrid[initialPosIndex.x, initialPosIndex.y] = null;
     }
-
+    
     public GameObject GetUnitGO(Vector2Int unitIndex)
     {
         return unitGridGO[unitIndex.x, unitIndex.y];
