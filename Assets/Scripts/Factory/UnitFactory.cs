@@ -29,12 +29,13 @@ public class UnitFactory
 
     public void Initialize()
     {
+        //Load all the prefabs of unit
         Object[] temp = Resources.LoadAll("Prefabs/Units");
         units = new Dictionary<string, GameObject>();
 
+        //add the prefabs in a dictionnary
         foreach (GameObject gameObject in temp)
         {
-
             units.Add(gameObject.name, gameObject);
         }
     }
