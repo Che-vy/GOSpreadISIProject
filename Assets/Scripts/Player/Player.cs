@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 
 public class Player : NetworkBehaviour
 {
+    //All the different phases
     readonly int KERNELPHASE = 1;
     readonly int MOVEPHASE = 2;
     readonly int TERRITORYPHASE = 3;
@@ -21,66 +22,111 @@ public class Player : NetworkBehaviour
     public int phase = 1;
     bool initialize = false;
 
+    //Initialize the player
     public void initialization()
     {
+        //If this is the local Player
         if (!isLocalPlayer)
         {
             return;
         }
 
-
+        //Get the connectionManager
         co = GetComponent<ConnectionManager>();
+        GameLinks.Instance.co = co;
+
+        //Get the player name from the lobby
         name = Prototype.NetworkLobby.LobbyPlayerList._instance._players[id - 1].playerName;
 
+        //Create and InputManager
         inputMan = new InputManager();
         isConnected = true;
-        co.CmdDebug(id, name);
+
+        //Change the name in the UI on all the clients
         co.CmdChangeNom(id, name);
         initialize = true;
     }
 
     public void UpdatePlayer()
     {
-
+        //If the player is initialize
         if (initialize == true)
         {
+            //If the player is local
             if (!isLocalPlayer)
             {
                 return;
             }
-
+            //get the package from the inputManager
             InputManager.InputPkg pkg = inputMan.GetInputs();
+
 
             if (pkg.objectSelected != null)
             {
-                co.CmdspawnUnit(UnitType.Bit);
                 co.CmdDebug(id, name);
-                co.CmdNextTurn();
+
                 UIManager.Instance.ShowUnitsUI(pkg.objectSelected);
+
             }
 
+
+
+            //Update each phase
             if (phase == KERNELPHASE)
             {
-
+                UpdatePhase1(pkg);
             }
+            else if (phase == MOVEPHASE)
+            {
+                UpdatePhase2(pkg);
+            }
+            else if (phase == TERRITORYPHASE)
+            {
+                UpdatePhase3(pkg);
+            }
+
         }
 
     }
-
-    void UpdatePhase1()
+    //initialize at the start of the turn
+    public void initializeTurn()
     {
+        phase = KERNELPHASE;
+    }
+
+    void UpdatePhase1(InputManager.InputPkg pkg)
+    {
+       
+        if (pkg.objectSelected != null)
+        {
+            phase++;
+        }
+
+        Debug.Log("In Phase 1");
 
     }
 
-    void UpdatePhase2()
-    {
+    void UpdatePhase2(InputManager.InputPkg pkg)
 
+    {
+        if (pkg.objectSelected != null)
+        {
+            phase++;
+        }
+        Debug.Log("In Phase 2");
     }
 
-    void UpdatePhase3()
+    void UpdatePhase3(InputManager.InputPkg pkg)
     {
-
+        if (pkg.objectSelected != null)
+        {
+            phase++;
+            co.CmdNextTurn();
+        }
+        Debug.Log("In Phase 3");
     }
+
+
 
     public void changeName(string name_)
     {

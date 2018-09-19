@@ -56,4 +56,18 @@ public class UIManager
                 gui.HideUpgradeUI();
         }
     }
+
+    public void PlayersTurnChange(int id)
+    {
+        if(id == 1)
+        {
+            GameFlow.uiLinks.player1Turn.SetActive(true);
+            GameFlow.uiLinks.player2Turn.SetActive(false);
+        }
+        else
+        {
+            GameFlow.uiLinks.player1Turn.SetActive(false);
+            GameFlow.uiLinks.player2Turn.SetActive(true);
+        }
+    }
 }

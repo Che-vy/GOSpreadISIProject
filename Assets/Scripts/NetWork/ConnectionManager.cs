@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class ConnectionManager : NetworkBehaviour {
 
-    Movements move = new Movements();
+    //Test command
 
     [Command]
     public void CmdDebug(int pId,string name)
@@ -18,7 +18,7 @@ public class ConnectionManager : NetworkBehaviour {
     void RpcDebug( int pid, string name)
     {
 
-        Debug.Log("Player " + pid+ ": tour fini");
+      
     }
     
 
@@ -50,6 +50,8 @@ public class ConnectionManager : NetworkBehaviour {
         PlayerManager.Instance.changeTurn();
     }
 
+
+    //Spawn a unit
     [Command]
     public void CmdspawnUnit(UnitType unit)
     {

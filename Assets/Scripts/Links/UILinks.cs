@@ -9,6 +9,7 @@ public class UILinks : MonoBehaviour {
     public Text player1Name;
     public Text player2Name, player1NbTerritory, player2NbTerritory;
     public GameUI gui;
+    public GameObject player1Turn, player2Turn;
 
     [Header("KernelUI Setting")]
     public GameObject kernelUi;
