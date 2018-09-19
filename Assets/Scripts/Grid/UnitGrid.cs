@@ -57,16 +57,24 @@ public class UnitGrid
 
         switch (unitType) {
             case UnitType.Bit:
-                unitGrid[unitIndex.x, unitIndex.y] = new Bit(new Vector3());
+                unitGrid[unitIndex.x, unitIndex.y] = new Bit();
+                ((Bit)unitGrid[unitIndex.x, unitIndex.y]).Initialize();
+                unitGridGO[unitIndex.x, unitIndex.y].GetComponent<Bit>().Initialize();
                 break;
             case UnitType.Kernel:
-                unitGrid[unitIndex.x, unitIndex.y] = new Kernel(new Vector3());
+                unitGrid[unitIndex.x, unitIndex.y] = new Kernel();
+                ((Kernel)unitGrid[unitIndex.x, unitIndex.y]).Initialize();
+                unitGridGO[unitIndex.x, unitIndex.y].GetComponent<Kernel>().Initialize();
                 break;
             case UnitType.Relay:
-                unitGrid[unitIndex.x, unitIndex.y] = new Relay(new Vector3());
+                unitGrid[unitIndex.x, unitIndex.y] = new Relay();
+                ((Relay)unitGrid[unitIndex.x, unitIndex.y]).Initialize();
+                unitGridGO[unitIndex.x, unitIndex.y].GetComponent<Relay>().Initialize();
                 break;
             case UnitType.Zit:
-                unitGrid[unitIndex.x, unitIndex.y] = new Zip(new Vector3());
+                unitGrid[unitIndex.x, unitIndex.y] = new Zip();
+                ((Zip)unitGrid[unitIndex.x, unitIndex.y]).Initialize();
+                unitGridGO[unitIndex.x, unitIndex.y].GetComponent<Zip>().Initialize();
                 break;
             default:
                 break;

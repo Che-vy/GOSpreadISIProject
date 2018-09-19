@@ -52,9 +52,9 @@ public class UIManager
         }
         else if(obj.tag.Contains("Units"))
         {
-
             if (!GameFlow.uiLinks.unitUi.activeSelf)
             {
+                InitializeUnitsUiInfos(obj.GetComponent<BasePawnsClass>());
                 if (phase != 3)
                 {
                     gui.ShowUnitUI(obj);
@@ -101,5 +101,10 @@ public class UIManager
     {
         GameFlow.uiLinks.phase.interactable = false;
         GameFlow.uiLinks.standBy.interactable = false;
+    }
+
+    public void InitializeUnitsUiInfos(BasePawnsClass basePawn)
+    {
+        gui.InitializeUnitsUiInfos(basePawn);
     }
 }

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33148583734354980}
   - component: {fileID: 23338153593075538}
   - component: {fileID: 64243996891489196}
-  - component: {fileID: 114540386933328620}
+  - component: {fileID: 114077429115576196}
   m_Layer: 0
   m_Name: Relay
   m_TagString: Units
@@ -131,7 +131,7 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 78b2209c16819614caba5e3ebaa0df1e, type: 3}
---- !u!114 &114540386933328620
+--- !u!114 &114077429115576196
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1554397174245894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee402db5776ae2842826f40270f4abd7, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a8a77a0c2708994b8f461919d5e8950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pawnType: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   positionInGridArray: {x: 0, y: 0}
   x: 0
   y: 0
-  movementAvailable: 1
+  movementAvailable: 0
 --- !u!198 &198972410046047074
 ParticleSystem:
   m_ObjectHideFlags: 1

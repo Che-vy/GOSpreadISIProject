@@ -12,10 +12,12 @@ public class GameUI : MonoBehaviour
     {
 
         nbPlayers = PlayerManager.Instance.players.Count;
-
-        GameFlow.uiLinks.player1Name.text = "Player 1 Name : " + PlayerManager.Instance.getPlayer(1).name;
-        if (nbPlayers > 1)
-            GameFlow.uiLinks.player2Name.text = "Player 2 Name : " + PlayerManager.Instance.getPlayer(2).name;
+        if (nbPlayers != 0)
+        {
+            GameFlow.uiLinks.player1Name.text = "Player 1 Name : " + PlayerManager.Instance.getPlayer(1).name;
+            if (nbPlayers > 1)
+                GameFlow.uiLinks.player2Name.text = "Player 2 Name : " + PlayerManager.Instance.getPlayer(2).name;
+        }
     }
 
     public void UpdateGameUI()
@@ -34,7 +36,6 @@ public class GameUI : MonoBehaviour
     {
         GameFlow.uiLinks.kernelUi.SetActive(true);
     }
-
     public void HideKernelUI()
     {
         GameFlow.uiLinks.kernelUi.SetActive(false);
@@ -95,5 +96,12 @@ public class GameUI : MonoBehaviour
         HideKernelUI();
         HideUnitUI();
         HideUpgradeUI();
+    }
+
+    public void InitializeUnitsUiInfos(BasePawnsClass basePawn)
+    {
+        GameFlow.uiLinks.unitName.text = basePawn.pawnType.ToString();
+        GameFlow.uiLinks.unitRange.text = "Range : " + basePawn.rangeValue.ToString();
+        GameFlow.uiLinks.unitMove.text = "Move : " + basePawn.movementValue.ToString();
     }
 }
