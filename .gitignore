@@ -67,7 +67,4 @@ Assets/Scripts/Flows/GameFlow.cs
 Assets/Scripts/Game Logics.meta
 Assets/Scripts/Flows/GameFlow.cs
 Assets/Scripts/Flows/GameFlow.cs
-Assets/Scripts/UI/UIManager.cs
-Assets/Scripts/Links/UILinks.cs
-Assets/Resources/Textures/turn.png.meta
-Assets/Resources/Textures/turn.png
+
