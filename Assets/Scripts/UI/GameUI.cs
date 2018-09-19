@@ -25,7 +25,6 @@ public class GameUI : MonoBehaviour
         if (nbPlayers > 1)
             GameFlow.uiLinks.player2NbTerritory.text = "Nb Territory : " + PlayerManager.Instance.getPlayer(2).zone;
 
-       
     }
 
     public void ShowKernelUI()
@@ -38,9 +37,10 @@ public class GameUI : MonoBehaviour
         GameFlow.uiLinks.kernelUi.SetActive(false);
     }
 
-    public void ShowUnitUI()
+    public void ShowUnitUI(GameObject Unit)
     {
         GameFlow.uiLinks.unitUi.SetActive(true);
+
     }
 
     public void HideUnitUI()

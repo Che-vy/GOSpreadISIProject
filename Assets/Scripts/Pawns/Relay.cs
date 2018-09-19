@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Relays : BasePawnsClass
+public class Relay : BasePawnsClass
 {
 
-    public Relays(Vector3 _pos)
+    public Relay(Vector3 _pos)
     {
         pawnType = PawnTypes.Relay;
         quickPawnDefinition = "Upgraded form of the Bit.Can be upgraded into a Kernel if enough territories are possessed."+

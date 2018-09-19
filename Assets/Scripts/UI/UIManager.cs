@@ -35,55 +35,25 @@ public class UIManager
         gui.UpdateGameUI();
     }
 
-    public void ShowUnitsUI(PawnTypes unitType)
+    public void ShowUnitsUI(GameObject obj)
     {
-        switch (unitType)
+        if (obj.tag.Contains("Kernel"))
         {
-            case PawnTypes.Bit:
-                goto case PawnTypes.Zip;
-            case PawnTypes.Zip:
-                goto case PawnTypes.Relay;
-            case PawnTypes.Relay:
-                if (!GameFlow.uiLinks.unitUi.activeSelf)
-                    gui.ShowUnitUI();
-                if (GameFlow.uiLinks.kernelUi.activeSelf)
-                    gui.HideKernelUI();
-                break;
-            case PawnTypes.Kernel:
-                if (!GameFlow.uiLinks.kernelUi.activeSelf)
-                    gui.ShowKernelUI();
-                if (GameFlow.uiLinks.unitUi.activeSelf)
-                    gui.HideUnitUI();
-                if (GameFlow.uiLinks.upgradeUi.activeSelf)
-                    gui.HideUpgradeUI();
-                break;
-            default:
-                Debug.Log("Unit Type unhandeled : " + unitType);
-                break;
+            if (!GameFlow.uiLinks.kernelUi.activeSelf)
+                gui.ShowKernelUI();
+            if (GameFlow.uiLinks.unitUi.activeSelf)
+                gui.HideUnitUI();
+            if (GameFlow.uiLinks.upgradeUi.activeSelf)
+                gui.HideUpgradeUI();
+        }
+        else if(obj.tag.Contains("Units"))
+        {
+            if (!GameFlow.uiLinks.unitUi.activeSelf)
+                gui.ShowUnitUI(obj);
+            if (GameFlow.uiLinks.kernelUi.activeSelf)
+                gui.HideKernelUI();
+            if (GameFlow.uiLinks.upgradeUi.activeSelf)
+                gui.HideUpgradeUI();
         }
     }
-
-    public void HideUnitsUI(PawnTypes unitType)
-    {
-        switch (unitType)
-        {
-            case PawnTypes.Bit:
-                goto case PawnTypes.Zip;
-            case PawnTypes.Zip:
-                goto case PawnTypes.Relay;
-            case PawnTypes.Relay:
-                if (GameFlow.uiLinks.unitUi.activeSelf)
-                    gui.HideUnitUI();
-                break;
-            case PawnTypes.Kernel:
-                if (GameFlow.uiLinks.kernelUi.activeSelf)
-                    gui.HideKernelUI();
-                break;
-            default:
-                Debug.Log("Unit Type unhandeled : " + unitType);
-                break;
-        }
-    }
-
-
 }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zips : BasePawnsClass
+public class Zip : BasePawnsClass
 {
 
-    public Zips(Vector3 _pos)
+    public Zip(Vector3 _pos)
     {
         pawnType = PawnTypes.Zip;
         quickPawnDefinition = "Upgraded form of the Bit. Can be upgraded into a Kernel if enough territories are possessed." +

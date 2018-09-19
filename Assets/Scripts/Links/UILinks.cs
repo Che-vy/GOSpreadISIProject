@@ -15,6 +15,7 @@ public class UILinks : MonoBehaviour {
 
     [Header("UnitUI Setting")]
     public GameObject unitUi;
+    public Text unitName, unitRange, unitMove;
 
     [Header("UpgradeUI Setting")]
     public GameObject upgradeUi;

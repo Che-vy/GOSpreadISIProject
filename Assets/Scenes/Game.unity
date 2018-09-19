@@ -147,6 +147,9 @@ MonoBehaviour:
   gui: {fileID: 1749853647}
   kernelUi: {fileID: 1702711992}
   unitUi: {fileID: 637988600}
+  unitName: {fileID: 886252121}
+  unitRange: {fileID: 1866933768}
+  unitMove: {fileID: 725801069}
   upgradeUi: {fileID: 1306091623}
 --- !u!4 &115957454
 Transform:
@@ -1281,7 +1284,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.0757385, y: 0.126}
   m_AnchorMax: {x: 0.919, y: 0.36474958}
-  m_AnchoredPosition: {x: -1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &700751518
@@ -2312,7 +2315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1162289256
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3180,8 +3183,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.0757385, y: 0.5636472}
   m_AnchorMax: {x: 0.919, y: 0.795}
-  m_AnchoredPosition: {x: 1, y: -0.5}
-  m_SizeDelta: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1846958928
 MonoBehaviour:

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bits : BasePawnsClass
+public class Bit : BasePawnsClass
 {
-    public Bits(Vector3 _pos)
+    public Bit(Vector3 _pos)
     {
         pawnType = PawnTypes.Bit;
         quickPawnDefinition = "Basic pawn created from the Kernels. Can be upgraded into Zips or Relays. This unit can move 1 tile per turn and have a range of 1.";
