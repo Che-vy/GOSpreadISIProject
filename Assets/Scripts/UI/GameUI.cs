@@ -20,12 +20,14 @@ public class GameUI : MonoBehaviour
 
     public void UpdateGameUI()
     {
-        GameFlow.uiLinks.player1NbTerritory.text = "Nb Territory : " + PlayerManager.Instance.getPlayer(1).zone;
+        if (nbPlayers != 0)
+        {
+            GameFlow.uiLinks.player1NbTerritory.text = "Nb Territory : " + PlayerManager.Instance.getPlayer(1).zone;
 
-        if (nbPlayers > 1)
-            GameFlow.uiLinks.player2NbTerritory.text = "Nb Territory : " + PlayerManager.Instance.getPlayer(2).zone;
+            if (nbPlayers > 1)
+                GameFlow.uiLinks.player2NbTerritory.text = "Nb Territory : " + PlayerManager.Instance.getPlayer(2).zone;
+        }
 
-       
     }
 
     public void ShowKernelUI()
@@ -38,9 +40,28 @@ public class GameUI : MonoBehaviour
         GameFlow.uiLinks.kernelUi.SetActive(false);
     }
 
-    public void ShowUnitUI()
+    public void ShowMoveButton()
+    {
+        GameFlow.uiLinks.move.interactable = true;
+    }
+    public void HideMoveButton()
+    {
+        GameFlow.uiLinks.move.interactable = false;
+    }
+
+    public void ShowUpgradeButton()
+    {
+        GameFlow.uiLinks.upgrade.interactable = true;
+    }
+    public void HideUpgradeButton()
+    {
+        GameFlow.uiLinks.upgrade.interactable = false;
+    }
+
+    public void ShowUnitUI(GameObject Unit)
     {
         GameFlow.uiLinks.unitUi.SetActive(true);
+
     }
 
     public void HideUnitUI()
@@ -56,5 +77,23 @@ public class GameUI : MonoBehaviour
     public void HideUpgradeUI()
     {
         GameFlow.uiLinks.upgradeUi.SetActive(false);
+    }
+
+    public void ChangePhase()
+    {
+        DesactivateUI();
+        PlayerManager.Instance.getPlayer(PlayerManager.Instance.playerTurn).NextPhase();
+    }
+    public void StandBy()
+    {
+        DesactivateUI();
+        PlayerManager.Instance.getPlayer(PlayerManager.Instance.playerTurn).StandBy();
+    }
+
+    void DesactivateUI()
+    {
+        HideKernelUI();
+        HideUnitUI();
+        HideUpgradeUI();
     }
 }

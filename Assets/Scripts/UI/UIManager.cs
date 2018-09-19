@@ -35,55 +35,71 @@ public class UIManager
         gui.UpdateGameUI();
     }
 
-    public void ShowUnitsUI(PawnTypes unitType)
+    public void ShowUnitsUI(GameObject obj,int phase)
     {
-        switch (unitType)
+        
+        if (obj.tag.Contains("Kernel"))
         {
-            case PawnTypes.Bit:
-                goto case PawnTypes.Zip;
-            case PawnTypes.Zip:
-                goto case PawnTypes.Relay;
-            case PawnTypes.Relay:
-                if (!GameFlow.uiLinks.unitUi.activeSelf)
-                    gui.ShowUnitUI();
-                if (GameFlow.uiLinks.kernelUi.activeSelf)
-                    gui.HideKernelUI();
-                break;
-            case PawnTypes.Kernel:
+            if (phase == 1)
+            {
                 if (!GameFlow.uiLinks.kernelUi.activeSelf)
                     gui.ShowKernelUI();
                 if (GameFlow.uiLinks.unitUi.activeSelf)
                     gui.HideUnitUI();
                 if (GameFlow.uiLinks.upgradeUi.activeSelf)
                     gui.HideUpgradeUI();
-                break;
-            default:
-                Debug.Log("Unit Type unhandeled : " + unitType);
-                break;
+            }
         }
-    }
-
-    public void HideUnitsUI(PawnTypes unitType)
-    {
-        switch (unitType)
+        else if(obj.tag.Contains("Units"))
         {
-            case PawnTypes.Bit:
-                goto case PawnTypes.Zip;
-            case PawnTypes.Zip:
-                goto case PawnTypes.Relay;
-            case PawnTypes.Relay:
-                if (GameFlow.uiLinks.unitUi.activeSelf)
-                    gui.HideUnitUI();
-                break;
-            case PawnTypes.Kernel:
-                if (GameFlow.uiLinks.kernelUi.activeSelf)
-                    gui.HideKernelUI();
-                break;
-            default:
-                Debug.Log("Unit Type unhandeled : " + unitType);
-                break;
+
+            if (!GameFlow.uiLinks.unitUi.activeSelf)
+            {
+                if (phase != 3)
+                {
+                    gui.ShowUnitUI(obj);
+                    if (phase == 1)
+                    {
+                        gui.HideMoveButton();
+                        gui.ShowUpgradeButton();
+                    }
+                    else if (phase == 2)
+                    {
+                        gui.ShowMoveButton();
+                        gui.HideUpgradeButton();
+                    }
+                }
+            }
+            if (GameFlow.uiLinks.kernelUi.activeSelf)
+                gui.HideKernelUI();
+            if (GameFlow.uiLinks.upgradeUi.activeSelf)
+                gui.HideUpgradeUI();
         }
     }
 
+    public void PlayersTurnChange(int id)
+    {
+        if(id == 1)
+        {
+            GameFlow.uiLinks.player1Turn.SetActive(true);
+            GameFlow.uiLinks.player2Turn.SetActive(false);
+        }
+        else
+        {
+            GameFlow.uiLinks.player1Turn.SetActive(false);
+            GameFlow.uiLinks.player2Turn.SetActive(true);
+        }
+    }
 
+    public void ActivateTurn()
+    {
+        GameFlow.uiLinks.phase.interactable = true;
+        GameFlow.uiLinks.standBy.interactable = true;
+    }
+
+    public void DesactivateTurn()
+    {
+        GameFlow.uiLinks.phase.interactable = false;
+        GameFlow.uiLinks.standBy.interactable = false;
+    }
 }

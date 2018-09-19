@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 
 public class Player : NetworkBehaviour
 {
+    //All the different phases
     readonly int KERNELPHASE = 1;
     readonly int MOVEPHASE = 2;
     readonly int TERRITORYPHASE = 3;
@@ -21,73 +22,124 @@ public class Player : NetworkBehaviour
     public int phase = 1;
     bool initialize = false;
 
+    //Initialize the player
     public void initialization()
     {
+        //If this is the local Player
         if (!isLocalPlayer)
         {
             return;
         }
 
-
+        //Get the connectionManager
         co = GetComponent<ConnectionManager>();
+        GameLinks.Instance.co = co;
+
+        //Get the player name from the lobby
         name = Prototype.NetworkLobby.LobbyPlayerList._instance._players[id - 1].playerName;
 
+        //Create and InputManager
         inputMan = new InputManager();
         isConnected = true;
-        co.CmdDebug(id, name);
+
+        //Change the name in the UI on all the clients
         co.CmdChangeNom(id, name);
         initialize = true;
+
+        if(PlayerManager.Instance.playerTurn == id)
+        {
+            initializeTurn();
+        }
+        else
+        {
+            UIManager.Instance.DesactivateTurn();
+        }
     }
 
     public void UpdatePlayer()
     {
-
+        //If the player is initialize
         if (initialize == true)
         {
+            //If the player is local
             if (!isLocalPlayer)
             {
                 return;
             }
-
+            //get the package from the inputManager
             InputManager.InputPkg pkg = inputMan.GetInputs();
+
 
             if (pkg.objectSelected != null)
             {
-                co.CmdspawnUnit(UnitType.Bit);
                 co.CmdDebug(id, name);
-                co.CmdNextTurn();
-                string targetTag = pkg.objectSelected.tag;
-                if (targetTag.Contains("Kernel"))
-                    UIManager.Instance.ShowUnitsUI(PawnTypes.Kernel);
 
-                if(targetTag.Contains("Units"))
-                    UIManager.Instance.ShowUnitsUI(PawnTypes.Bit);
+                UIManager.Instance.ShowUnitsUI(pkg.objectSelected,phase);
+
             }
 
+
+
+            //Update each phase
             if (phase == KERNELPHASE)
             {
-                UpdatePhase1();
+                UpdatePhase1(pkg);
             }
+            else if (phase == MOVEPHASE)
+            {
+                UpdatePhase2(pkg);
+            }
+            else if (phase == TERRITORYPHASE)
+            {
+                UpdatePhase3(pkg);
+            }
+
         }
 
     }
-
-    void UpdatePhase1()
+    //initialize at the start of the turn
+    public void initializeTurn()
     {
-        Debug.Log("Dans phase 1");
+        phase = KERNELPHASE;
+        if (isLocalPlayer)
+            UIManager.Instance.ActivateTurn();
+
+    }
+
+    void UpdatePhase1(InputManager.InputPkg pkg)
+    {
+       
+       // if (pkg.objectSelected != null)
+       // {
+       //     phase++;
+       // }
+
+        Debug.Log("In Phase 1");
+
+    }
+
+    void UpdatePhase2(InputManager.InputPkg pkg)
+    {
+
+       // if (pkg.objectSelected != null)
+       // {
+       //     phase++;
+       // }
+        Debug.Log("In Phase 2");
+    }
+
+    void UpdatePhase3(InputManager.InputPkg pkg)
+    {
+        // if (pkg.objectSelected != null)
+        // {
+        //     phase++;
+        //     
+        // }
         Rule3A.Instance.RunTerritoryCheck(2, id);
-
+        Debug.Log("In Phase 3");
     }
 
-    void UpdatePhase2()
-    {
 
-    }
-
-    void UpdatePhase3()
-    {
-      
-    }
 
     public void changeName(string name_)
     {
@@ -95,5 +147,19 @@ public class Player : NetworkBehaviour
         gameObject.name = name;
     }
 
+    public void NextPhase()
+    {
+        phase++;
+        if(phase > 3 && PlayerManager.Instance.playerTurn == id )
+        {
+            if(isLocalPlayer)
+            UIManager.Instance.DesactivateTurn();
 
+            co.CmdNextTurn();
+        }
+    }
+    public void StandBy()
+    {
+        phase = 3;
+    }
 }
