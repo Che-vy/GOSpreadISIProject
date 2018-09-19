@@ -35,21 +35,41 @@ public class UIManager
         gui.UpdateGameUI();
     }
 
-    public void ShowUnitsUI(GameObject obj)
+    public void ShowUnitsUI(GameObject obj,int phase)
     {
+        
         if (obj.tag.Contains("Kernel"))
         {
-            if (!GameFlow.uiLinks.kernelUi.activeSelf)
-                gui.ShowKernelUI();
-            if (GameFlow.uiLinks.unitUi.activeSelf)
-                gui.HideUnitUI();
-            if (GameFlow.uiLinks.upgradeUi.activeSelf)
-                gui.HideUpgradeUI();
+            if (phase == 1)
+            {
+                if (!GameFlow.uiLinks.kernelUi.activeSelf)
+                    gui.ShowKernelUI();
+                if (GameFlow.uiLinks.unitUi.activeSelf)
+                    gui.HideUnitUI();
+                if (GameFlow.uiLinks.upgradeUi.activeSelf)
+                    gui.HideUpgradeUI();
+            }
         }
         else if(obj.tag.Contains("Units"))
         {
+
             if (!GameFlow.uiLinks.unitUi.activeSelf)
-                gui.ShowUnitUI(obj);
+            {
+                if (phase != 3)
+                {
+                    gui.ShowUnitUI(obj);
+                    if (phase == 1)
+                    {
+                        gui.HideMoveButton();
+                        gui.ShowUpgradeButton();
+                    }
+                    else if (phase == 2)
+                    {
+                        gui.ShowMoveButton();
+                        gui.HideUpgradeButton();
+                    }
+                }
+            }
             if (GameFlow.uiLinks.kernelUi.activeSelf)
                 gui.HideKernelUI();
             if (GameFlow.uiLinks.upgradeUi.activeSelf)
@@ -69,5 +89,17 @@ public class UIManager
             GameFlow.uiLinks.player1Turn.SetActive(false);
             GameFlow.uiLinks.player2Turn.SetActive(true);
         }
+    }
+
+    public void ActivateTurn()
+    {
+        GameFlow.uiLinks.phase.interactable = true;
+        GameFlow.uiLinks.standBy.interactable = true;
+    }
+
+    public void DesactivateTurn()
+    {
+        GameFlow.uiLinks.phase.interactable = false;
+        GameFlow.uiLinks.standBy.interactable = false;
     }
 }

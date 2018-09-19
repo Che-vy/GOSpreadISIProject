@@ -85,6 +85,7 @@ public class PlayerManager
         {
             playerTurn = 1;
         }
+        UIManager.Instance.PlayersTurnChange(playerTurn);
         players[playerTurn-1].initializeTurn();
     }
 

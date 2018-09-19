@@ -45,6 +45,15 @@ public class Player : NetworkBehaviour
         //Change the name in the UI on all the clients
         co.CmdChangeNom(id, name);
         initialize = true;
+
+        if(PlayerManager.Instance.playerTurn == id)
+        {
+            initializeTurn();
+        }
+        else
+        {
+            UIManager.Instance.DesactivateTurn();
+        }
     }
 
     public void UpdatePlayer()
@@ -65,7 +74,7 @@ public class Player : NetworkBehaviour
             {
                 co.CmdDebug(id, name);
 
-                UIManager.Instance.ShowUnitsUI(pkg.objectSelected);
+                UIManager.Instance.ShowUnitsUI(pkg.objectSelected,phase);
 
             }
 
@@ -92,37 +101,38 @@ public class Player : NetworkBehaviour
     public void initializeTurn()
     {
         phase = KERNELPHASE;
+        if (isLocalPlayer)
+            UIManager.Instance.ActivateTurn();
     }
 
     void UpdatePhase1(InputManager.InputPkg pkg)
     {
        
-        if (pkg.objectSelected != null)
-        {
-            phase++;
-        }
+       // if (pkg.objectSelected != null)
+       // {
+       //     phase++;
+       // }
 
         Debug.Log("In Phase 1");
 
     }
 
     void UpdatePhase2(InputManager.InputPkg pkg)
-
     {
-        if (pkg.objectSelected != null)
-        {
-            phase++;
-        }
+       // if (pkg.objectSelected != null)
+       // {
+       //     phase++;
+       // }
         Debug.Log("In Phase 2");
     }
 
     void UpdatePhase3(InputManager.InputPkg pkg)
     {
-        if (pkg.objectSelected != null)
-        {
-            phase++;
-            co.CmdNextTurn();
-        }
+       // if (pkg.objectSelected != null)
+       // {
+       //     phase++;
+       //     
+       // }
         Debug.Log("In Phase 3");
     }
 
@@ -134,5 +144,19 @@ public class Player : NetworkBehaviour
         gameObject.name = name;
     }
 
+    public void NextPhase()
+    {
+        phase++;
+        if(phase > 3 && PlayerManager.Instance.playerTurn == id )
+        {
+            if(isLocalPlayer)
+            UIManager.Instance.DesactivateTurn();
 
+            co.CmdNextTurn();
+        }
+    }
+    public void StandBy()
+    {
+        phase = 3;
+    }
 }
