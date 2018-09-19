@@ -50,21 +50,21 @@ public class UnitGrid
 
         switch (unitType) {
             case UnitType.Bit:
-                unitGrid[unitIndex.x, unitIndex.y] = new Bits(new Vector3());
+                unitGrid[unitIndex.x, unitIndex.y] = new Bit(new Vector3());
                 break;
             case UnitType.Kernel:
-                unitGrid[unitIndex.x, unitIndex.y] = new Kernels(new Vector3());
+                unitGrid[unitIndex.x, unitIndex.y] = new Kernel(new Vector3());
                 break;
             case UnitType.Relay:
-                unitGrid[unitIndex.x, unitIndex.y] = new Relays(new Vector3());
+                unitGrid[unitIndex.x, unitIndex.y] = new Relay(new Vector3());
                 break;
             case UnitType.Zit:
-                unitGrid[unitIndex.x, unitIndex.y] = new Zips(new Vector3());
+                unitGrid[unitIndex.x, unitIndex.y] = new Zip(new Vector3());
                 break;
             default:
                 break;
         }
-
+        
         unitGrid[unitIndex.x, unitIndex.y].x = unitIndex.x;
         unitGrid[unitIndex.x, unitIndex.y].y = unitIndex.y;
     }
@@ -83,7 +83,7 @@ public class UnitGrid
         unitGrid[finalPosIndex.x, finalPosIndex.y] = unitGrid[initialPosIndex.x, initialPosIndex.y];
         unitGrid[initialPosIndex.x, initialPosIndex.y] = null;
     }
-
+    
     public GameObject GetUnitGO(Vector2Int unitIndex)
     {
         return unitGridGO[unitIndex.x, unitIndex.y];

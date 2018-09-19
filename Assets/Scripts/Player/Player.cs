@@ -65,11 +65,8 @@ public class Player : NetworkBehaviour
             {
                 co.CmdDebug(id, name);
 
-                string targetName = pkg.objectSelected.name;
-                if (targetName.Contains("Kernel"))
-                    UIManager.Instance.ShowUnitsUI(PawnTypes.Kernel);
-                else
-                    UIManager.Instance.HideUnitsUI(PawnTypes.Kernel);
+                UIManager.Instance.ShowUnitsUI(pkg.objectSelected);
+
             }
 
 
@@ -108,7 +105,9 @@ public class Player : NetworkBehaviour
         Debug.Log("In Phase 1");
 
     }
+
     void UpdatePhase2(InputManager.InputPkg pkg)
+
     {
         if (pkg.objectSelected != null)
         {
@@ -116,6 +115,7 @@ public class Player : NetworkBehaviour
         }
         Debug.Log("In Phase 2");
     }
+
     void UpdatePhase3(InputManager.InputPkg pkg)
     {
         if (pkg.objectSelected != null)

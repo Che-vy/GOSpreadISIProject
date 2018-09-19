@@ -35,42 +35,25 @@ public class UIManager
         gui.UpdateGameUI();
     }
 
-    public void ShowUnitsUI(PawnTypes unitType)
+    public void ShowUnitsUI(GameObject obj)
     {
-        switch (unitType)
+        if (obj.tag.Contains("Kernel"))
         {
-            case PawnTypes.Bit:
-                goto case PawnTypes.Zip;
-            case PawnTypes.Zip:
-                goto case PawnTypes.Relay;
-            case PawnTypes.Relay:
-                break;
-            case PawnTypes.Kernel:
-                if (!GameFlow.uiLinks.kui.activeSelf)
-                    gui.ShowKernelUI();
-                break;
-            default:
-                Debug.Log("Unit Type unhandeled : " + unitType);
-                break;
+            if (!GameFlow.uiLinks.kernelUi.activeSelf)
+                gui.ShowKernelUI();
+            if (GameFlow.uiLinks.unitUi.activeSelf)
+                gui.HideUnitUI();
+            if (GameFlow.uiLinks.upgradeUi.activeSelf)
+                gui.HideUpgradeUI();
         }
-    }
-    public void HideUnitsUI(PawnTypes unitType)
-    {
-        switch (unitType)
+        else if(obj.tag.Contains("Units"))
         {
-            case PawnTypes.Bit:
-                goto case PawnTypes.Zip;
-            case PawnTypes.Zip:
-                goto case PawnTypes.Relay;
-            case PawnTypes.Relay:
-                break;
-            case PawnTypes.Kernel:
-                if (GameFlow.uiLinks.kui.activeSelf)
-                    gui.HideKernelUI();
-                break;
-            default:
-                Debug.Log("Unit Type unhandeled : " + unitType);
-                break;
+            if (!GameFlow.uiLinks.unitUi.activeSelf)
+                gui.ShowUnitUI(obj);
+            if (GameFlow.uiLinks.kernelUi.activeSelf)
+                gui.HideKernelUI();
+            if (GameFlow.uiLinks.upgradeUi.activeSelf)
+                gui.HideUpgradeUI();
         }
     }
 }
