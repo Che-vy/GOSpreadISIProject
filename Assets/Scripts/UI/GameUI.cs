@@ -105,4 +105,9 @@ public class GameUI : MonoBehaviour
         GameFlow.uiLinks.unitRange.text = "Range : " + basePawn.rangeValue.ToString();
         GameFlow.uiLinks.unitMove.text = "Move : " + basePawn.movementValue.ToString();
     }
+
+    public void SetPhaseInfo(int phase)
+    {
+        GameFlow.uiLinks.phase.text = "Phase " + phase.ToString();
+    }
 }

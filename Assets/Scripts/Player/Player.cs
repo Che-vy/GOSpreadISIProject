@@ -80,7 +80,9 @@ public class Player : NetworkBehaviour
             {
                 co.CmdDebug(id, name);
 
-                UIManager.Instance.ShowUnitsUI(pkg.objectSelected,phase);
+               //  UIManager.Instance.ShowUnitsUI(pkg.objectSelected,phase);
+                PlayerManager.Instance.move.CanSelectUnit(pkg.objectSelected, phase);
+
 
             }
 
@@ -107,6 +109,7 @@ public class Player : NetworkBehaviour
     public void initializeTurn()
     {
         phase = KERNELPHASE;
+        UIManager.Instance.SetPhaseInfo(phase);
         if (isLocalPlayer)
             UIManager.Instance.ActivateTurn();
 
@@ -163,7 +166,8 @@ public class Player : NetworkBehaviour
     public void NextPhase()
     {
         phase++;
-        if(phase > 3 && PlayerManager.Instance.playerTurn == id )
+        UIManager.Instance.SetPhaseInfo(phase > 3 ? 1 : phase);
+        if (phase > 3 && PlayerManager.Instance.playerTurn == id )
         {
             if(isLocalPlayer)
             UIManager.Instance.DesactivateTurn();
@@ -174,5 +178,6 @@ public class Player : NetworkBehaviour
     public void StandBy()
     {
         phase = 3;
+        UIManager.Instance.SetPhaseInfo(phase);
     }
 }

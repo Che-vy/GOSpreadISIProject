@@ -28,7 +28,7 @@ public class Rule3A
 
     public void MovePiece(Vector2Int arrayPos, Vector2Int destination) {
         UnitGrid.Instance.unitGrid[destination.x, destination.y] = UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y];
-        UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = ;
+      //  UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = ;
         UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = new BasePawnsClass();
 
     }

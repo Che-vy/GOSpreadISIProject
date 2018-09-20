@@ -7,10 +7,10 @@ public class UILinks : MonoBehaviour {
 
     [Header ("GameUI Setting")]
     public Text player1Name;
-    public Text player2Name, player1NbTerritory, player2NbTerritory;
+    public Text player2Name, player1NbTerritory, player2NbTerritory, phase;
     public GameUI gui;
     public GameObject player1Turn, player2Turn;
-    public Button phase, standBy;
+    public Button nextPhase, standBy;
 
     [Header("KernelUI Setting")]
     public GameObject kernelUi;

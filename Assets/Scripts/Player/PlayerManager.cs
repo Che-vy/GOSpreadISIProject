@@ -7,9 +7,11 @@ public class PlayerManager
 {
 
     private static PlayerManager instance = null;
+    public Movements move;
 
     private PlayerManager()
     {
+        
     }
 
     public static PlayerManager Instance
@@ -40,6 +42,9 @@ public class PlayerManager
         Camera camera = Camera.main;
         moveCam = camera.GetComponent<MoveCamera>();
         moveCam.initialize();
+
+
+        move = new Movements();
 
     }
 
@@ -99,7 +104,7 @@ public class PlayerManager
             playerTurn = 1;
         }
         UIManager.Instance.PlayersTurnChange(playerTurn);
-        players[playerTurn-1].initializeTurn();
+        players[playerTurn - 1].initializeTurn();
     }
 
     //Get one player
@@ -108,5 +113,5 @@ public class PlayerManager
         return players[id - 1];
     }
 
-  
+
 }
