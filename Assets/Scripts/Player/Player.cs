@@ -157,8 +157,6 @@ public class Player : NetworkBehaviour
         Debug.Log("In Phase 3");
     }
 
-
-
     public void changeName(string name_)
     {
         name = name_;
@@ -177,6 +175,7 @@ public class Player : NetworkBehaviour
             co.CmdNextTurn();
         }
     }
+
     public void StandBy()
     {
         phase = 3;

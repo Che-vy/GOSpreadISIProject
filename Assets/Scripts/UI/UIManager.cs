@@ -35,51 +35,43 @@ public class UIManager
         gui.UpdateGameUI();
     }
 
-    public void ShowUnitsUI(GameObject obj,int phase)
+    public void ShowUnitsUI(GameObject obj, int phase)
     {
-        
+
         if (obj.tag.Contains("Kernel"))
         {
             if (phase == 1)
             {
-                if (!GameFlow.uiLinks.kernelUi.activeSelf)
-                    gui.ShowKernelUI();
-                if (GameFlow.uiLinks.unitUi.activeSelf)
-                    gui.HideUnitUI();
-                if (GameFlow.uiLinks.upgradeUi.activeSelf)
-                    gui.HideUpgradeUI();
+                gui.DesactivateUI();
+                gui.ShowKernelUI();
+
             }
         }
-        else if(obj.tag.Contains("Units"))
+        else if (obj.tag.Contains("Units"))
         {
-            if (!GameFlow.uiLinks.unitUi.activeSelf)
+            gui.DesactivateUI();
+            if (phase != 3)
             {
                 InitializeUnitsUiInfos(obj.GetComponent<BasePawnsClass>());
-                if (phase != 3)
+                gui.ShowUnitUI(obj);
+                if (phase == 1)
                 {
-                    gui.ShowUnitUI(obj);
-                    if (phase == 1)
-                    {
-                        gui.HideMoveButton();
-                        gui.ShowUpgradeButton();
-                    }
-                    else if (phase == 2)
-                    {
-                        gui.ShowMoveButton();
-                        gui.HideUpgradeButton();
-                    }
+                    gui.HideMoveButton();
+                    gui.ShowUpgradeButton();
+                }
+                else if (phase == 2)
+                {
+                    gui.ShowMoveButton();
+                    gui.HideUpgradeButton();
                 }
             }
-            if (GameFlow.uiLinks.kernelUi.activeSelf)
-                gui.HideKernelUI();
-            if (GameFlow.uiLinks.upgradeUi.activeSelf)
-                gui.HideUpgradeUI();
+
         }
     }
 
     public void PlayersTurnChange(int id)
     {
-        if(id == 1)
+        if (id == 1)
         {
             GameFlow.uiLinks.player1Turn.SetActive(true);
             GameFlow.uiLinks.player2Turn.SetActive(false);
