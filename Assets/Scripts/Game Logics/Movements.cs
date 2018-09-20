@@ -16,6 +16,8 @@ public class Movements
         bool landingPlaceIsFree = false;// check if there is a pawn occupying the place
         bool zipCanMove = false;//second check only for the zip
 
+
+
         Vector2Int gridIndex;
         List<Vector2Int> dir = new List<Vector2Int>()
         {
