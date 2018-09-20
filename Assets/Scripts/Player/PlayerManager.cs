@@ -7,9 +7,11 @@ public class PlayerManager
 {
 
     private static PlayerManager instance = null;
+    public Movements move;
 
     private PlayerManager()
     {
+        
     }
 
     public static PlayerManager Instance
@@ -28,13 +30,22 @@ public class PlayerManager
     GameObject[] playersObject;
     public List<Player> players;
     public int playerTurn = 1;
-
+    public Vector3 p1Cam = new Vector3(5, 1.6f, -2.5f);
+    public Vector3 p2Cam = new Vector3(5, 1.6f, 12);
+   public MoveCamera moveCam;
 
     //Initialize the List of player
     public void initialization()
     {
         players = new List<Player>();
         playerTurn = 1;
+        Camera camera = Camera.main;
+        moveCam = camera.GetComponent<MoveCamera>();
+        moveCam.initialize();
+
+
+        move = new Movements();
+
     }
 
     //Set the players in the list and Array
@@ -57,6 +68,9 @@ public class PlayerManager
 
         playerTurn = 1;
         UIManager.Instance.Initialization();
+
+
+        
     }
 
     //Update the right player
@@ -67,7 +81,10 @@ public class PlayerManager
         {
             players[playerTurn - 1].UpdatePlayer();
             UIManager.Instance.Update();
+            moveCam.UpdateCamera();
         }
+       
+
     }
 
 
@@ -87,7 +104,7 @@ public class PlayerManager
             playerTurn = 1;
         }
         UIManager.Instance.PlayersTurnChange(playerTurn);
-        players[playerTurn-1].initializeTurn();
+        players[playerTurn - 1].initializeTurn();
     }
 
     //Get one player
@@ -96,5 +113,5 @@ public class PlayerManager
         return players[id - 1];
     }
 
-  
+
 }

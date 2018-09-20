@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,11 +29,14 @@ public class Rule3A
     public void MovePiece(Vector2Int arrayPos, Vector2Int destination)
     {
         UnitGrid.Instance.unitGrid[destination.x, destination.y] = UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y];
+
         UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = null;
         //UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = new BasePawnsClass();
         UnitGrid.Instance.unitGridGO[destination.x, destination.y] = UnitGrid.Instance.unitGridGO[arrayPos.x, arrayPos.y];
         //Vector2Int worldSpace new Vector2Int((int)GridManager.Instance.GetGridComponentPosition(destination.x, destination.y).position.x, (int)GridManager.Instance.GetGridComponentPosition(destination.x, destination.y).position.y);
         //MonoBehaviour.StartCoroutine(LerpMovementTool(false, UnitGrid.Instance.unitGridGO[arrayPos.x, arrayPos.y].gameObject, , 2f);
+      //  UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = ;
+
 
     }
     /// <summary>

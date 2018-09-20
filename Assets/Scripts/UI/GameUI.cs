@@ -98,7 +98,7 @@ public class GameUI : MonoBehaviour
         PlayerManager.Instance.getPlayer(PlayerManager.Instance.playerTurn).StandBy();
     }
 
-    void DesactivateUI()
+    public void DesactivateUI()
     {
         HideKernelUI();
         HideUnitUI();
@@ -110,5 +110,10 @@ public class GameUI : MonoBehaviour
         GameFlow.uiLinks.unitName.text = basePawn.pawnType.ToString();
         GameFlow.uiLinks.unitRange.text = "Range : " + basePawn.rangeValue.ToString();
         GameFlow.uiLinks.unitMove.text = "Move : " + basePawn.movementValue.ToString();
+    }
+
+    public void SetPhaseInfo(int phase)
+    {
+        GameFlow.uiLinks.phase.text = "Phase " + phase.ToString();
     }
 }
