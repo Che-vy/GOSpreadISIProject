@@ -111,6 +111,11 @@ public class UnitGrid
         return unitGrid[unitIndex.x, unitIndex.y];
     }
 
+    public void DestroyUnit(GameObject toDestroy) {
+        UnityEngine.Object.Destroy(toDestroy);
+
+    }
+
     public void MoveUnitGameObject()
     {
         Debug.Log("MoveUnitGameObject method not implemented");
