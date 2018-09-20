@@ -69,6 +69,11 @@ public sealed class TerritoryGridManager
         return territory;
     }
 
+    public int GetOwner(Vector2Int arrayPos)
+    {
+        return (int)TerritoryGridManager.Instance.zoneGrid[arrayPos.x, arrayPos.y];
+    }
+
     public void ChangeZone(int i, int j, Zone newZoneType)
     {
         zoneGrid[i, j] = newZoneType;

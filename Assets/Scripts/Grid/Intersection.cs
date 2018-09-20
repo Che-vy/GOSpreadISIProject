@@ -2,28 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Intersection : IGridComponent
+public class Intersection : MonoBehaviour
 {
-    public Vector3 position_world_space;
-    GameObject gameObject;
+    public Vector2Int arrayPos;
 
-    public void Initialize()
+
+    public void Initialize(Vector2Int _arrayPos)
     {
-        throw new System.NotImplementedException();
+       arrayPos = _arrayPos;
     }
 
-    public void Update()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Animate()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Destroy()
-    {
-        throw new System.NotImplementedException();
-    }
 }

@@ -36,6 +36,12 @@ public class GameUI : MonoBehaviour
     {
         GameFlow.uiLinks.kernelUi.SetActive(true);
     }
+
+    public void CreateUnit()
+    {
+        PlayerManager.Instance.getPlayer(PlayerManager.Instance.playerTurn).currentMode = CurrentMode.CREATE;
+    }
+
     public void HideKernelUI()
     {
         GameFlow.uiLinks.kernelUi.SetActive(false);

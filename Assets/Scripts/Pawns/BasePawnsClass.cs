@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 public enum PawnTypes { Bit, Zip, Relay, Kernel}
-public class BasePawnsClass : MonoBehaviour {
+public class BasePawnsClass : MonoBehaviour{
 
     public PawnTypes pawnType; //define type of the pawn, see enum above
     public string quickPawnDefinition; // quick definition of the pawn, how it behave in the game. Definition can be use for UI purposes (how to play, pawns UI)

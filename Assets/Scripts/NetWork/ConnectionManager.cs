@@ -53,16 +53,13 @@ public class ConnectionManager : NetworkBehaviour {
 
     //Spawn a unit
     [Command]
-    public void CmdspawnUnit(UnitType unit)
+    public void CmdspawnUnit(Vector2Int unitIndex, int player, UnitType unitType)
     {
-        RpcspawnUnit(unit);
+        RpcspawnUnit(unitIndex, player, unitType);
     }
     [ClientRpc]
-    void RpcspawnUnit(UnitType unit)
+    void RpcspawnUnit(Vector2Int unitIndex, int player, UnitType unitType)
     {
-
-        GameObject gO = UnitFactory.Instance.SpawnUnit(unit);
-        gO.transform.position = new Vector3(1, 1, 1);
 
     }
 }

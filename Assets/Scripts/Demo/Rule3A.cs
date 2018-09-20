@@ -26,10 +26,14 @@ public class Rule3A
     }
     #endregion
 
-    public void MovePiece(Vector2Int arrayPos, Vector2Int destination) {
+    public void MovePiece(Vector2Int arrayPos, Vector2Int destination)
+    {
         UnitGrid.Instance.unitGrid[destination.x, destination.y] = UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y];
-        UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = ;
-        UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = new BasePawnsClass();
+        UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = null;
+        //UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = new BasePawnsClass();
+        UnitGrid.Instance.unitGridGO[destination.x, destination.y] = UnitGrid.Instance.unitGridGO[arrayPos.x, arrayPos.y];
+        //Vector2Int worldSpace new Vector2Int((int)GridManager.Instance.GetGridComponentPosition(destination.x, destination.y).position.x, (int)GridManager.Instance.GetGridComponentPosition(destination.x, destination.y).position.y);
+        //MonoBehaviour.StartCoroutine(LerpMovementTool(false, UnitGrid.Instance.unitGridGO[arrayPos.x, arrayPos.y].gameObject, , 2f);
 
     }
     /// <summary>
@@ -39,51 +43,71 @@ public class Rule3A
     /// <param name="toMove">The unit's GameObject to be moved</param>
     /// <param name="destination">The GameObject of the grid component chosen</param>
     /// <param name="time">Time it takes to complete trajectory</param>
-    public IEnumerator LerpMovementTool(bool isMoving, GameObject toMove, GameObject destination, float time) {
+    public IEnumerator LerpMovementTool(bool isMoving, GameObject toMove, GameObject destination, float time)
+    {
         if (!isMoving)
-        {                     
-            isMoving = true;               
+        {
+            isMoving = true;
             float t = 0f;
             while (t < 1.0f)
             {
                 t += Time.deltaTime / time;
-                toMove.transform.position = Vector3.Lerp(toMove.transform.position, destination.transform.position, t);
-                yield return new WaitForSeconds(0.1f);  
+                toMove.transform.position = Vector3.Lerp(toMove.transform.position, new Vector3(destination.transform.position.x, destination.transform.position.y + .75f, destination.transform.position.z), t);
+                yield return new WaitForSeconds(0.05f);
             }
-            isMoving = false;            
+
+            isMoving = false;
         }
     }
 
-    public void RunMovementCheck(Vector2Int arrayPos, int range) {
+    public void RunMovementCheck(Vector2Int arrayPos, int range)
+    {
         List<Vector2Int> potentialDestinations = new List<Vector2Int>();
 
-        for (int s = range; s >= 0; s -= 2) {
-            if (arrayPos.x - s >= 0) {
-                for (int x = range; x > 0; x -= 2)
-                {
-                    if (UnitGrid.Instance.GetUnitGO(new Vector2Int(arrayPos.x - x, arrayPos.y)) == null)
+        for (int s = 2; s <= range; s += 2)
+        {
+            if (arrayPos.x - s >= 0)
+            {             
+                    if (UnitGrid.Instance.GetUnit(new Vector2Int(arrayPos.x - s, arrayPos.y)).playerNum == 0 )
                     {
-                        GridManager.Instance.ActivateParticles(new Vector2Int(arrayPos.x - x, arrayPos.y), 0); //Activate light particle for potential destination approved
+                      
+                        GridManager.Instance.ActivateLight(new Vector2Int(arrayPos.x - s, arrayPos.y)); //Activate light particle for potential destination approved
                     }
+                
+            }
+            if (arrayPos.x + s <= gridLimit)
+            {
+
+                if (UnitGrid.Instance.GetUnit(new Vector2Int(arrayPos.x + s, arrayPos.y)).playerNum == 0)
+                {
+                    //potentialDestinations.Add(new Vector2Int(arrayPos.x + x, arrayPos.y));
+                    GridManager.Instance.ActivateLight(new Vector2Int(arrayPos.x + s, arrayPos.y)); //Activate light particle for potential destination approved
+                }
+                
+
+            }
+            if (arrayPos.y + s <= range)
+            {
+
+                if (UnitGrid.Instance.GetUnit(new Vector2Int(arrayPos.x, arrayPos.y - s)).playerNum == 0)
+                {
+
+                    GridManager.Instance.ActivateLight(new Vector2Int(arrayPos.x, arrayPos.y - s)); //Activate light particle for potential destination approved
                 }
             }
-            if (arrayPos.x + s <= gridLimit) {
-                for (int x = range; x > 0; x -= 2)
-                {
-                    if (UnitGrid.Instance.GetUnitGO(new Vector2Int(arrayPos.x + x, arrayPos.y)) == null)
+            if (arrayPos.y + s <= gridLimit)
+            {
+                    if (UnitGrid.Instance.GetUnit(new Vector2Int(arrayPos.x, arrayPos.y + s)).playerNum == 0)
                     {
-                        potentialDestinations.Add(new Vector2Int(arrayPos.x + x, arrayPos.y));
-                        GridManager.Instance.ActivateParticles(new Vector2Int(arrayPos.x + x, arrayPos.y), 0); //Activate light particle for potential destination approved
+                        //potentialDestinations.Add(new Vector2Int(arrayPos.x + x, arrayPos.y));
+                        GridManager.Instance.ActivateLight(new Vector2Int(arrayPos.x, arrayPos.y + s)); //Activate light particle for potential destination approved
                     }
-                }
-
             }
         }
     }
 
     public void RunTerritoryCheck(int range, int player)
     {
-        
         int x = 0;
         while (x + 2 <= gridLimit)
         {
@@ -121,6 +145,33 @@ public class Rule3A
                                                             {
                                                                 for (int j = y; j <= y + multiplier; j++)
                                                                 {
+                                                                    if (j % 2 != 0 && i % 2 != 0)
+                                                                    {
+                                                                        PlayerManager.Instance.getPlayer(player).zone++;
+                                                                        if (TerritoryGridManager.Instance.GetOwner(new Vector2Int(i, j)) != 0 && TerritoryGridManager.Instance.GetOwner(new Vector2Int(i, j)) != player) 
+                                                                        {
+                                                                            switch (player) {
+                                                                                case 1:
+                                                                                    PlayerManager.Instance.getPlayer((int)Zone.Player2).zone--;
+                                                                                    break;
+                                                                                case 2:
+                                                                                    PlayerManager.Instance.getPlayer((int)Zone.Player1).zone--;
+                                                                                    break;
+                                                                                default:
+                                                                                    break;
+                                                                            }
+                                                                        }
+                                                                        if (player == 1)
+                                                                        {
+                                                                            TerritoryGridManager.Instance.ChangeZone(i, j, Zone.Player1);
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            TerritoryGridManager.Instance.ChangeZone(i, j, Zone.Player2);
+
+                                                                        }
+                                                                    }
+
                                                                     GridManager.Instance.ActivateParticles(new Vector2Int(i, j), player);
                                                                 }
                                                             }

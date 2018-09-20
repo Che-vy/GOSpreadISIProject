@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movements
 {
 
-    public bool CanItMove(BasePawnsClass pawn) //look if the selected unit can move
+    public static bool CanItMove(BasePawnsClass pawn) //look if the selected unit can move
     {
         int scale = 2;
 
@@ -43,10 +43,11 @@ public class Movements
                         //if landing space already have a unit on it
                         if (UnitGrid.Instance.unitGrid != null)
                         {
-                            if (UnitGrid.Instance.unitGrid[gridIndex.x, gridIndex.y] == null)
+                            if (UnitGrid.Instance.unitGrid[gridIndex.x, gridIndex.y].playerNum == 0)
                             {
                                 landingPlaceIsFree = true;
                                 //this is where we highlight the ok zones
+                                GridManager.Instance.ActivateLight(new Vector2Int(gridIndex.x, gridIndex.y));
                                 Debug.Log("pos available" + gridIndex);
                                 // check for unit that have 2 movement
                                 if (pawn.pawnType == PawnTypes.Zip)
@@ -58,7 +59,7 @@ public class Movements
                                         gridIndex = gridIndex + (v * scale);
                                         if ((gridIndex.x >= 0 && gridIndex.x <= GridManager.Instance.grid_blueprint.gridLayout.GetUpperBound(0)) && (gridIndex.y >= 0 && gridIndex.y <= GridManager.Instance.grid_blueprint.gridLayout.GetUpperBound(1)))
                                         {
-                                            if (UnitGrid.Instance.unitGrid[gridIndex.x, gridIndex.y] == null)
+                                            if (UnitGrid.Instance.unitGrid[gridIndex.x, gridIndex.y].playerNum == 0)
                                             {
                                                 GameObject test2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
                                                 test2.transform.position = GridManager.Instance.grid_objects[gridIndex.x, gridIndex.y].transform.position;

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+public enum CurrentMode { STANDBY, MOVE, CREATE };
+
 public class Player : NetworkBehaviour
 {
     //All the different phases
@@ -16,6 +18,8 @@ public class Player : NetworkBehaviour
     public int zone = 0;
 
     public bool isConnected = false;
+    public bool haha = true;
+    public CurrentMode currentMode = CurrentMode.STANDBY;
 
     [SyncVar]
     public string name;
@@ -46,7 +50,7 @@ public class Player : NetworkBehaviour
         co.CmdChangeNom(id, name);
         initialize = true;
 
-        if(PlayerManager.Instance.playerTurn == id)
+        if (PlayerManager.Instance.playerTurn == id)
         {
             initializeTurn();
         }
@@ -74,7 +78,20 @@ public class Player : NetworkBehaviour
             {
                 co.CmdDebug(id, name);
 
-                UIManager.Instance.ShowUnitsUI(pkg.objectSelected,phase);
+                if (currentMode == CurrentMode.STANDBY)
+                {
+                    UIManager.Instance.ShowUnitsUI(pkg.objectSelected, phase);
+                }
+                else if (currentMode == CurrentMode.CREATE)
+                {
+                    if (pkg.objectSelected.tag == "IntersectionCollider")
+                        co.CmdspawnUnit(pkg.objectSelected.GetComponentInParent<Intersection>().arrayPos, id, UnitType.Bit);
+                }
+
+                else if (currentMode == CurrentMode.MOVE)
+                {
+                    if (pkg.objectSelected.tag == "IntersectionCollider") ;                      ;
+                }
 
             }
 
@@ -113,25 +130,32 @@ public class Player : NetworkBehaviour
         // {
         //     phase++;
         // }
-        switch (id) {
-            case 1:
-            Rule3A.Instance.RunTerritoryCheck(2, id+1);
-                break;
-            case 2:
-                Rule3A.Instance.RunTerritoryCheck(2, id - 1);
-                break;
-        }
+        //switch (id)
+        //{
+        //    case 1:
+        //        Rule3A.Instance.RunTerritoryCheck(2, id + 1);
+        //        break;
+        //    case 2:
+        //        Rule3A.Instance.RunTerritoryCheck(2, id - 1);
+        //        break;
+        //}
         Debug.Log("In Phase 1");
-
     }
 
     void UpdatePhase2(InputManager.InputPkg pkg)
     {
-
-       // if (pkg.objectSelected != null)
-       // {
-       //     phase++;
-       // }
+        Movements.CanItMove(UnitGrid.Instance.GetUnitGO(new Vector2Int(8, 4)).GetComponent<BasePawnsClass>());
+        //Rule3A.Instance.RunMovementCheck(new Vector2Int(2, 2), 2);
+        if (!haha)
+        {
+            StartCoroutine(Rule3A.Instance.LerpMovementTool(false, UnitGrid.Instance.unitGridGO[2, 2], GridManager.Instance.grid_objects[2, 4], 1.0f));
+            haha = false;
+        }
+        //Rule3A.Instance.RunMovementCheck(new Vector2Int(4, 2), 2);
+        // if (pkg.objectSelected != null)
+        // {
+        //     phase++;
+        // }
         Debug.Log("In Phase 2");
     }
 
@@ -142,7 +166,8 @@ public class Player : NetworkBehaviour
         //     phase++;
         //     
         // }
-        Rule3A.Instance.RunTerritoryCheck(2, id);
+
+        //Rule3A.Instance.RunTerritoryCheck(2, id);
         Debug.Log("In Phase 3");
     }
 
@@ -157,10 +182,10 @@ public class Player : NetworkBehaviour
     public void NextPhase()
     {
         phase++;
-        if(phase > 3 && PlayerManager.Instance.playerTurn == id )
+        if (phase > 3 && PlayerManager.Instance.playerTurn == id)
         {
-            if(isLocalPlayer)
-            UIManager.Instance.DesactivateTurn();
+            if (isLocalPlayer)
+                UIManager.Instance.DesactivateTurn();
 
             co.CmdNextTurn();
         }

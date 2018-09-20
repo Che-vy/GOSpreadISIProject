@@ -43,7 +43,7 @@ public class GridManager
     public void InstantiateGridObjects()
     {
         GridFactory.Instance.Initialize();
-        grid_objects = GridFactory.Instance.CreatedGrid(grid_blueprint.gridLayout, "Grid Parent");
+        grid_objects = GridFactory.Instance.CreateGrid(grid_blueprint.gridLayout, "Grid Parent");
         InitializeGridObjectsPositions(grid_objects);
     }
 
@@ -62,8 +62,9 @@ public class GridManager
                     if (j % 2 == 0) //if its row index is even, it's an intersection
                     {
                         vOffset = ((((j / 2) + 0.5f) * GridFactory.Instance.intersectionWidth) + (Mathf.Round(j / 2) * GridFactory.Instance.segmentWidth)) - (GridFactory.Instance.intersectionWidth / 2);
+
                     }
-                    else
+                    else // else it's a segment
                     {
                         vOffset = ((((j / 2) + 0.5f) * GridFactory.Instance.intersectionWidth) + (Mathf.Round(j / 2)) * GridFactory.Instance.segmentWidth) + (GridFactory.Instance.segmentWidth / 2);
                     }
@@ -106,5 +107,15 @@ public class GridManager
             grid_objects[index.x, index.y].transform.Find("RedGlowing").gameObject.SetActive(true);
             grid_objects[index.x, index.y].transform.Find("BlueGlowing").gameObject.SetActive(false);
         }
+    }
+
+    public void ActivateLight(Vector2Int index) {
+      //GameObject [] childs = grid_objects[index.x, index.y].chil
+        grid_objects[index.x, index.y].transform.Find("Sphere").gameObject.SetActive(true);
+    }
+
+    public void DeactivateLight(Vector2Int index)
+    {
+        grid_objects[index.x, index.y].transform.Find("Sphere").gameObject.SetActive(false);
     }
 }

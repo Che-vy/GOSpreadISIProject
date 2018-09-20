@@ -51,7 +51,7 @@ public class GridFactory {
     /// <param name="masterGrid"></param>
     /// <param name="parentName">The name given to the full grid parent game object</param>
     /// <returns></returns>
-    public GameObject[,] CreatedGrid(GridComponentType[,] masterGrid, string parentName)
+    public GameObject[,] CreateGrid(GridComponentType[,] masterGrid, string parentName)
     {
         int width = masterGrid.GetUpperBound(0) + 1;
         GameObject[,] result = new GameObject[width, width];
@@ -71,6 +71,7 @@ public class GridFactory {
                         break;
                     case GridComponentType.Intersection:
                         result[i, j] = GameObject.Instantiate<GameObject>(intersection);
+                        result[i, j].GetComponent<Intersection>().Initialize(new Vector2Int(i, j));
                         break;
                     default:
                         break;

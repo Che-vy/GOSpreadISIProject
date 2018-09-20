@@ -58,8 +58,8 @@ public class UnitGrid
         switch (unitType) {
             case UnitType.Bit:
                 unitGrid[unitIndex.x, unitIndex.y] = new Bit();
-                ((Bit)unitGrid[unitIndex.x, unitIndex.y]).Initialize();
-                unitGridGO[unitIndex.x, unitIndex.y].GetComponent<Bit>().Initialize();
+                ((Bit)unitGrid[unitIndex.x, unitIndex.y]).Initialize(new Vector2Int(unitIndex.x, unitIndex.y));
+                unitGridGO[unitIndex.x, unitIndex.y].GetComponent<Bit>().Initialize(new Vector2Int(unitIndex.x, unitIndex.y));
                 break;
             case UnitType.Kernel:
                 unitGrid[unitIndex.x, unitIndex.y] = new Kernel();
