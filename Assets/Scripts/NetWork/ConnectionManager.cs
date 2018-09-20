@@ -65,4 +65,19 @@ public class ConnectionManager : NetworkBehaviour {
         gO.transform.position = new Vector3(1, 1, 1);
 
     }
+
+
+    //Check Territory
+    [Command]
+    public void CmdCheckTerritory(int id)
+    {
+        RpcCheckTerritory(id);
+    }
+    [ClientRpc]
+    void RpcCheckTerritory(int id)
+    {
+
+        Rule3A.Instance.RunTerritoryCheck(2, id);
+
+    }
 }
