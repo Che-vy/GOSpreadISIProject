@@ -7,6 +7,7 @@ public class PlayerManager
 {
 
     private static PlayerManager instance = null;
+    public Movements move;
 
     private PlayerManager()
     {
@@ -35,6 +36,7 @@ public class PlayerManager
     {
         players = new List<Player>();
         playerTurn = 1;
+        move = new Movements();
     }
 
     //Set the players in the list and Array
@@ -87,7 +89,7 @@ public class PlayerManager
             playerTurn = 1;
         }
         UIManager.Instance.PlayersTurnChange(playerTurn);
-        players[playerTurn-1].initializeTurn();
+        players[playerTurn - 1].initializeTurn();
     }
 
     //Get one player
@@ -96,5 +98,5 @@ public class PlayerManager
         return players[id - 1];
     }
 
-  
+
 }
