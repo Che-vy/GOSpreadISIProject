@@ -49,11 +49,11 @@ public class GridManager
 
     public void InitializeGridObjectsPositions(GameObject[,] _grid_objects)
     {
-        int arraySize = _grid_objects.GetUpperBound(0);
+        int arraySize = _grid_objects.GetUpperBound(0)+1;
 
-        for (int i = 0; i <= arraySize; i++)
+        for (int i = 0; i < arraySize; i++)
         {
-            for (int j = 0; j <= arraySize; j++)
+            for (int j = 0; j < arraySize; j++)
             {
                 if (i % 2 == 0) //if its column index is even, it's either an intersection or a segment
                 {
@@ -114,8 +114,11 @@ public class GridManager
         grid_objects[index.x, index.y].transform.Find("Sphere").gameObject.SetActive(true);
     }
 
-    public void DeactivateLight(Vector2Int index)
+    public void DeactivateLight(List<GameObject> gO)
     {
-        grid_objects[index.x, index.y].transform.Find("Sphere").gameObject.SetActive(false);
+        foreach(GameObject g in gO)
+        {
+            g.SetActive(false);
+        }
     }
 }

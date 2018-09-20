@@ -14,7 +14,7 @@ public class Player : NetworkBehaviour
 
     public int id;
     ConnectionManager co;
-    
+
     public int zone = 0;
 
     public bool isConnected = false;
@@ -43,7 +43,7 @@ public class Player : NetworkBehaviour
         name = Prototype.NetworkLobby.LobbyPlayerList._instance._players[id - 1].playerName;
 
         //Create and InputManager
-        
+
         isConnected = true;
 
         //Change the name in the UI on all the clients
@@ -61,7 +61,7 @@ public class Player : NetworkBehaviour
             rotation.y = 180;
             PlayerManager.Instance.moveCam.gameObject.transform.rotation = Quaternion.Euler(rotation);
             PlayerManager.Instance.moveCam.gameObject.transform.position = PlayerManager.Instance.p2Cam;
-            
+
             UIManager.Instance.DesactivateTurn();
         }
     }
@@ -77,7 +77,7 @@ public class Player : NetworkBehaviour
                 return;
             }
             //get the package from the inputManager
-            
+
 
 
             if (pkg.objectSelected != null)
@@ -85,23 +85,36 @@ public class Player : NetworkBehaviour
                 co.CmdDebug(id, name);
 
 
-                if (currentMode == CurrentMode.STANDBY)
+                if (currentMode == CurrentMode.STANDBY && Movements.CanSelectUnit(pkg.objectSelected, id))
                 {
                     UIManager.Instance.ShowUnitsUI(pkg.objectSelected, phase);
                 }
                 else if (currentMode == CurrentMode.CREATE)
                 {
                     if (pkg.objectSelected.tag == "IntersectionCollider")
+                    {
                         co.CmdspawnUnit(pkg.objectSelected.GetComponentInParent<Intersection>().arrayPos, id, UnitType.Bit);
+                        GridManager.Instance.DeactivateLight(Movements.posActiver);
+                        currentMode = CurrentMode.STANDBY;
+                        phase++;
+                    }
+
                 }
 
                 else if (currentMode == CurrentMode.MOVE)
                 {
-                    if (pkg.objectSelected.tag == "IntersectionCollider") ;                      ;
-                }
+                    if (pkg.objectSelected.tag == "IntersectionCollider")
+                    {
 
-               //  UIManager.Instance.ShowUnitsUI(pkg.objectSelected,phase);
-                PlayerManager.Instance.move.CanSelectUnit(pkg.objectSelected, phase);
+                        Vector2 pos = Movements.LastObjetSelectionne.GetComponent<BasePawnsClass>().positionInGridArray;
+                        Vector2 des = pkg.objectSelected.transform.parent.gameObject.GetComponent<Intersection>().arrayPos;
+
+                        co.CmdMoveUnit(id, pos, des);
+                        GridManager.Instance.DeactivateLight(Movements.posActiver);
+                        currentMode = CurrentMode.STANDBY;
+                        phase++;
+                    }
+                }
 
 
             }
@@ -143,20 +156,20 @@ public class Player : NetworkBehaviour
         //     phase++;
         // }
 
-       // switch (id) {
-       //     case 1:
-       //     Rule3A.Instance.RunTerritoryCheck(2, id+1);
-       //         break;
-       //     case 2:
-       //         Rule3A.Instance.RunTerritoryCheck(2, id - 1);
-       //         break;
-       // }
+        // switch (id) {
+        //     case 1:
+        //     Rule3A.Instance.RunTerritoryCheck(2, id+1);
+        //         break;
+        //     case 2:
+        //         Rule3A.Instance.RunTerritoryCheck(2, id - 1);
+        //         break;
+        // }
         Debug.Log("In Phase 1");
     }
 
     void UpdatePhase2(InputManager.InputPkg pkg)
     {
-        Movements.CanItMove(UnitGrid.Instance.GetUnitGO(new Vector2Int(8, 4)).GetComponent<BasePawnsClass>());
+
         //Rule3A.Instance.RunMovementCheck(new Vector2Int(2, 2), 2);
         if (!haha)
         {
@@ -195,7 +208,7 @@ public class Player : NetworkBehaviour
         phase++;
 
         UIManager.Instance.SetPhaseInfo(phase > 3 ? 1 : phase);
-        if (phase > 3 && PlayerManager.Instance.playerTurn == id )
+        if (phase > 3 && PlayerManager.Instance.playerTurn == id)
         {
             if (isLocalPlayer)
                 UIManager.Instance.DesactivateTurn();

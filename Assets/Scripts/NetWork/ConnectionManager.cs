@@ -50,17 +50,21 @@ public class ConnectionManager : NetworkBehaviour {
         PlayerManager.Instance.changeTurn();
     }
 
+    
 
-    //Spawn a unit
+   //Spawn a unit
     [Command]
-    public void CmdspawnUnit(Vector2Int unitIndex, int player, UnitType unitType)
+    public void CmdspawnUnit(Vector2 unitIndex, int player, UnitType unitType)
     {
         RpcspawnUnit(unitIndex, player, unitType);
     }
     [ClientRpc]
-    void RpcspawnUnit(Vector2Int unitIndex, int player, UnitType unitType)
+    void RpcspawnUnit(Vector2 unitIndex, int player, UnitType unitType)
     {
+        Vector2Int v = new Vector2Int((int)unitIndex.x, (int)unitIndex.y);
 
+        UnitGrid.Instance.AddUnit(v, player, unitType);
+       
     }
 
 
@@ -75,6 +79,23 @@ public class ConnectionManager : NetworkBehaviour {
     {
 
         Rule3A.Instance.RunTerritoryCheck(2, id);
+
+    }
+
+
+    //MoveUnit
+    [Command]
+    public void CmdMoveUnit(int id, Vector2 toMove,Vector2 destination)
+    {
+        RpcMoveUnit(id,toMove,destination);
+    }
+    [ClientRpc]
+    void RpcMoveUnit(int id, Vector2 toMove, Vector2 destination)
+    {
+        Vector2Int pos = new Vector2Int((int)toMove.x,(int)toMove.y);
+        Vector2Int des = new Vector2Int((int)destination.x, (int)destination.y);
+
+       StartCoroutine( Rule3A.Instance.LerpMovementTool(false, UnitGrid.Instance.unitGridGO[pos.x, pos.y], GridManager.Instance.grid_objects[des.x, des.y],1.5f));
 
     }
 }

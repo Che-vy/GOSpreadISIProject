@@ -6,13 +6,13 @@ public class Bit : BasePawnsClass
 {
 
 
-    public void Initialize(Vector2Int arrayPos)
+    public void Initialize(Vector2Int arrayPos,int id)
     {
         pawnType = PawnTypes.Bit;
         quickPawnDefinition = "Basic pawn created from the Kernels. Can be upgraded into Zips or Relays. This unit can move 1 tile per turn and have a range of 1.";
         movementValue = 1;
         rangeValue = 1;
-        playerNum = 0;
+        playerNum = id;
         level = 1;
         prefabsModel = "Bit";
         hasBeenEaten = false;

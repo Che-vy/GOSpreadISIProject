@@ -10,13 +10,13 @@ public class Grid
 
     public void Initialize(int width)
     {
-        int actualWidth = (width * 2) - 1;
+        int actualWidth = (width * 2)-1 ;
 
         gridLayout = new GridComponentType[actualWidth, actualWidth]; //width * 2 - 1 because initially, width equals number of intersections, there we add (width - 1) for the number of walls/cubes in between each intersection
 
         for (int i = 0; i < actualWidth; i++)
         {
-            for (int j = 0; j < actualWidth; j++)
+            for (int j = 0; j < actualWidth ; j++)
             {
                 if (i % 2 == 0) //if its column index is even, it's either an intersection or a segment
                 {
@@ -46,6 +46,6 @@ public class Grid
     }
 
     public int GetGridSize() {
-        return gridLayout.GetUpperBound(0);
+        return gridLayout.GetUpperBound(0)+1;
     }
 }

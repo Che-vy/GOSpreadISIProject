@@ -39,7 +39,14 @@ public class GameUI : MonoBehaviour
 
     public void CreateUnit()
     {
+        Movements.CanItMove(Movements.LastObjetSelectionne.GetComponent<BasePawnsClass>());
         PlayerManager.Instance.getPlayer(PlayerManager.Instance.playerTurn).currentMode = CurrentMode.CREATE;
+    }
+
+    public void MoveUnit()
+    {
+        Movements.CanItMove(Movements.LastObjetSelectionne.GetComponent<BasePawnsClass>());
+        PlayerManager.Instance.getPlayer(PlayerManager.Instance.playerTurn).currentMode = CurrentMode.MOVE;
     }
 
     public void HideKernelUI()

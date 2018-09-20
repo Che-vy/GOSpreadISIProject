@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Movements
 {
-    public GameObject LastObjetSelectionne;
+   static public GameObject LastObjetSelectionne;
+   static public List<GameObject> posActiver;
+
 
     public static bool CanItMove(BasePawnsClass pawn) //look if the selected unit can move
     {
@@ -17,6 +19,7 @@ public class Movements
         bool zipCanMove = false;//second check only for the zip
 
         Vector2Int gridIndex;
+        posActiver = new List<GameObject>();
         List<Vector2Int> dir = new List<Vector2Int>()
         {
             new Vector2Int(0,1),//down
@@ -49,6 +52,7 @@ public class Movements
                                 landingPlaceIsFree = true;
                                 //this is where we highlight the ok zones
                                 GridManager.Instance.ActivateLight(new Vector2Int(gridIndex.x, gridIndex.y));
+                                posActiver.Add(GridManager.Instance.grid_objects[gridIndex.x, gridIndex.y]);
                                 Debug.Log("pos available" + gridIndex);
 
                                 // check for unit that have 2 movement
@@ -101,19 +105,21 @@ public class Movements
 
         return canItMove;
     }
-    public bool CanSelectUnit(GameObject selectedPawn, int phase)
+    public static bool CanSelectUnit(GameObject selectedPawn, int phase)
     {
         bool canBeSelected = false;//unit cant be selected if it's not the player unit
 
         if ((selectedPawn.tag == "Units" || selectedPawn.tag == "Kernel") && selectedPawn.GetComponent<BasePawnsClass>().playerNum == PlayerManager.Instance.playerTurn)
         {
             if (LastObjetSelectionne != null)
-            {
-                LastObjetSelectionne.GetComponentInChildren<ParticleSystem>().Stop();
+            { 
+               ParticleManager.StopParticleSystem(LastObjetSelectionne.transform.GetChild(0).gameObject);
+                //LastObjetSelectionne.GetComponentInChildren<ParticleSystem>().Stop();
 
             }
             canBeSelected = true;
-            selectedPawn.GetComponentInChildren<ParticleSystem>().Play();
+            // selectedPawn.GetComponentInChildren<ParticleSystem>().Play();
+            ParticleManager.PlayParticleSystem(selectedPawn.transform.GetChild(0).gameObject);
             LastObjetSelectionne = selectedPawn;
 
             UIManager.Instance.ShowUnitsUI(selectedPawn, phase);

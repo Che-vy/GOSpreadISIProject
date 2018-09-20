@@ -58,13 +58,13 @@ public class UnitGrid
         switch (unitType) {
             case UnitType.Bit:
                 unitGrid[unitIndex.x, unitIndex.y] = new Bit();
-                ((Bit)unitGrid[unitIndex.x, unitIndex.y]).Initialize(new Vector2Int(unitIndex.x, unitIndex.y));
-                unitGridGO[unitIndex.x, unitIndex.y].GetComponent<Bit>().Initialize(new Vector2Int(unitIndex.x, unitIndex.y));
+                ((Bit)unitGrid[unitIndex.x, unitIndex.y]).Initialize(new Vector2Int(unitIndex.x, unitIndex.y),player);
+                unitGridGO[unitIndex.x, unitIndex.y].GetComponent<Bit>().Initialize(new Vector2Int(unitIndex.x, unitIndex.y), player);
                 break;
             case UnitType.Kernel:
                 unitGrid[unitIndex.x, unitIndex.y] = new Kernel();
-                ((Kernel)unitGrid[unitIndex.x, unitIndex.y]).Initialize();
-                unitGridGO[unitIndex.x, unitIndex.y].GetComponent<Kernel>().Initialize();
+                ((Kernel)unitGrid[unitIndex.x, unitIndex.y]).Initialize(new Vector2Int(unitIndex.x, unitIndex.y), player);
+                unitGridGO[unitIndex.x, unitIndex.y].GetComponent<Kernel>().Initialize(new Vector2Int(unitIndex.x, unitIndex.y), player);
                 break;
             case UnitType.Relay:
                 unitGrid[unitIndex.x, unitIndex.y] = new Relay();
@@ -84,6 +84,7 @@ public class UnitGrid
 
         unitGrid[unitIndex.x, unitIndex.y].x = unitIndex.x;
         unitGrid[unitIndex.x, unitIndex.y].y = unitIndex.y;
+   
     }
 
     /// <summary>

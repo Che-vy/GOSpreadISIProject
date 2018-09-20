@@ -25,7 +25,7 @@ public class GameFlow : Flow
         GridManager.Instance.Initialize(mapSize);
         PlayerManager.Instance.initialization();
         //UIManager.Instance.initialization();
-        //TerritoryGridManager.Instance.initialization();
+        TerritoryGridManager.Instance.Initialize();
         UnitFactory.Instance.Initialize();
         //UnitGridManager.Instance.initialization();
         UnitGrid.Instance.Initialize();
