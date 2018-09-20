@@ -150,7 +150,7 @@ public class Rule3A
                                                                 {
                                                                     if (j % 2 != 0 && i % 2 != 0)
                                                                     {
-                                                                        PlayerManager.Instance.getPlayer(player).zone++;
+                                                                       // PlayerManager.Instance.getPlayer(player).zone++;
                                                                         if (TerritoryGridManager.Instance.GetOwner(new Vector2Int(i, j)) != 0 && TerritoryGridManager.Instance.GetOwner(new Vector2Int(i, j)) != player) 
                                                                         {
                                                                             switch (player) {

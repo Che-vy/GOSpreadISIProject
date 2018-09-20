@@ -85,9 +85,9 @@ public class Player : NetworkBehaviour
                 co.CmdDebug(id, name);
 
 
-                if (currentMode == CurrentMode.STANDBY && Movements.CanSelectUnit(pkg.objectSelected, id))
+                if (currentMode == CurrentMode.STANDBY && Movements.CanSelectUnit(pkg.objectSelected, phase))
                 {
-                    UIManager.Instance.ShowUnitsUI(pkg.objectSelected, phase);
+                   // UIManager.Instance.ShowUnitsUI(pkg.objectSelected, phase);
                 }
                 else if (currentMode == CurrentMode.CREATE)
                 {
@@ -96,7 +96,7 @@ public class Player : NetworkBehaviour
                         co.CmdspawnUnit(pkg.objectSelected.GetComponentInParent<Intersection>().arrayPos, id, UnitType.Bit);
                         GridManager.Instance.DeactivateLight(Movements.posActiver);
                         currentMode = CurrentMode.STANDBY;
-                        phase++;
+                        NextPhase();
                     }
 
                 }
@@ -112,7 +112,7 @@ public class Player : NetworkBehaviour
                         co.CmdMoveUnit(id, pos, des);
                         GridManager.Instance.DeactivateLight(Movements.posActiver);
                         currentMode = CurrentMode.STANDBY;
-                        phase++;
+                        NextPhase();
                     }
                 }
 
@@ -124,11 +124,11 @@ public class Player : NetworkBehaviour
             //Update each phase
             if (phase == KERNELPHASE)
             {
-                UpdatePhase1(pkg);
+
             }
             else if (phase == MOVEPHASE)
             {
-                UpdatePhase2(pkg);
+               
             }
             else if (phase == TERRITORYPHASE)
             {
@@ -148,41 +148,9 @@ public class Player : NetworkBehaviour
 
     }
 
-    void UpdatePhase1(InputManager.InputPkg pkg)
-    {
+ 
 
-        // if (pkg.objectSelected != null)
-        // {
-        //     phase++;
-        // }
-
-        // switch (id) {
-        //     case 1:
-        //     Rule3A.Instance.RunTerritoryCheck(2, id+1);
-        //         break;
-        //     case 2:
-        //         Rule3A.Instance.RunTerritoryCheck(2, id - 1);
-        //         break;
-        // }
-        Debug.Log("In Phase 1");
-    }
-
-    void UpdatePhase2(InputManager.InputPkg pkg)
-    {
-
-        //Rule3A.Instance.RunMovementCheck(new Vector2Int(2, 2), 2);
-        if (!haha)
-        {
-            StartCoroutine(Rule3A.Instance.LerpMovementTool(false, UnitGrid.Instance.unitGridGO[2, 2], GridManager.Instance.grid_objects[2, 4], 1.0f));
-            haha = false;
-        }
-        //Rule3A.Instance.RunMovementCheck(new Vector2Int(4, 2), 2);
-        // if (pkg.objectSelected != null)
-        // {
-        //     phase++;
-        // }
-        Debug.Log("In Phase 2");
-    }
+   
 
     void UpdatePhase3(InputManager.InputPkg pkg)
     {
@@ -194,7 +162,8 @@ public class Player : NetworkBehaviour
         // Rule3A.Instance.RunTerritoryCheck(2, id);
 
         co.CmdCheckTerritory(id);
-        Debug.Log("In Phase 3");
+        NextPhase();
+        zone = (int)TerritoryGridManager.Instance.CalculateZoneControl()[id];
     }
 
     public void changeName(string name_)

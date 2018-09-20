@@ -118,7 +118,7 @@ public class GridManager
     {
         foreach(GameObject g in gO)
         {
-            g.SetActive(false);
+            g.transform.Find("Sphere").gameObject.SetActive(false);
         }
     }
 }

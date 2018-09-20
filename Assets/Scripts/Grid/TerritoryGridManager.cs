@@ -51,11 +51,11 @@ public sealed class TerritoryGridManager
 
     public Zone[] CalculateZoneControl() // call at each player turn. not each update
 
-        // need to change switch case to array 
+    // need to change switch case to array 
     {
-        Zone[] territory = new Zone[] { 0,0,0}; // index 0 = neutral, index 1 = player1, index2 = player 2. Keep track of the players score
+        Zone[] territory = new Zone[] { 0, 0, 0 }; // index 0 = neutral, index 1 = player1, index2 = player 2. Keep track of the players score
 
-        for (int i = 0; i < zoneGrid.GetUpperBound(0); i++)
+        for (int i = 0; i <= zoneGrid.GetUpperBound(0); i++)
         {
             for (int j = 0; j <= zoneGrid.GetUpperBound(0); j++)
             {
@@ -65,6 +65,8 @@ public sealed class TerritoryGridManager
                 }
             }
         }
+
+
 
         return territory;
     }
