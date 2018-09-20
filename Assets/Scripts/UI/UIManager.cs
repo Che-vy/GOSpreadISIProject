@@ -93,18 +93,23 @@ public class UIManager
 
     public void ActivateTurn()
     {
-        GameFlow.uiLinks.phase.interactable = true;
+        GameFlow.uiLinks.nextPhase.interactable = true;
         GameFlow.uiLinks.standBy.interactable = true;
     }
 
     public void DesactivateTurn()
     {
-        GameFlow.uiLinks.phase.interactable = false;
+        GameFlow.uiLinks.nextPhase.interactable = false;
         GameFlow.uiLinks.standBy.interactable = false;
     }
 
     public void InitializeUnitsUiInfos(BasePawnsClass basePawn)
     {
         gui.InitializeUnitsUiInfos(basePawn);
+    }
+
+    public void SetPhaseInfo(int phase)
+    {
+        gui.SetPhaseInfo(phase);
     }
 }

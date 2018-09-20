@@ -101,6 +101,7 @@ public class Player : NetworkBehaviour
     public void initializeTurn()
     {
         phase = KERNELPHASE;
+        UIManager.Instance.SetPhaseInfo(phase);
         if (isLocalPlayer)
             UIManager.Instance.ActivateTurn();
 
@@ -157,7 +158,8 @@ public class Player : NetworkBehaviour
     public void NextPhase()
     {
         phase++;
-        if(phase > 3 && PlayerManager.Instance.playerTurn == id )
+        UIManager.Instance.SetPhaseInfo(phase);
+        if (phase > 3 && PlayerManager.Instance.playerTurn == id )
         {
             if(isLocalPlayer)
             UIManager.Instance.DesactivateTurn();
@@ -168,5 +170,6 @@ public class Player : NetworkBehaviour
     public void StandBy()
     {
         phase = 3;
+        UIManager.Instance.SetPhaseInfo(phase);
     }
 }
