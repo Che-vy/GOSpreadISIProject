@@ -10,6 +10,7 @@ public class GameFlow : Flow
     public static UILinks uiLinks;
     Movements move;
     GameObject gO;
+    
 
     override
     public void InitializeFlow()
@@ -36,12 +37,12 @@ public class GameFlow : Flow
 
 
         // test for unit movement pos
-       // gO = UnitFactory.Instance.SpawnUnit(UnitType.Bit);
-       // gO.transform.position = new Vector3(4, 1, 4);
-       // UnitGrid.Instance.unitGrid[4, 4] = gO.GetComponent<BasePawnsClass>();
-       // UnitGrid.Instance.unitGrid[4, 4].positionInGridArray = new Vector2Int(4, 4);
-       //
-       // move.CanItMove(gO.GetComponent<BasePawnsClass>());
+        // gO = UnitFactory.Instance.SpawnUnit(UnitType.Bit);
+        // gO.transform.position = new Vector3(4, 1, 4);
+        // UnitGrid.Instance.unitGrid[4, 4] = gO.GetComponent<BasePawnsClass>();
+        // UnitGrid.Instance.unitGrid[4, 4].positionInGridArray = new Vector2Int(4, 4);
+        //
+        // move.CanItMove(gO.GetComponent<BasePawnsClass>());
 
     }
 
@@ -49,6 +50,7 @@ public class GameFlow : Flow
     public void UpdateFlow(float dt)
     {
         PlayerManager.Instance.Update();
+   
       
     }
 
