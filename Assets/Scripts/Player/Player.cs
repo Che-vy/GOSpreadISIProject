@@ -160,7 +160,7 @@ public class Player : NetworkBehaviour
     public void NextPhase()
     {
         phase++;
-        UIManager.Instance.SetPhaseInfo(phase);
+        UIManager.Instance.SetPhaseInfo(phase > 3 ? 1 : phase);
         if (phase > 3 && PlayerManager.Instance.playerTurn == id )
         {
             if(isLocalPlayer)
