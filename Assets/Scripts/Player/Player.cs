@@ -49,9 +49,15 @@ public class Player : NetworkBehaviour
         if(PlayerManager.Instance.playerTurn == id)
         {
             initializeTurn();
+            PlayerManager.Instance.moveCam.gameObject.transform.position = PlayerManager.Instance.p1Cam;
         }
         else
         {
+            Vector3 rotation = PlayerManager.Instance.moveCam.gameObject.transform.rotation.eulerAngles;
+            rotation.y = 180;
+            PlayerManager.Instance.moveCam.gameObject.transform.rotation = Quaternion.Euler(rotation);
+            PlayerManager.Instance.moveCam.gameObject.transform.position = PlayerManager.Instance.p2Cam;
+            
             UIManager.Instance.DesactivateTurn();
         }
     }
