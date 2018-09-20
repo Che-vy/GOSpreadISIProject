@@ -92,7 +92,7 @@ public class GameUI : MonoBehaviour
         PlayerManager.Instance.getPlayer(PlayerManager.Instance.playerTurn).StandBy();
     }
 
-    void DesactivateUI()
+    public void DesactivateUI()
     {
         HideKernelUI();
         HideUnitUI();
