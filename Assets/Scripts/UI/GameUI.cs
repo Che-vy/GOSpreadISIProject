@@ -84,6 +84,7 @@ public class GameUI : MonoBehaviour
         DesactivateUI();
         PlayerManager.Instance.getPlayer(PlayerManager.Instance.playerTurn).NextPhase();
     }
+
     public void StandBy()
     {
         DesactivateUI();

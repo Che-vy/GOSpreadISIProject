@@ -34,6 +34,7 @@ public class PlayerManager
     public void initialization()
     {
         players = new List<Player>();
+        playerTurn = 1;
     }
 
     //Set the players in the list and Array
@@ -53,8 +54,8 @@ public class PlayerManager
 
 
         }
-        
-       
+
+        playerTurn = 1;
         UIManager.Instance.Initialization();
     }
 

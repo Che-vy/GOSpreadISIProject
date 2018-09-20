@@ -30,7 +30,7 @@ public class Player : NetworkBehaviour
         {
             return;
         }
-
+        PlayerManager.Instance.playerTurn = 1;
         //Get the connectionManager
         co = GetComponent<ConnectionManager>();
         GameLinks.Instance.co = co;
@@ -108,12 +108,19 @@ public class Player : NetworkBehaviour
 
     void UpdatePhase1(InputManager.InputPkg pkg)
     {
-       
-       // if (pkg.objectSelected != null)
-       // {
-       //     phase++;
-       // }
 
+        // if (pkg.objectSelected != null)
+        // {
+        //     phase++;
+        // }
+        switch (id) {
+            case 1:
+            Rule3A.Instance.RunTerritoryCheck(2, id+1);
+                break;
+            case 2:
+                Rule3A.Instance.RunTerritoryCheck(2, id - 1);
+                break;
+        }
         Debug.Log("In Phase 1");
 
     }
