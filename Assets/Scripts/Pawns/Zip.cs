@@ -5,7 +5,7 @@ using UnityEngine;
 public class Zip : BasePawnsClass
 {
 
-    public Zip(Vector3 _pos)
+    public void Initialize()
     {
         pawnType = PawnTypes.Zip;
         quickPawnDefinition = "Upgraded form of the Bit. Can be upgraded into a Kernel if enough territories are possessed." +
@@ -16,7 +16,6 @@ public class Zip : BasePawnsClass
         rangeValue = 1;
         playerNum = 0;
         level = 2;
-        gameObject.transform.position = _pos;
         prefabsModel = "Zip";
         hasBeenEaten = false;
         movementAvailable = 1;

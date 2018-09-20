@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bit : BasePawnsClass
 {
-    public Bit(Vector3 _pos)
+    public void Initialize()
     {
         pawnType = PawnTypes.Bit;
         quickPawnDefinition = "Basic pawn created from the Kernels. Can be upgraded into Zips or Relays. This unit can move 1 tile per turn and have a range of 1.";
@@ -12,7 +12,6 @@ public class Bit : BasePawnsClass
         rangeValue = 1;
         playerNum = 0;
         level = 1;
-        //gameObject.transform.position = _pos;
         prefabsModel = "Bit";
         hasBeenEaten = false;
         movementAvailable = 1;
