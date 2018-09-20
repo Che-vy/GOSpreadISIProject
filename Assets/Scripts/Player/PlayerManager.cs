@@ -34,6 +34,8 @@ public class PlayerManager
     public Vector3 p2Cam = new Vector3(5, 1.6f, 12);
    public MoveCamera moveCam;
 
+    InputManager inputMan;
+
     //Initialize the List of player
     public void initialization()
     {
@@ -41,10 +43,10 @@ public class PlayerManager
         playerTurn = 1;
         Camera camera = Camera.main;
         moveCam = camera.GetComponent<MoveCamera>();
-        moveCam.initialize();
 
 
         move = new Movements();
+        inputMan = new InputManager();
 
     }
 
@@ -79,9 +81,10 @@ public class PlayerManager
 
         if (players != null && players.Count > 0)
         {
-            players[playerTurn - 1].UpdatePlayer();
+            InputManager.InputPkg pkg = inputMan.GetInputs();
+            players[playerTurn - 1].UpdatePlayer(pkg);
             UIManager.Instance.Update();
-            moveCam.UpdateCamera();
+            moveCam.UpdateCamera(pkg);
         }
        
 

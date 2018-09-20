@@ -5,17 +5,10 @@ using UnityEngine;
 public class MoveCamera : MonoBehaviour {
 
 
-    InputManager inputMan;
-    public float speed = 0.1f;
+    public float speed = 0.05f;
 
-    public void initialize()
+    public void UpdateCamera(InputManager.InputPkg pkg)
     {
-        inputMan = new InputManager();
-    }
-
-    public void UpdateCamera()
-    {
-        InputManager.InputPkg pkg = inputMan.GetInputs();
         if(transform.rotation.eulerAngles.y == 180)
         {
             transform.position -= pkg.cameraDirectionPressed * speed;

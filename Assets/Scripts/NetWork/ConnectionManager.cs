@@ -62,4 +62,19 @@ public class ConnectionManager : NetworkBehaviour {
     {
 
     }
+
+
+    //Check Territory
+    [Command]
+    public void CmdCheckTerritory(int id)
+    {
+        RpcCheckTerritory(id);
+    }
+    [ClientRpc]
+    void RpcCheckTerritory(int id)
+    {
+
+        Rule3A.Instance.RunTerritoryCheck(2, id);
+
+    }
 }

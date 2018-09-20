@@ -14,7 +14,7 @@ public class Player : NetworkBehaviour
 
     public int id;
     ConnectionManager co;
-    InputManager inputMan;
+    
     public int zone = 0;
 
     public bool isConnected = false;
@@ -43,7 +43,7 @@ public class Player : NetworkBehaviour
         name = Prototype.NetworkLobby.LobbyPlayerList._instance._players[id - 1].playerName;
 
         //Create and InputManager
-        inputMan = new InputManager();
+        
         isConnected = true;
 
         //Change the name in the UI on all the clients
@@ -66,7 +66,7 @@ public class Player : NetworkBehaviour
         }
     }
 
-    public void UpdatePlayer()
+    public void UpdatePlayer(InputManager.InputPkg pkg)
     {
         //If the player is initialize
         if (initialize == true)
@@ -77,7 +77,7 @@ public class Player : NetworkBehaviour
                 return;
             }
             //get the package from the inputManager
-            InputManager.InputPkg pkg = inputMan.GetInputs();
+            
 
 
             if (pkg.objectSelected != null)
@@ -142,15 +142,15 @@ public class Player : NetworkBehaviour
         // {
         //     phase++;
         // }
-        //switch (id)
-        //{
-        //    case 1:
-        //        Rule3A.Instance.RunTerritoryCheck(2, id + 1);
-        //        break;
-        //    case 2:
-        //        Rule3A.Instance.RunTerritoryCheck(2, id - 1);
-        //        break;
-        //}
+
+       // switch (id) {
+       //     case 1:
+       //     Rule3A.Instance.RunTerritoryCheck(2, id+1);
+       //         break;
+       //     case 2:
+       //         Rule3A.Instance.RunTerritoryCheck(2, id - 1);
+       //         break;
+       // }
         Debug.Log("In Phase 1");
     }
 
@@ -178,8 +178,9 @@ public class Player : NetworkBehaviour
         //     phase++;
         //     
         // }
+        // Rule3A.Instance.RunTerritoryCheck(2, id);
 
-        //Rule3A.Instance.RunTerritoryCheck(2, id);
+        co.CmdCheckTerritory(id);
         Debug.Log("In Phase 3");
     }
 
