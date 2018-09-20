@@ -5,16 +5,15 @@ using UnityEngine.Networking;
 
 public class GameFlow : Flow
 {
-
+    Movements move;
     readonly int mapSize = 10;
     public static UILinks uiLinks;
-    Movements move;
+
     GameObject gO;
 
     override
     public void InitializeFlow()
     {
-        move = new Movements();
         GameObject network = GameObject.Instantiate(Resources.Load("Prefabs/Network/GetNbConnection") as GameObject);
         GetNbPlayer networkGetPlayer = network.GetComponent<GetNbPlayer>();
         networkGetPlayer.Initialize();
@@ -23,7 +22,7 @@ public class GameFlow : Flow
         uiLinks = GameObject.FindObjectOfType<UILinks>();
         nbPlayer.Initialize();
 
-
+        move = new Movements();
 
         GridManager.Instance.Initialize(mapSize);
         PlayerManager.Instance.initialization();
@@ -35,14 +34,16 @@ public class GameFlow : Flow
         Demo.Instance.StartDemo(); //FOR DEMONSTRATION PURPOSES ONLY
 
 
-        // test for unit movement pos
-       // gO = UnitFactory.Instance.SpawnUnit(UnitType.Bit);
-       // gO.transform.position = new Vector3(4, 1, 4);
-       // UnitGrid.Instance.unitGrid[4, 4] = gO.GetComponent<BasePawnsClass>();
-       // UnitGrid.Instance.unitGrid[4, 4].positionInGridArray = new Vector2Int(4, 4);
-       //
-       // move.CanItMove(gO.GetComponent<BasePawnsClass>());
-
+      // test for unit movement pos
+      // gO = UnitFactory.Instance.SpawnUnit(UnitType.Bit);
+      //
+      //  UnitGrid.Instance.unitGrid[0, 0] = gO.GetComponent<BasePawnsClass>();
+      //  Debug.Log("call3");
+      //  UnitGrid.Instance.unitGrid[0, 0].positionInGridArray = new Vector2Int(0, 0);
+      //  Debug.Log("call4");
+      //
+      //  move.CanItMove(gO.GetComponent<BasePawnsClass>());
+      //  Debug.Log("call5");
     }
 
     override

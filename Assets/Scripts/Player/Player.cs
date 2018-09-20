@@ -74,7 +74,9 @@ public class Player : NetworkBehaviour
             {
                 co.CmdDebug(id, name);
 
-                UIManager.Instance.ShowUnitsUI(pkg.objectSelected,phase);
+               //  UIManager.Instance.ShowUnitsUI(pkg.objectSelected,phase);
+                PlayerManager.Instance.move.CanSelectUnit(pkg.objectSelected, phase);
+
 
             }
 

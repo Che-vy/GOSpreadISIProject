@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Movements
 {
+    public GameObject LastObjetSelectionne;
 
     public bool CanItMove(BasePawnsClass pawn) //look if the selected unit can move
     {
@@ -29,7 +30,7 @@ public class Movements
         {
             foreach (Vector2Int v in dir)
             {
-              
+
                 gridIndex = pawn.positionInGridArray + (v * scale);
                 unitHaveMovementPointAvailable = true;
 
@@ -48,6 +49,7 @@ public class Movements
                                 landingPlaceIsFree = true;
                                 //this is where we highlight the ok zones
                                 Debug.Log("pos available" + gridIndex);
+
                                 // check for unit that have 2 movement
                                 if (pawn.pawnType == PawnTypes.Zip)
                                 {
@@ -98,4 +100,25 @@ public class Movements
 
         return canItMove;
     }
+    public bool CanSelectUnit(GameObject selectedPawn, int phase)
+    {
+        bool canBeSelected = false;//unit cant be selected if it's not the player unit
+
+        if ((selectedPawn.tag == "Units" || selectedPawn.tag == "Kernel") && selectedPawn.GetComponent<BasePawnsClass>().playerNum == PlayerManager.Instance.playerTurn)
+        {
+            if (LastObjetSelectionne != null)
+            {
+                LastObjetSelectionne.GetComponentInChildren<ParticleSystem>().Stop();
+
+            }
+            canBeSelected = true;
+            selectedPawn.GetComponentInChildren<ParticleSystem>().Play();
+            LastObjetSelectionne = selectedPawn;
+
+            UIManager.Instance.ShowUnitsUI(selectedPawn, phase);
+
+        }
+        return canBeSelected;
+    }
 }
+
