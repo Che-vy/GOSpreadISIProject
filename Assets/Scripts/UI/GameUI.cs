@@ -93,6 +93,17 @@ public class GameUI : MonoBehaviour
         GameFlow.uiLinks.upgradeUi.SetActive(false);
     }
 
+    public void ShowConditionUI(string winner)
+    {
+        GameFlow.uiLinks.winnerText.text = winner;
+        GameFlow.uiLinks.conditionPanel.SetActive(true);
+    }
+
+    public void HideConditionUI()
+    {
+        GameFlow.uiLinks.conditionPanel.SetActive(false);
+    }
+
     public void ChangePhase()
     {
         DesactivateUI();

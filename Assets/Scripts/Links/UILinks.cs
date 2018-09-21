@@ -23,4 +23,7 @@ public class UILinks : MonoBehaviour {
     [Header("UpgradeUI Setting")]
     public GameObject upgradeUi;
 
+    [Header("Win/Lose Setting")]
+    public GameObject conditionPanel;
+    public Text winnerText;
 }
