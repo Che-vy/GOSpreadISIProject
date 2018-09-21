@@ -35,6 +35,11 @@ public class UIManager
         gui.UpdateGameUI();
     }
 
+    public void ShowConditionUI(string winner)
+    {
+        gui.ShowConditionUI(winner);
+    }
+
     public void ShowUnitsUI(GameObject obj, int phase)
     {
 
