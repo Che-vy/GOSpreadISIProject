@@ -97,12 +97,16 @@ public class GameUI : MonoBehaviour
     {
         DesactivateUI();
         PlayerManager.Instance.getPlayer(PlayerManager.Instance.playerTurn).NextPhase();
+        GridManager.Instance.DeactivateLight(Movements.posActiver);
+        PlayerManager.Instance.getPlayer(PlayerManager.Instance.playerTurn).currentMode = CurrentMode.STANDBY;
     }
 
     public void StandBy()
     {
         DesactivateUI();
         PlayerManager.Instance.getPlayer(PlayerManager.Instance.playerTurn).StandBy();
+        GridManager.Instance.DeactivateLight(Movements.posActiver);
+        PlayerManager.Instance.getPlayer(PlayerManager.Instance.playerTurn).currentMode = CurrentMode.STANDBY;
     }
 
     public void DesactivateUI()

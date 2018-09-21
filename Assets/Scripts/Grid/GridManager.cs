@@ -116,9 +116,12 @@ public class GridManager
 
     public void DeactivateLight(List<GameObject> gO)
     {
-        foreach(GameObject g in gO)
+        if (gO != null)
         {
-            g.transform.Find("Sphere").gameObject.SetActive(false);
+            foreach (GameObject g in gO)
+            {
+                g.transform.Find("Sphere").gameObject.SetActive(false);
+            }
         }
     }
 }

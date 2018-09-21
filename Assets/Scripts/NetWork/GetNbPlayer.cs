@@ -20,7 +20,7 @@ public class GetNbPlayer : MonoBehaviour {
         while (players == null || players.Count < NetworkLobbyManager.singleton.numPlayers)
         {
             //Wait for 0.25 secondes to let the client connect
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(1);
             
             //Find the gameObject with the tag Players
             playersObject = GameObject.FindGameObjectsWithTag("Player");
@@ -39,7 +39,7 @@ public class GetNbPlayer : MonoBehaviour {
         //Set the players in playerManager
         PlayerManager.Instance.setPlayer(playersObject, players);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1);
         //Initialize players
         PlayerManager.Instance.initializePlayers();
         //Destroy Itself

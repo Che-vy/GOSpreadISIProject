@@ -48,7 +48,16 @@ public class UnitGrid
 
     public void AddUnit(Vector2Int unitIndex, int player, UnitType unitType)
     {
-        unitGridGO[unitIndex.x, unitIndex.y] = UnitFactory.Instance.SpawnUnit(unitType);
+        GameObject unit = UnitFactory.Instance.SpawnUnit(unitType);
+        if(player == 1)
+        {
+            unit.GetComponent<MeshRenderer>().material.color = Color.magenta;
+        }
+        else
+        {
+            unit.GetComponent<MeshRenderer>().material.color = Color.yellow;
+        }
+        unitGridGO[unitIndex.x, unitIndex.y] = unit;
         unitGridGO[unitIndex.x, unitIndex.y].transform.position = GridManager.Instance.GetGridComponentPosition(unitIndex.x, unitIndex.y).position + VERTICAL_OFFSET;
         if (player == 2)
         {
