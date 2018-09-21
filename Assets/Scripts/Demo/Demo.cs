@@ -30,15 +30,8 @@ public class Demo
 
     public void StartDemo()
     {
-        UnitGrid.Instance.AddUnit(kernelP1, 1, UnitType.Kernel);
-        UnitGrid.Instance.AddUnit(kernelP2, 2, UnitType.Kernel);
-<<<<<<< HEAD
-        UnitGrid.Instance.AddUnit(new Vector2Int(0, 0), 1, UnitType.Bit);
-        UnitGrid.Instance.AddUnit(new Vector2Int(0, 2), 1, UnitType.Bit);
-        UnitGrid.Instance.AddUnit(new Vector2Int(0, 4), 1, UnitType.Bit);
-=======
+ 
 
->>>>>>> dbcf40c7b08165edb36612fd8208c58e6de1840f
         UnitGrid.Instance.AddUnit(new Vector2Int(2, 0), 1, UnitType.Bit);
         UnitGrid.Instance.AddUnit(new Vector2Int(2, 2), 1, UnitType.Bit);
         UnitGrid.Instance.AddUnit(new Vector2Int(2, 4), 1, UnitType.Bit);
