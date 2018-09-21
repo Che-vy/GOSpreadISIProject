@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class GetNbPlayer : MonoBehaviour {
+public class GetNbPlayer : MonoBehaviour
+{
 
     GameObject[] playersObject;
     List<Player> players;
@@ -21,7 +22,7 @@ public class GetNbPlayer : MonoBehaviour {
         {
             //Wait for 0.25 secondes to let the client connect
             yield return new WaitForSeconds(1);
-            
+
             //Find the gameObject with the tag Players
             playersObject = GameObject.FindGameObjectsWithTag("Player");
             players = new List<Player>();
@@ -34,7 +35,7 @@ public class GetNbPlayer : MonoBehaviour {
                 po.id = players.Count;
             }
         }
-       
+
         //Set the players in playerManager
         PlayerManager.Instance.setPlayer(playersObject, players);
 

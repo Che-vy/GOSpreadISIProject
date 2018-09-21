@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Movements
 {
-   static public GameObject LastObjetSelectionne;
-   static public List<GameObject> posActiver;
+    static public GameObject LastObjetSelectionne;
+    static public List<GameObject> posActiver;
 
 
     public static bool CanItMove(BasePawnsClass pawn) //look if the selected unit can move
@@ -55,7 +55,6 @@ public class Movements
                                 //this is where we highlight the ok zones
                                 GridManager.Instance.ActivateLight(new Vector2Int(gridIndex.x, gridIndex.y));
                                 posActiver.Add(GridManager.Instance.grid_objects[gridIndex.x, gridIndex.y]);
-                                Debug.Log("pos available" + gridIndex);
 
                                 // check for unit that have 2 movement
                                 if (pawn.pawnType == PawnTypes.Zip)
@@ -78,21 +77,12 @@ public class Movements
                                     }
                                 }
                             }
-                            else
-                            {
-                                Debug.Log("pos not available");
-                            }
+
                         }
-                        else
-                        {
-                            Debug.Log("unit grid is null");
-                        }
+
                     }
                 }
-                else
-                {
-                    Debug.Log("gridblueprint is null");
-                }
+
             }
         }
 
@@ -114,8 +104,8 @@ public class Movements
         if ((selectedPawn.tag == "Units" || selectedPawn.tag == "Kernel") && selectedPawn.GetComponent<BasePawnsClass>().playerNum == PlayerManager.Instance.playerTurn)
         {
             if (LastObjetSelectionne != null)
-            { 
-               ParticleManager.StopParticleSystem(LastObjetSelectionne.transform.GetChild(0).gameObject);
+            {
+                ParticleManager.StopParticleSystem(LastObjetSelectionne.transform.GetChild(0).gameObject);
                 //LastObjetSelectionne.GetComponentInChildren<ParticleSystem>().Stop();
 
             }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class UnitGrid
 {
     private readonly Vector3 VERTICAL_OFFSET = new Vector3(0, 0.75f, 0);
-	
+
     public GameObject[,] unitGridGO;
     public BasePawnsClass[,] unitGrid;
 
@@ -38,8 +38,10 @@ public class UnitGrid
         unitGridGO = new GameObject[gridSize, gridSize];
         unitGrid = new BasePawnsClass[gridSize, gridSize];
 
-        for (int i = 0; i < gridSize; i++) {
-            for (int j = 0; j < gridSize; j++) {
+        for (int i = 0; i < gridSize; i++)
+        {
+            for (int j = 0; j < gridSize; j++)
+            {
                 unitGrid[i, j] = new PawnTemplate();
             }
         }
@@ -49,7 +51,7 @@ public class UnitGrid
     public void AddUnit(Vector2Int unitIndex, int player, UnitType unitType)
     {
         GameObject unit = UnitFactory.Instance.SpawnUnit(unitType);
-        if(player == 1)
+        if (player == 1)
         {
             unit.GetComponent<MeshRenderer>().material.color = Color.magenta;
         }
@@ -64,10 +66,11 @@ public class UnitGrid
             unitGridGO[unitIndex.x, unitIndex.y].transform.rotation = new Quaternion(0, 90, 0, 0);
         }
 
-        switch (unitType) {
+        switch (unitType)
+        {
             case UnitType.Bit:
                 unitGrid[unitIndex.x, unitIndex.y] = new Bit();
-                ((Bit)unitGrid[unitIndex.x, unitIndex.y]).Initialize(new Vector2Int(unitIndex.x, unitIndex.y),player);
+                ((Bit)unitGrid[unitIndex.x, unitIndex.y]).Initialize(new Vector2Int(unitIndex.x, unitIndex.y), player);
                 unitGridGO[unitIndex.x, unitIndex.y].GetComponent<Bit>().Initialize(new Vector2Int(unitIndex.x, unitIndex.y), player);
                 break;
             case UnitType.Kernel:
@@ -98,7 +101,7 @@ public class UnitGrid
 
         unitGrid[unitIndex.x, unitIndex.y].x = unitIndex.x;
         unitGrid[unitIndex.x, unitIndex.y].y = unitIndex.y;
-   
+
     }
 
     /// <summary>
@@ -115,7 +118,7 @@ public class UnitGrid
         unitGrid[finalPosIndex.x, finalPosIndex.y] = unitGrid[initialPosIndex.x, initialPosIndex.y];
         unitGrid[initialPosIndex.x, initialPosIndex.y] = null;
     }
-    
+
     public GameObject GetUnitGO(Vector2Int unitIndex)
     {
         return unitGridGO[unitIndex.x, unitIndex.y];
@@ -126,7 +129,8 @@ public class UnitGrid
         return unitGrid[unitIndex.x, unitIndex.y];
     }
 
-    public void DestroyUnit(GameObject toDestroy) {
+    public void DestroyUnit(GameObject toDestroy)
+    {
         UnityEngine.Object.Destroy(toDestroy);
 
     }

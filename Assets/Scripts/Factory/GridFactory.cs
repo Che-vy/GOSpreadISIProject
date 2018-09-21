@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridFactory {
+public class GridFactory
+{
     readonly float GAME_TILE_HEIGHT = 0;
     readonly float GAME_SEGMENT_HEIGHT = -0.25f;
     private GameObject zone;
@@ -34,7 +35,8 @@ public class GridFactory {
     #endregion
 
 
-    public void Initialize() {
+    public void Initialize()
+    {
         zone = Resources.Load<GameObject>("Prefabs/Grid/Zone");
         segment = Resources.Load<GameObject>("Prefabs/Grid/Segment");
         intersection = Resources.Load<GameObject>("Prefabs/Grid/Intersection");
@@ -62,9 +64,10 @@ public class GridFactory {
         {
             for (int j = 0; j < width; j++)
             {
-                switch (masterGrid[i, j]) {
+                switch (masterGrid[i, j])
+                {
                     case GridComponentType.Zone:
-                        result[i, j] = GameObject.Instantiate<GameObject>(zone);                     
+                        result[i, j] = GameObject.Instantiate<GameObject>(zone);
                         break;
                     case GridComponentType.Segment:
                         result[i, j] = GameObject.Instantiate<GameObject>(segment);
@@ -75,7 +78,7 @@ public class GridFactory {
                         break;
                     default:
                         break;
-                        }
+                }
                 result[i, j].transform.parent = parent.transform;
             }
         }

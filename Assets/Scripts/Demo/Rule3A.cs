@@ -30,19 +30,13 @@ public class Rule3A
     {
         UnitGrid.Instance.unitGrid[destination.x, destination.y] = UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y];
         UnitGrid.Instance.unitGrid[destination.x, destination.y].positionInGridArray = new Vector2Int(destination.x, destination.y);
-        Debug.Log("destination:" + destination.x + " y " + destination.y);
-        Debug.Log("arrayPos:" + arrayPos.x + " y " + arrayPos.y);
         UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = new PawnTemplate();
         UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y].Initialize();
-        //UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = new BasePawnsClass();
         UnitGrid.Instance.unitGridGO[destination.x, destination.y] = UnitGrid.Instance.unitGridGO[arrayPos.x, arrayPos.y];
         GameObject go = UnitGrid.Instance.unitGridGO[destination.x, destination.y].gameObject;
         go.GetComponent<BasePawnsClass>().positionInGridArray = new Vector2Int(destination.x, destination.y);
 
         UnitGrid.Instance.unitGridGO[arrayPos.x, arrayPos.y] = new GameObject();
-        //Vector2Int worldSpace new Vector2Int((int)GridManager.Instance.GetGridComponentPosition(destination.x, destination.y).position.x, (int)GridManager.Instance.GetGridComponentPosition(destination.x, destination.y).position.y);
-        //MonoBehaviour.StartCoroutine(LerpMovementTool(false, UnitGrid.Instance.unitGridGO[arrayPos.x, arrayPos.y].gameObject, , 2f);
-        //  UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = ;
 
 
     }
@@ -65,7 +59,7 @@ public class Rule3A
                 toMove.transform.position = Vector3.Lerp(toMove.transform.position, new Vector3(destination.transform.position.x, destination.transform.position.y + .75f, destination.transform.position.z), t);
                 yield return new WaitForSeconds(0.025f);
             }
-            
+
             isMoving = false;
         }
     }
@@ -77,23 +71,22 @@ public class Rule3A
         for (int s = 2; s <= range; s += 2)
         {
             if (arrayPos.x - s >= 0)
-            {             
-                    if (UnitGrid.Instance.GetUnit(new Vector2Int(arrayPos.x - s, arrayPos.y)).playerNum == 0 )
-                    {
-                      
-                        GridManager.Instance.ActivateLight(new Vector2Int(arrayPos.x - s, arrayPos.y)); //Activate light particle for potential destination approved
-                    }
-                
+            {
+                if (UnitGrid.Instance.GetUnit(new Vector2Int(arrayPos.x - s, arrayPos.y)).playerNum == 0)
+                {
+
+                    GridManager.Instance.ActivateLight(new Vector2Int(arrayPos.x - s, arrayPos.y)); //Activate light particle for potential destination approved
+                }
+
             }
             if (arrayPos.x + s <= gridLimit)
             {
 
                 if (UnitGrid.Instance.GetUnit(new Vector2Int(arrayPos.x + s, arrayPos.y)).playerNum == 0)
                 {
-                    //potentialDestinations.Add(new Vector2Int(arrayPos.x + x, arrayPos.y));
                     GridManager.Instance.ActivateLight(new Vector2Int(arrayPos.x + s, arrayPos.y)); //Activate light particle for potential destination approved
                 }
-                
+
 
             }
             if (arrayPos.y + s <= range)
@@ -107,11 +100,10 @@ public class Rule3A
             }
             if (arrayPos.y + s <= gridLimit)
             {
-                    if (UnitGrid.Instance.GetUnit(new Vector2Int(arrayPos.x, arrayPos.y + s)).playerNum == 0)
-                    {
-                        //potentialDestinations.Add(new Vector2Int(arrayPos.x + x, arrayPos.y));
-                        GridManager.Instance.ActivateLight(new Vector2Int(arrayPos.x, arrayPos.y + s)); //Activate light particle for potential destination approved
-                    }
+                if (UnitGrid.Instance.GetUnit(new Vector2Int(arrayPos.x, arrayPos.y + s)).playerNum == 0)
+                {
+                    GridManager.Instance.ActivateLight(new Vector2Int(arrayPos.x, arrayPos.y + s)); //Activate light particle for potential destination approved
+                }
             }
         }
     }
@@ -157,10 +149,11 @@ public class Rule3A
                                                                 {
                                                                     if (j % 2 != 0 && i % 2 != 0)
                                                                     {
-                                                                       // PlayerManager.Instance.getPlayer(player).zone++;
-                                                                        if (TerritoryGridManager.Instance.GetOwner(new Vector2Int(i, j)) != 0 && TerritoryGridManager.Instance.GetOwner(new Vector2Int(i, j)) != player) 
+                                                                        // PlayerManager.Instance.getPlayer(player).zone++;
+                                                                        if (TerritoryGridManager.Instance.GetOwner(new Vector2Int(i, j)) != 0 && TerritoryGridManager.Instance.GetOwner(new Vector2Int(i, j)) != player)
                                                                         {
-                                                                            switch (player) {
+                                                                            switch (player)
+                                                                            {
                                                                                 case 1:
                                                                                     PlayerManager.Instance.getPlayer((int)Zone.Player2).zone--;
                                                                                     break;

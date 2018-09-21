@@ -9,7 +9,7 @@ public class Tile : IGridComponent
 
     public void Initialize()
     {
-        
+
     }
 
     public void Update()
@@ -20,7 +20,7 @@ public class Tile : IGridComponent
     public void Animate()
     {
         throw new System.NotImplementedException();
-    } 
+    }
 
     public void Destroy()
     {

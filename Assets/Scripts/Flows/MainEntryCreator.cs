@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainEntryCreator : MonoBehaviour {
+public class MainEntryCreator : MonoBehaviour
+{
 
     // Use this for initialization
     void Start()

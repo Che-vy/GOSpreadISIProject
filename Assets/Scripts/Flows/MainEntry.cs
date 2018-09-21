@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainEntry : MonoBehaviour {
+public class MainEntry : MonoBehaviour
+{
 
- 
+
     //Initialize flowManager
     public void Initialize()
     {

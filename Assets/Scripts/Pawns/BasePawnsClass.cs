@@ -4,8 +4,9 @@ using UnityEngine;
 
 
 
-public enum PawnTypes { Bit, Zip, Relay, Kernel, Template}
-public class BasePawnsClass : MonoBehaviour{
+public enum PawnTypes { Bit, Zip, Relay, Kernel, Template }
+public class BasePawnsClass : MonoBehaviour
+{
 
     public PawnTypes pawnType; //define type of the pawn, see enum above
     public string quickPawnDefinition; // quick definition of the pawn, how it behave in the game. Definition can be use for UI purposes (how to play, pawns UI)
@@ -20,7 +21,7 @@ public class BasePawnsClass : MonoBehaviour{
     public bool hasBeenEaten; // if the pawn is alive or not
     public Vector2Int positionInGridArray = new Vector2Int(0, 0); // position of the pawn related to the gamegrid (to keep track of where it is on the board)
     public int x, y;
-    public int movementAvailable =1;// bool that will turn on once it moved, as long as it true the unit cant move again even if the player have more movement available
+    public int movementAvailable = 1;// bool that will turn on once it moved, as long as it true the unit cant move again even if the player have more movement available
 
 
     public void Initialize() { }
