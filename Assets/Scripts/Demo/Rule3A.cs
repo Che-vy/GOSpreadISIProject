@@ -29,13 +29,20 @@ public class Rule3A
     public void MovePiece(Vector2Int arrayPos, Vector2Int destination)
     {
         UnitGrid.Instance.unitGrid[destination.x, destination.y] = UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y];
-
-        UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = null;
+        UnitGrid.Instance.unitGrid[destination.x, destination.y].positionInGridArray = new Vector2Int(destination.x, destination.y);
+        Debug.Log("destination:" + destination.x + " y " + destination.y);
+        Debug.Log("arrayPos:" + arrayPos.x + " y " + arrayPos.y);
+        UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = new PawnTemplate();
+        UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y].Initialize();
         //UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = new BasePawnsClass();
-        UnitGrid.Instance.unitGridGO[destination.x, destination.y] = UnitGrid.Instance.unitGridGO[arrayPos.x, arrayPos.y];
+        UnitGrid.Instance.unitGridGO[destination.x, destination.y] = UnitGrid.Instance.unitGridGO[arrayPos.x, arrayPos.y].gameObject;
+        GameObject go = UnitGrid.Instance.unitGridGO[destination.x, destination.y].gameObject;
+        go.GetComponent<PawnTemplate>().positionInGridArray = new Vector2Int(destination.x, destination.y);
+
+        UnitGrid.Instance.unitGridGO[arrayPos.x, arrayPos.y] = new GameObject();
         //Vector2Int worldSpace new Vector2Int((int)GridManager.Instance.GetGridComponentPosition(destination.x, destination.y).position.x, (int)GridManager.Instance.GetGridComponentPosition(destination.x, destination.y).position.y);
         //MonoBehaviour.StartCoroutine(LerpMovementTool(false, UnitGrid.Instance.unitGridGO[arrayPos.x, arrayPos.y].gameObject, , 2f);
-      //  UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = ;
+        //  UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = ;
 
 
     }
@@ -56,9 +63,9 @@ public class Rule3A
             {
                 t += Time.deltaTime / time;
                 toMove.transform.position = Vector3.Lerp(toMove.transform.position, new Vector3(destination.transform.position.x, destination.transform.position.y + .75f, destination.transform.position.z), t);
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.025f);
             }
-
+            
             isMoving = false;
         }
     }
