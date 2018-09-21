@@ -31,28 +31,26 @@ public class Demo {
     {
         UnitGrid.Instance.AddUnit(kernelP1, 1, UnitType.Kernel);
         UnitGrid.Instance.AddUnit(kernelP2, 2, UnitType.Kernel);
-
-        //UnitGrid.Instance.AddUnit(new Vector2Int(6, 2), 1, UnitType.Bit);
-        //UnitGrid.Instance.AddUnit(new Vector2Int(6, 4), 1, UnitType.Bit);
-        //UnitGrid.Instance.AddUnit(new Vector2Int(8, 4), 1, UnitType.Bit);
-
+        UnitGrid.Instance.AddUnit(new Vector2Int(0, 0), 1, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(0, 2), 1, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(0, 4), 1, UnitType.Bit);
         UnitGrid.Instance.AddUnit(new Vector2Int(2, 0), 1, UnitType.Bit);
         UnitGrid.Instance.AddUnit(new Vector2Int(2, 2), 1, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(2, 4), 1, UnitType.Bit);
         UnitGrid.Instance.AddUnit(new Vector2Int(4, 0), 1, UnitType.Bit);
-        UnitGrid.Instance.AddUnit(new Vector2Int(4, 2), 1, UnitType.Bit);
-        UnitGrid.Instance.AddUnit(new Vector2Int(14, 12), 1, UnitType.Bit);
-        UnitGrid.Instance.AddUnit(new Vector2Int(14, 10), 1, UnitType.Bit);
-        UnitGrid.Instance.AddUnit(new Vector2Int(10, 8), 1, UnitType.Bit);
-        UnitGrid.Instance.AddUnit(new Vector2Int(8, 4), 1, UnitType.Bit);
-        UnitGrid.Instance.AddUnit(new Vector2Int(8, 6), 1, UnitType.Bit);
-        UnitGrid.Instance.AddUnit(new Vector2Int(8, 8), 1, UnitType.Bit);
-        UnitGrid.Instance.AddUnit(new Vector2Int(10, 6), 1, UnitType.Bit);
-
-
-
-
-        UnitGrid.Instance.AddUnit(new Vector2Int(10, 0), 1, UnitType.Bit);
-        UnitGrid.Instance.AddUnit(new Vector2Int(10, 10), 1, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(4, 4), 1, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(4, 6), 1, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(6, 0), 1, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(6, 2), 1, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(6, 4), 1, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(10, 14), 2, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(8, 16), 2, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(8, 14), 2, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(8, 12), 2, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(8, 10), 2, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(10, 12), 2, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(10, 10), 2, UnitType.Bit);
+        UnitGrid.Instance.AddUnit(new Vector2Int(6, 12), 2, UnitType.Bit);
 
 
         // Rule3A.Instance.

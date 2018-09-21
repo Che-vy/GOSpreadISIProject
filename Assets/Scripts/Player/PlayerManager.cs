@@ -108,6 +108,14 @@ public class PlayerManager
         }
         UIManager.Instance.PlayersTurnChange(playerTurn);
         players[playerTurn - 1].initializeTurn();
+
+        foreach(Player p in players)
+        {
+            if(p.zone >= 5)
+            {
+                UIManager.Instance.ShowConditionUI("Player " + p.id + " " + p.name);
+            }
+        }
     }
 
     //Get one player
