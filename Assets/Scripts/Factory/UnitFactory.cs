@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum UnitType { Bit,Zit,Relay,Kernel, Template}
+public enum UnitType { Bit, Zit, Relay, Kernel, Template }
 public class UnitFactory
 {
     #region Singleton
@@ -48,6 +48,6 @@ public class UnitFactory
 
     public GameObject SpawnUnit(UnitType unit)
     {
-        return GameObject.Instantiate( units[unit.ToString()]);
+        return GameObject.Instantiate(units[unit.ToString()]);
     }
 }

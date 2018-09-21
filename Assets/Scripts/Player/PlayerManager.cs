@@ -11,7 +11,7 @@ public class PlayerManager
 
     private PlayerManager()
     {
-        
+
     }
 
     public static PlayerManager Instance
@@ -32,7 +32,7 @@ public class PlayerManager
     public int playerTurn = 1;
     public Vector3 p1Cam = new Vector3(5, 1.6f, -2.5f);
     public Vector3 p2Cam = new Vector3(5, 1.6f, 12);
-   public MoveCamera moveCam;
+    public MoveCamera moveCam;
 
     InputManager inputMan;
 
@@ -64,15 +64,11 @@ public class PlayerManager
         foreach (Player p in players)
         {
             p.initialization();
-
-
         }
 
         playerTurn = 1;
         UIManager.Instance.Initialization();
 
-
-        
     }
 
     //Update the right player
@@ -86,8 +82,6 @@ public class PlayerManager
             UIManager.Instance.Update();
             moveCam.UpdateCamera(pkg);
         }
-       
-
     }
 
 
@@ -123,6 +117,4 @@ public class PlayerManager
     {
         return players[id - 1];
     }
-
-
 }

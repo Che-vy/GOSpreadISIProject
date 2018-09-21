@@ -9,7 +9,7 @@ public class GameFlow : Flow
     public static UILinks uiLinks;
 
     GameObject gO;
-    
+
 
     override
     public void InitializeFlow()
@@ -36,8 +36,8 @@ public class GameFlow : Flow
     public void UpdateFlow(float dt)
     {
         PlayerManager.Instance.Update();
-   
-      
+
+
     }
 
     override

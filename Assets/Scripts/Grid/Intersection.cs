@@ -9,7 +9,7 @@ public class Intersection : MonoBehaviour
 
     public void Initialize(Vector2Int _arrayPos)
     {
-       arrayPos = _arrayPos;
+        arrayPos = _arrayPos;
     }
 
 }

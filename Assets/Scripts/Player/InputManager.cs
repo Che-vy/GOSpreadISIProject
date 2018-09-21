@@ -43,14 +43,7 @@ public class InputManager
             {
                 
                 toRet = hit.transform.gameObject; // the hit return the game object it hits
-
-                Debug.Log(""+ toRet.name);
             }
-            else
-            {
-                Debug.Log("No object was hit by the raycast");
-            }
-
         }
    
         return toRet;

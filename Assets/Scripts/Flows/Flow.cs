@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flow  {
+public class Flow
+{
 
 
     public virtual void InitializeFlow()

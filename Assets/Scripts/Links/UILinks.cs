@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UILinks : MonoBehaviour {
+public class UILinks : MonoBehaviour
+{
 
-    [Header ("GameUI Setting")]
+    [Header("GameUI Setting")]
     public Text player1Name;
     public Text player2Name, player1NbTerritory, player2NbTerritory, phase;
     public GameUI gui;

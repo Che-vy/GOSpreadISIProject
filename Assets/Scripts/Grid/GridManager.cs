@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GridManager
 {
-   public Grid grid_blueprint;
-   public GameObject[,] grid_objects = null;
+    public Grid grid_blueprint;
+    public GameObject[,] grid_objects = null;
     float hOffset;
     float vOffset;
 
@@ -35,7 +35,7 @@ public class GridManager
     /// <param name="size">The number of intersections on a side</param>
     public void Initialize(int size)
     {
-        grid_blueprint = new Grid();     
+        grid_blueprint = new Grid();
         grid_blueprint.Initialize(size);
         InstantiateGridObjects();
     }
@@ -49,7 +49,7 @@ public class GridManager
 
     public void InitializeGridObjectsPositions(GameObject[,] _grid_objects)
     {
-        int arraySize = _grid_objects.GetUpperBound(0)+1;
+        int arraySize = _grid_objects.GetUpperBound(0) + 1;
 
         for (int i = 0; i < arraySize; i++)
         {
@@ -89,28 +89,33 @@ public class GridManager
         }
     }
 
-    public Transform GetGridComponentPosition(int indexA, int indexB) {
+    public Transform GetGridComponentPosition(int indexA, int indexB)
+    {
         return grid_objects[indexA, indexB].transform;
     }
 
-    public int GetGridSize() {
+    public int GetGridSize()
+    {
         return grid_blueprint.GetGridSize();
     }
 
-    public void ActivateParticles(Vector2Int index, int player) {
+    public void ActivateParticles(Vector2Int index, int player)
+    {
         if (player == 1)
         {
             grid_objects[index.x, index.y].transform.Find("BlueGlowing").gameObject.SetActive(true);
             grid_objects[index.x, index.y].transform.Find("RedGlowing").gameObject.SetActive(false);
         }
-        else {
+        else
+        {
             grid_objects[index.x, index.y].transform.Find("RedGlowing").gameObject.SetActive(true);
             grid_objects[index.x, index.y].transform.Find("BlueGlowing").gameObject.SetActive(false);
         }
     }
 
-    public void ActivateLight(Vector2Int index) {
-      //GameObject [] childs = grid_objects[index.x, index.y].chil
+    public void ActivateLight(Vector2Int index)
+    {
+        //GameObject [] childs = grid_objects[index.x, index.y].chil
         grid_objects[index.x, index.y].transform.Find("Sphere").gameObject.SetActive(true);
     }
 

@@ -87,7 +87,7 @@ public class Player : NetworkBehaviour
 
                 if (currentMode == CurrentMode.STANDBY && Movements.CanSelectUnit(pkg.objectSelected, phase))
                 {
-                   
+
                 }
                 else if (currentMode == CurrentMode.CREATE)
                 {
@@ -128,7 +128,7 @@ public class Player : NetworkBehaviour
             }
             else if (phase == MOVEPHASE)
             {
-               
+
             }
             else if (phase == TERRITORYPHASE)
             {
@@ -170,7 +170,7 @@ public class Player : NetworkBehaviour
     public void NextPhase()
     {
         if (Movements.LastObjetSelectionne != null)
-         ParticleManager.StopParticleSystem(Movements.LastObjetSelectionne.transform.GetChild(0).gameObject);
+            ParticleManager.StopParticleSystem(Movements.LastObjetSelectionne.transform.GetChild(0).gameObject);
         phase++;
 
         UIManager.Instance.SetPhaseInfo(phase > 3 ? 1 : phase);

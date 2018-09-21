@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class FlowManager
 {
     //Name of the Scenes
-    public enum SceneNames {Lobby, Game }
+    public enum SceneNames { Lobby, Game }
 
     #region Singleton
     private static FlowManager instance;
@@ -45,7 +45,7 @@ public class FlowManager
     //Update FlowManager
     public void Update(float dt)
     {
-       
+
         //Update the flow
         if (currentFlow != null && flowInitialized)
             currentFlow.UpdateFlow(dt);
@@ -80,7 +80,7 @@ public class FlowManager
         //Check the name of the scene to create the new flow
         switch (flowToLoad)
         {
-           
+
             case SceneNames.Lobby:
                 toRet = new Flow();
                 break;
@@ -89,7 +89,6 @@ public class FlowManager
                 break;
             default:
                 toRet = new GameFlow();
-                Debug.LogError("Unhandled Switch: " + flowToLoad.ToString());
                 break;
         }
         return toRet;
@@ -98,8 +97,6 @@ public class FlowManager
     //Function called by the event system SceneManager.sceneLoaded
     public void OnSceneLoaded(Scene sceneLoaded, LoadSceneMode loadScene)
     {
-        
-        Debug.Log("Scene: " + sceneLoaded.name + " finished loading");
         //Initialize current flow
         currentFlow.InitializeFlow();
         flowInitialized = true;
