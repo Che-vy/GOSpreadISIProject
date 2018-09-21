@@ -234,7 +234,7 @@ MonoBehaviour:
   upgrade: {fileID: 327876902}
   upgradeUi: {fileID: 1306091623}
   conditionPanel: {fileID: 0}
-  conditionText: {fileID: 1214663385}
+  winnerText: {fileID: 0}
 --- !u!4 &115957454
 Transform:
   m_ObjectHideFlags: 0
@@ -1959,7 +1959,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &933989546
 RectTransform:
   m_ObjectHideFlags: 0
