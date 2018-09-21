@@ -98,6 +98,7 @@ public class ConnectionManager : NetworkBehaviour {
        StartCoroutine( Rule3A.Instance.LerpMovementTool(false, UnitGrid.Instance.unitGridGO[pos.x, pos.y], GridManager.Instance.grid_objects[des.x, des.y],1.5f));
 
         Rule3A.Instance.MovePiece(pos, des);
-
     }
+
+
 }

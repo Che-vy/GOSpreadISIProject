@@ -35,7 +35,6 @@ public class GetNbPlayer : MonoBehaviour {
             }
         }
        
-
         //Set the players in playerManager
         PlayerManager.Instance.setPlayer(playersObject, players);
 

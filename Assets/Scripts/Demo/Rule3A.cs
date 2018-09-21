@@ -35,9 +35,9 @@ public class Rule3A
         UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = new PawnTemplate();
         UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y].Initialize();
         //UnitGrid.Instance.unitGrid[arrayPos.x, arrayPos.y] = new BasePawnsClass();
-        UnitGrid.Instance.unitGridGO[destination.x, destination.y] = UnitGrid.Instance.unitGridGO[arrayPos.x, arrayPos.y].gameObject;
+        UnitGrid.Instance.unitGridGO[destination.x, destination.y] = UnitGrid.Instance.unitGridGO[arrayPos.x, arrayPos.y];
         GameObject go = UnitGrid.Instance.unitGridGO[destination.x, destination.y].gameObject;
-        go.GetComponent<PawnTemplate>().positionInGridArray = new Vector2Int(destination.x, destination.y);
+        go.GetComponent<BasePawnsClass>().positionInGridArray = new Vector2Int(destination.x, destination.y);
 
         UnitGrid.Instance.unitGridGO[arrayPos.x, arrayPos.y] = new GameObject();
         //Vector2Int worldSpace new Vector2Int((int)GridManager.Instance.GetGridComponentPosition(destination.x, destination.y).position.x, (int)GridManager.Instance.GetGridComponentPosition(destination.x, destination.y).position.y);

@@ -146,6 +146,11 @@ public class Player : NetworkBehaviour
         if (isLocalPlayer)
             UIManager.Instance.ActivateTurn();
 
+        foreach (Player p in PlayerManager.Instance.players)
+        {
+            p.zone = (int)TerritoryGridManager.Instance.CalculateZoneControl()[p.id];
+        }
+
     }
 
     void UpdatePhase3(InputManager.InputPkg pkg)
@@ -154,7 +159,6 @@ public class Player : NetworkBehaviour
 
         co.CmdCheckTerritory(id);
         NextPhase();
-        zone = (int)TerritoryGridManager.Instance.CalculateZoneControl()[id];
     }
 
     public void changeName(string name_)
