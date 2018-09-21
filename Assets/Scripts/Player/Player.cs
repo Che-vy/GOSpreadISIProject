@@ -87,7 +87,7 @@ public class Player : NetworkBehaviour
 
                 if (currentMode == CurrentMode.STANDBY && Movements.CanSelectUnit(pkg.objectSelected, phase))
                 {
-                   // UIManager.Instance.ShowUnitsUI(pkg.objectSelected, phase);
+                   
                 }
                 else if (currentMode == CurrentMode.CREATE)
                 {
@@ -146,24 +146,19 @@ public class Player : NetworkBehaviour
         if (isLocalPlayer)
             UIManager.Instance.ActivateTurn();
 
+        foreach (Player p in PlayerManager.Instance.players)
+        {
+            p.zone = (int)TerritoryGridManager.Instance.CalculateZoneControl()[p.id];
+        }
+
     }
-
- 
-
-   
 
     void UpdatePhase3(InputManager.InputPkg pkg)
     {
-        // if (pkg.objectSelected != null)
-        // {
-        //     phase++;
-        //     
-        // }
-        // Rule3A.Instance.RunTerritoryCheck(2, id);
+
 
         co.CmdCheckTerritory(id);
         NextPhase();
-        zone = (int)TerritoryGridManager.Instance.CalculateZoneControl()[id];
     }
 
     public void changeName(string name_)
@@ -174,6 +169,8 @@ public class Player : NetworkBehaviour
 
     public void NextPhase()
     {
+        if (Movements.LastObjetSelectionne != null)
+         ParticleManager.StopParticleSystem(Movements.LastObjetSelectionne.transform.GetChild(0).gameObject);
         phase++;
 
         UIManager.Instance.SetPhaseInfo(phase > 3 ? 1 : phase);

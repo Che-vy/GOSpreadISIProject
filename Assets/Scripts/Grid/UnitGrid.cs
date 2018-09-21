@@ -40,7 +40,7 @@ public class UnitGrid
 
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
-                unitGrid[i, j] = new BasePawnsClass();
+                unitGrid[i, j] = new PawnTemplate();
             }
         }
 
@@ -48,7 +48,16 @@ public class UnitGrid
 
     public void AddUnit(Vector2Int unitIndex, int player, UnitType unitType)
     {
-        unitGridGO[unitIndex.x, unitIndex.y] = UnitFactory.Instance.SpawnUnit(unitType);
+        GameObject unit = UnitFactory.Instance.SpawnUnit(unitType);
+        if(player == 1)
+        {
+            unit.GetComponent<MeshRenderer>().material.color = Color.magenta;
+        }
+        else
+        {
+            unit.GetComponent<MeshRenderer>().material.color = Color.yellow;
+        }
+        unitGridGO[unitIndex.x, unitIndex.y] = unit;
         unitGridGO[unitIndex.x, unitIndex.y].transform.position = GridManager.Instance.GetGridComponentPosition(unitIndex.x, unitIndex.y).position + VERTICAL_OFFSET;
         if (player == 2)
         {
@@ -75,6 +84,11 @@ public class UnitGrid
                 unitGrid[unitIndex.x, unitIndex.y] = new Zip();
                 ((Zip)unitGrid[unitIndex.x, unitIndex.y]).Initialize();
                 unitGridGO[unitIndex.x, unitIndex.y].GetComponent<Zip>().Initialize();
+                break;
+            case UnitType.Template:
+                unitGrid[unitIndex.x, unitIndex.y] = new PawnTemplate();
+                ((PawnTemplate)unitGrid[unitIndex.x, unitIndex.y]).Initialize();
+                unitGridGO[unitIndex.x, unitIndex.y].GetComponent<PawnTemplate>().Initialize();
                 break;
             default:
                 break;
@@ -115,11 +129,6 @@ public class UnitGrid
     public void DestroyUnit(GameObject toDestroy) {
         UnityEngine.Object.Destroy(toDestroy);
 
-    }
-
-    public void MoveUnitGameObject()
-    {
-        Debug.Log("MoveUnitGameObject method not implemented");
     }
 
     public void ClearGrid()

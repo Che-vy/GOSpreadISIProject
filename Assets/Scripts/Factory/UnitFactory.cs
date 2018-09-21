@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum UnitType { Bit,Zit,Relay,Kernel}
+public enum UnitType { Bit,Zit,Relay,Kernel, Template}
 public class UnitFactory
 {
     #region Singleton
